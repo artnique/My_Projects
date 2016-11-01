@@ -1,0 +1,75 @@
+﻿@{
+    var agentSite = ConfigHelper.AgentSiteDomain;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords"/>
+    <meta name="description" content="@ViewBag.Description" />
+    <link href="/Content/style/agent_style.css" type="text/css" rel="stylesheet" />
+    <script src="/Scripts/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <!-- 代理头部star -->
+    <div class="p_banner fullwidth">
+	    <div class="p_nav_bg fullwidth">
+            <div class="p_nav">
+                <h1></h1>
+                <ul>
+                    <li><a href="/index.html">银河首页</a></li>
+                    <li><a href="index.html" class="@(ViewBag.PageTag == "index" ? "hover": "")">合作代理</a></li>
+                    <li><a href="program.html" class="@(ViewBag.PageTag == "program" ? "hover": "")">合作方案</a></li>
+                    <li><a href="brand.html" class="@(ViewBag.PageTag == "brand" ? "hover": "")">品牌打造</a></li>
+                    <li><a href="agreement.html" class="@(ViewBag.PageTag == "agreement" ? "hover": "")">代理协议</a></li>
+                </ul>
+                <span>
+                    <a href="@agentSite" class="i1" target="agentsite">代理登入</a>
+                    <a href="/agent/regist.html" class="i2">代理注册</a>
+                </span>
+		    </div>
+	    </div>
+    </div>
+    <!-- 代理头部end -->
+    <!-- 代理内容star -->
+    @RenderBody()
+    <!-- 代理内容end -->
+    <!-- 代理底部star -->
+    <div class="p_footer fullwidth">
+	    <div class="p_f_m">
+    	    <div class="p_f_p">
+        	    <a href="@agentSite">代理登录</a>|
+                <a href="/agent/regist.html">申请代理</a>|
+                <a href="/agent/program.html">合作方案</a>|
+                <a href="/agent/brand.html">品牌打造</a>|
+                <a href="/agent/agreement.html">代理协议</a>|
+                <a href="/help/about.html#tab1">关于我们</a>
+            </div>
+            <div class="p_f_i"></div>
+            <div class="p_f_b">
+        	    Copyright © 2015 澳门银河娱乐城 版权所有
+            </div>
+        </div>
+    </div>
+    <!-- 代理底部end -->
+    <!-- 返回顶部star -->
+    <script type="text/javascript">
+        $(function () {
+            showScroll();
+            function showScroll() {
+                $(window).scroll(function () {
+                    var scrollValue = $(window).scrollTop();
+                    scrollValue > 100 ? $('div[class=scroll]').fadeIn() : $('div[class=scroll]').fadeOut();
+                });
+                $('#scroll').click(function () {
+                    $("html,body").animate({ scrollTop: 0 }, 200);
+                });
+            }
+        });
+    </script>
+    <div class="scroll" id="scroll" style="display:none;"></div>
+    <!-- 返回顶部end -->
+</body>
+</html>
+

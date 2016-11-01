@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+    
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+}
+
+<!DOCTYPE html>
+
+<html class="zh-cn">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.Keywords"/>
+    <meta name="description" content="@ViewBag.Description" />
+    <link rel="stylesheet" href="/Content/style/pwdforget.css">
+    <script src="/Scripts/lib/jquery.js"></script>
+    <script src="/Scripts/lib/jquery.cookie.js"></script>
+    <script src="/Scripts/lib/layer/layer.js"></script>
+    <script src="/Scripts/page/core.js"></script>
+    <script src="/Scripts/page/common.js"></script>
+    <script src="/Scripts/page/help/pwdforget.js"></script>
+    <script type="text/javascript" src="/Scripts/page/validator.js"></script>
+</head>
+<body>
+    <div id="fgPg-wrap" class="fgpw-wrap">
+	    <div class="lock-pic-wrap">
+		    <div class="lock-line motion"></div>
+	    </div>
+	    <div class="txt-wrap">
+		    <div class="pw-info-wrap">
+			    <div class="pw-st-title">
+				    忘记密码
+			    </div>
+			    <div class="pw-input-wrap clearfix" id="pwdforget">
+				    <p class="pw-unit pw-unit-user">
+					    <label name="user-acc" for="user-acc" class="pw-placeholder" style="opacity: 1;">会员帐号</label><input id="JS-username" name="user-acc" type="text" autocomplete="off" class="user-acc unit-input" tabindex="1" size="12" maxlength="15">
+				    </p>
+				    <p id="JS-vPicArea" class="pw-unit pw-unit-user">
+					    <label name="chk-code" for="chk-code" class="pw-placeholder" style="opacity: 1;">验证码</label><input id="JS-rmnum" name="chk-code" type="text" class="chk-code unit-input" size="4" maxlength="4" tabindex="3" style="width:200px;"><img id="JS-vPic" class="vPic" src="/authcode/createimagecode.html?q=@(Guid.NewGuid().ToString())" onclick="this.src='/authcode/createimagecode.html?q='+new Date().getTime();" alt="( 点选此处产生新验证码 )" style="vertical-align:middle;" />
+				    </p>
+			    </div>
+                <div class="pw-input-wrap clearfix" id="pwdchange" style="display:none;">
+				    <p class="pw-unit pw-unit-wdpw">
+					    <label name="user-wdpw" for="newpwd" class="pw-placeholder" style="opacity: 1;">新密码</label><input id="newpwd" name="user-wdpw" type="password" autocomplete="off" class="user-wdpw unit-input" tabindex="1" size="6" />
+				    </p>
+				    <p class="pw-unit pw-unit-wdpw">
+					    <label name="user-wdpw" for="newpwd2" class="pw-placeholder" style="opacity: 1;">确认密码</label><input id="newpwd2" name="user-wdpw" type="password" autocomplete="off" class="user-wdpw unit-input" tabindex="2" size="6" />
+				    </p>
+                    <p class="pw-unit pw-unit-user">
+					    <label name="user-wdpw" for="emailcode" class="pw-placeholder" style="opacity: 1;">邮箱验证码</label><input id="emailcode" name="chk-code" type="text" class="chk-code unit-input" size="4" tabindex="3" />
+				    </p>
+			    </div>
+		    </div>
+		    <div id="JS-tips-wrap" class="pw-tips-wrap">
+			    <span>★会员帐号核对正确后,系统即自动发送邮件至会员资料内所设置之E-MAIL信箱!! </span>
+		    </div>
+
+            <div class="pw-submit-wap" id="pwdconfirm">
+			    <button id="js-btn-submit" class="fgpw-submit" tabindex="4" style="float:left;">确认</button>
+                <button id="js-btn-submit2" class="fgpw-submit" tabindex="4" style="float:right;">关闭</button>
+		    </div>
+            <div class="pw-submit-wap" id="pwdconfirm2" style="display:none;">
+			    <button id="js-btn-submit3" class="fgpw-submit" tabindex="4" style="float:left;">确认</button>
+                <button id="js-btn-submit4" class="fgpw-submit" tabindex="4" onclick="location.href='/pwdforget.html';" style="float:right;">返回</button>
+		    </div>
+            <div style="clear:both;"></div>
+		    <div class="sec-pic-wrap">
+			    <div class="sec-pic-txt">
+				    <p>
+					    secure
+				    </p>
+				    <span>安全加密</span>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+<script>
+    var pwdForget = {};
+    pwdForget.i18n = {
+        S_MSG_PLEASE_ENTER_ACCOUNT_NAME: "请输入帐号！",
+        S_ENTER_GET_PWD: "请输入取款密码",
+        S_MSG_PLEASE_ENTER_CHECK_CODE: "请输入验证码！",
+        S_NO_SYMBOL: "请勿输入特殊字元或空白字元",
+        S_DW_PW_WRONG: "取款密码格式错误，请重新输入!",
+        S_CONTACT_SERVICE_02: "请联络客服!",
+        S_MAIL_MSG_2: "验证码已发到您的邮箱，请至邮箱收取！",
+        S_MSG_2: "密码格式错误，密码由6-12位小写字母(a-z)或数字(0-9)组成！",
+        S_MSG_3: "两次输入的密码不相同！",
+        S_MSG_4: "邮箱验证码不能为空！",
+        S_MSG_5: "确认要修改您的密码？",
+        S_MSG_6: "密码修改成功，请牢记您的新密码！",
+    };
+    $(".pw-info-wrap").find("label").InputLabels();
+</script>
+</body>
+</html>

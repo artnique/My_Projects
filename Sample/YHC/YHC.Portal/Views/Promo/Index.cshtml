@@ -1,0 +1,80 @@
+﻿@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "promo";
+
+    Ad promo_image = null;
+
+    IList<PromoInfoType> types = ViewBag.PromoTypes as IList<PromoInfoType>;
+    IList<PromoInfo> list = ViewBag.PromoList as IList<PromoInfo>;
+    IList<Ad> promoImages = ViewBag.Images as IList<Ad>;
+    var imageServerUrl = ConfigHelper.ImageServerUrl;
+
+    if (promoImages != null)
+    {
+        promo_image = promoImages.First(x => x.AdNo == "yc_promo_banner_1");
+    }
+}
+@section scripts_head{
+    @Scripts.Render("~/bundles/Scriptspagination")
+    @Scripts.Render("~/bundles/Scriptspromo")
+}
+<input type="hidden" id="hiddenType" value="@ViewBag.Type" />
+<input type="hidden" id="hiddenImageServer" value="@ConfigHelper.ImageServerUrl" />
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="@(promo_image != null ? imageServerUrl + promo_image.ImgUrl : "")" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc w1000 tabhd">
+    <div class="tabtit tc hd">
+        <div class="lbg"></div>
+        @if (types != null && types.Count > 0)
+        {
+            for (int i = 0; i < types.Count; i++)
+            {
+                <a href="javascript:void(0);" id="promo_@(types[i].Id)" onclick="getPromoList(@types[i].Id);$('#PromoTypes a').removeClass('hover');$(this).addClass('hover');">@types[i].TypeName<span></span></a>
+            }
+        }
+        <div class="rbg"></div>
+    </div>
+    <div class="tc wraperh">
+        <img src="/Content/images/promotit.png" alt="" />
+    </div>
+    <div class="bd">
+        <!-- 所有活动开始 -->
+        @if (types != null)
+            {
+                for (int i = 0; i < types.Count; i++)
+                {
+                    <ul class="hdlist">
+                        @if (list != null)
+                        {
+                            foreach (var item in list.Where(p => p.InformationTypeId == types[i].Id))
+                            {
+                                <li>
+                                    <div class="hdt">
+                                        <a href="javascript:void(0)"><img src="@(imageServerUrl + item.Img)" alt="@item.Title" width="1000" height="160" /></a>
+                                    </div>
+                                    <div class="hdc">
+                                        <div class="hdtit">@Html.Raw(item.Content)</div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                          </ul>              <!-- .Youhuibox结束 -->
+                }
+            }
+        <!-- 其他优惠结束 -->
+    </div>
+    <div class="cl40"></div>
+</div>
+<script>$(".tabhd").slide({ trigger: "click", titCell: ".hd a" })</script>
+<!-- 页面主体 结束-->

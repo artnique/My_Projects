@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+    
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>澳门银河</title>
+        <link href="/Content/style/sun.css" rel="stylesheet" type="text/css"/>
+        <link href="/Content/style/all.css" rel="stylesheet" type="text/css"/>  
+        <link rel="shortcut icon" href="/Content/images/favicon.ico" />
+        <!--[if lt IE 9]>
+            <style> .header-logo { background:url(images/T188_logo.png) no-repeat; } </style>
+        <![endif]-->
+    </head>
+    <body style=" height:550px; background:#8e6d23;">
+        <div class="wzwh">
+            <div class="wzwh_logo">
+                <object width="371" height="117" type="application/x-shockwave-flash" data="/Content/images/logo.swf" id="js-ele-slider-swf" style="visibility: visible;">
+                    <param name="wmode" value="transparent"/>
+                    <param name="quality" value="high"/>
+                    <param name="flashvars" value=""/>
+                </object>
+            </div>
+            <div class="wzwh_c">
+                <h3>澳门银河正在进行系统维护….</h3>
+                <p><span>@ViewBag.Message</span><br />在此期间感谢您的支持与耐心，期待您在维护完成后光临。</p>
+                <a href="javascript:void(0);"></a>
+            </div>
+        </div>
+    </body>
+</html>

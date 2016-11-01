@@ -1,0 +1,154 @@
+﻿
+@{
+    Layout = null;
+    
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "news";
+    
+    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.Keywords"/>
+    <meta name="description" content="@ViewBag.Description" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="/Content/style/standard.css" rel="stylesheet" type="text/css">
+    <link href="/Content/style/HotNewsHistory.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #title {
+	        background: url(/Content/images/template/title.jpg) left top no-repeat;
+        }
+        #top {
+	        background: url(/Content/images/template/bg_t.jpg) left top no-repeat;
+	        width: 720px;
+	        height: 58px;
+        }
+        #container {
+	        background: url(/Content/images/template/bg_c.jpg) left top repeat-y;
+	        margin: 0 auto;
+	        padding: 0 37px;
+	        width: 646px;
+        }
+        #footer {
+	        background: url(/Content/images/template/bg_f.jpg) left top no-repeat;
+	        padding-top: 20px;
+	        width: 720px;
+	        height: 35px;
+        }
+    </style>
+    <link href="/Scripts/lib/pagination/jquery.pagination.css" rel="stylesheet" type="text/css">
+    @Html.Partial("_TimeZoneConfig")
+    <script type="text/javascript" src="/Scripts/lib/jquery.js"></script>
+    <script type="text/javascript" src="/Scripts/lib/pagination/jquery.pagination.js"></script>
+    <script type="text/javascript" src="/Scripts/lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/Scripts/page/core.js"></script>
+    <script type="text/javascript" src="/Scripts/page/news/index.js"></script>
+</head>
+<body>
+    <div id="main-wrap">
+	    <div id="top">
+		    <div id="title">
+		    </div>
+	    </div>
+	    <div id="container">
+
+	    </div>
+        <div id="footer">
+            <div id="pagination" style="float:right;margin-top:-29px;margin-right:50px;"></div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        var page = {
+            allPages: $(".all-pages"),
+            leftInterval: 50,                    //各頁碼間隔大小
+            startLeft: 614,                      //最右邊的頁碼 left 值
+            pageTotal: Number(10), //總頁數
+            pageCurrent: Number(1), //當前頁
+            //組成頁碼 HTML
+            getHTML: function () {
+                var i;
+                var pages;
+                var pageHTML = '';
+                var HTML;
+
+                //一次只顯示五頁
+                if (this.pageCurrent > 3) {
+                    if ((this.pageCurrent + 2) > this.pageTotal) {
+                        i = this.pageTotal - 5;
+                    } else {
+                        i = this.pageCurrent - 3;
+                    }
+                } else {
+                    i = 0;
+                }
+                pages = (this.pageTotal < 5) ? (this.pageTotal) : (i + 5);
+
+                //組出頁數的 HTML
+                for (i; i < pages; i++) {
+                    if ((i + 1) == this.pageCurrent) {
+                        pageHTML = "<div class='current page' onclick='page.chgPage(" + (i + 1) + ");'>" + (i + 1) + "</div>" + pageHTML
+                    } else {
+                        pageHTML = "<div class='all-pages page' onclick='page.chgPage(" + (i + 1) + ");'>" + (i + 1) + "</div>" + pageHTML
+                    }
+                }
+
+                //判斷需要呈現的上一頁或下一頁按鈕
+                if (this.pageTotal == 1) {
+                    HTML = pageHTML;
+                } else if (this.pageCurrent == 1) {
+                    HTML = "<div id='page_next' class='page' onclick=\"page.chgPage('next');\"></div>" + pageHTML;
+                } else if (this.pageCurrent == this.pageTotal) {
+                    HTML = pageHTML + "<div id='page_pre' class='page' onclick=\"page.chgPage('pre');\"></div>";
+                } else {
+                    HTML = "<div id='page_next' class='page' onclick=\"page.chgPage('next');\"></div>" + pageHTML + "<div id='page_pre' class='page' onclick=\"page.chgPage('pre');\"></div>";
+                }
+                return HTML;
+            },
+            //設定頁碼 HTML 位置，並塞回頁面
+            setPosition: function () {
+                var HTML = this.getHTML();
+                var page_num = $(HTML + ' div').length;
+                var z = page_num;
+                $("#footer")[0].innerHTML = HTML;
+                for (var i = 0; i < page_num; i++) {
+                    $('#footer div:eq(' + i + ')').css({ 'left': this.startLeft + 'px', 'z-index': z });
+                    z--;
+                    this.startLeft -= this.leftInterval;
+                }
+            },
+            chgPage: function (i) {
+                switch (i) {
+                    case 'pre':
+                        location.href = '?module=MFunction&method=ShowHotNewsHistory&CurrentPage=' + (page.pageCurrent - 1);
+                        break;
+                    case 'next':
+                        location.href = '?module=MFunction&method=ShowHotNewsHistory&CurrentPage=' + (page.pageCurrent + 1);
+                        break;
+                    default:
+                        location.href = '?module=MFunction&method=ShowHotNewsHistory&CurrentPage=' + i;
+                        break;
+                }
+            }
+        };
+        //if (page.pageTotal != 0) {
+        //    //處理日期欄位格式
+        //    $(".date .inner").each(function (k, v) {
+        //        var date;
+        //        date = this.innerText.split(" ");
+        //        $(this).html("<span class='inner-date'>" + date[0] + "</span><br /><span class='inner-time'>" + date[1] + "</span>");
+        //    });
+
+        //    page.setPosition();
+        //}
+    </script>
+</body>
+</html>

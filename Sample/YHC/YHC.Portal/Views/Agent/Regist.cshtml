@@ -1,0 +1,124 @@
+﻿@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "agent";
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+    Ad bannerImage = null;
+
+    IList<Ad> banners = ViewBag.Banner as IList<Ad>;
+
+    if (banners != null)
+    {
+        bannerImage = banners.First(x => x.AdNo == "yc_help_banner_image_1_1");
+    }
+}
+@section styles{
+}
+@section scripts_head{
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="@(imageServerUrl + bannerImage.ImgUrl)" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc w1000 pt15 clearfix aboutw">    
+    @Html.Partial("_AgentMenu")
+    <div class="fr aboutr registw ffw">
+        <div class="t">
+            <p class="cn shuang">
+                <span class="shuang">代理注册</span>
+            </p>
+            <p class="en"></p>
+        </div>
+        <div class="c f14">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="175" class="tr">用户名：</td>
+                    <td width="300">
+                        <input type="text" name="UserName" id="a_username"  class="bginput" />
+                    </td>
+                    <td width="175" class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">登录密码：</td>
+                    <td>
+                        <input type="password" name="Password" id="a_password" class="bginput" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">确认密码：</td>
+                    <td>
+                        <input type="password" name="ConfirmPassword" id="a_repassword"  class="bginput" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">电子邮箱：</td>
+                    <td>
+                        <input type="text" name="Email" id="a_email" class="bginput" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">真实姓名：</td>
+                    <td>
+                        <input type="text" name="TrueName" id="a_truename" class="bginput" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">联系电话：</td>
+                    <td>
+                        <input type="text" name="Phone" id="a_phone" class="bginput" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">推广网站URL：</td>
+                    <td>
+                        <input type="text" name="Domain" id="a_domain" class="bginput" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">您的推广方式<br />有哪些，通过<br />什么方式了解：</td>
+                    <td>
+                        <textarea name="ExtendDes" id="a_extenddes" cols="30" rows="5" class="bgtextarea"></textarea>
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">验证码：</td>
+                    <td>
+                        <img src="/authcode/createimagecode.html?q=@(Guid.NewGuid().ToString())" onclick="this.src='/authcode/createimagecode.html?q='+new Date().getTime();" class="iblock fr" />
+                        <input type="text" name="authCode" id="a_authcode" class="bginput" style="width: 234px;" />
+                    </td>
+                    <td class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">&nbsp;</td>
+                    <td>
+                        <input type="submit" value="立即加入" class="btn-lg" id="btn_regist" />
+                    </td>
+                    <td class="helptext">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="cl40"></div>
+</div>
+<!-- 页面主体 结束-->
+@section scripts_body{
+    <script type="text/javascript" src="/Scripts/lib/datepicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="/Scripts/page/validator.js"></script>
+    <script type="text/javascript" src="/Scripts/page/agent/regist.js"></script>
+}

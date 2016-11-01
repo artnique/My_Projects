@@ -1,0 +1,142 @@
+﻿@using YHC.Portal.Core
+@using YHC.Portal.Extensions
+@{
+    ViewBag.Title = "银行转账";
+    ViewBag.TopMenu = "icon_nav_bank";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+    IList<ThirdPay> paies = ViewBag.Pies as IList<ThirdPay>;
+    IList<Promo> prefInfos = ViewBag.PrefInfos as List<Promo>;
+
+    // 支付宝/微信支付
+    // 支付宝/微信支付
+    var alipayBanks = ViewBag.AliPay as List<AdminBank>;
+    var wechatBank = ViewBag.WebChat as List<AdminBank>;
+    var webChat = wechatBank.FirstOrDefault();
+}
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        @if (paies != null && paies.Count > 0)
+        {
+            foreach (var item in paies)
+            {
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.DINWXPAY.ToString())
+                {
+                    <li id="td_menuc6"><a href="/user/dinwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.XBEIWXPAY.ToString())
+                {
+                    <li id="td_menuc7"><a href="/user/xbeiwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                <li><a href="/user/depositonline.html?id=@(item.Id)">@(item.MerName)</a></li>
+            }
+        }
+        <li><a href="/user/deposit.html">银行转账</a></li>
+        @if (alipayBanks != null && alipayBanks.Count > 0)
+        {
+            <li><a href="/user/depositalipay.html">支付宝</a></li>
+        }
+        @if (wechatBank != null && wechatBank.Count > 0)
+        {
+            <li class="on"><a href="/user/depositwechat.html">微信支付</a></li>
+        }
+    </ul>
+    </div>
+    <div class="eveb_content">
+        <h2><i class="icon_medium icon_bank"></i>微信支付</h2>
+        <form name="eveb_bank">
+            <ul class="eveb_form">
+                <li>
+                    <div id="Cars3" class="desc">
+                        <table width="776" border="0" cellpadding="" cellspacing="0" style="border:none">
+                            <tr>
+                                <td width="120"> <label for="" class="la_title" style="width:150px">微信扫一扫：</label></td>
+                                <td><img src="@(webChat == null ? "" : (ConfigHelper.ImageServerUrl + webChat.Bank.LogoImg))" width="120" height="120" style="display:block; border:1px solid #333"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+                <li>
+                    <span style="width:150px">请填存款人微信昵称：</span>
+                    <input type="text" size="25" id="wechat_accountName" />
+                </li>
+                <li>
+                    <span style="width:150px">请输入存款金额：</span>
+                    <input type="text" size="25" onkeyup='this.value=this.value.replace(/[^\d\.]/g,"")' ondragenter="return false" onpaste="return !clipboardData.getData('text').match(/\D/)" id="wechat_amount" />&nbsp;&nbsp;
+                    <font style="color:red; font-size:20px">*</font><font>最低存款 @user.WXMinAmount.RoundOfChina() 元</font>
+                    <input name="transType_wechat" id="transType_wechat" type="hidden" value="@((int)TransferType.Wechat)" />
+                    <input name="bankId_wechat" id="bankId_wechat" type="hidden" value="@(webChat == null ? 0 : webChat.Id)" />
+                </li>
+                @if (prefInfos != null && prefInfos.Count > 0)
+                {
+                    <li>
+                        <span style="width:150px">可选优惠：</span>
+                        @*<select name="wechat_prefKey" style="width: 216px; height: 28px;" class="leftselect" id="wechat_prefKey">
+                                <option value="">不参加优惠</option>
+                                @foreach (var item in prefInfos)
+                                {
+                                    <option value="@(item.PreferentialKey)" description="@item.Description">@(item.PreferentialTitle)</option>
+                                }
+                            </select>*@
+                        <div class="eveb_form_box">
+                            <p style="height: 30px;"><label><input id="pref_selNobonus_none" name="wechat_prefKey" type="radio" class="checkbox" value="" checked="checked" /> 不参加优惠</label></p>
+                            @foreach (var item in prefInfos)
+                            {
+                                <p style="height: 30px;padding-left: 30px;"><label for="pref_@(item.Id)"><input id="pref_@(item.Id)" name="wechat_prefKey" type="radio" class="checkbox" value="@(item.PreferentialKey)" /> @(item.PreferentialTitle)</label></p>
+                            }
+                        </div> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <div id="preferentialTxt" class="youhui_info cred" style="display: inline-block;"></div>
+                    </li>
+                }
+            </ul>
+
+            <div class="eveb_form_submit">
+                <div class="passKuangWrap mt20 mb20"></div>
+                <input type="button" class="button_medium button_1" value="提交" id="wechat_save">
+                <span class="white" style="margin-left:20px">即时支付即时到账，支付过程有问题，请联系<a href="javascript:void(0);" name="top_livechat"><span class="red">在线客服</span></a></span>
+            </div>
+            <input type="hidden" id="hidWXMinAmount" value="@user.WXMinAmount.RoundOfChina()" />
+            <input type="hidden" id="hidWXMaxAmount" value="@user.WXMaxAmount.RoundOfChina()" />
+        </form>
+    </div>
+
+    <!--弹窗 黑底-->
+    <div class="eveb_popup_wrap"></div>
+    <!--弹窗 银行存款成功-->
+    <div class="eveb_popup" id="eveb_popup_bank_ok">
+        <div class="eveb_popup_hd">
+            <h4 class="fl">银行转款</h4>
+            <a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+        </div>
+        <div class="eveb_popup_bd">
+            <div class="eveb_popup_content">
+                <span><i class="icon_big icon_ok_3"></i></span>
+                <p>恭喜您，成功提交存款单！单号：<strong class="green" id="orderId">loading...</strong></p>
+                <p>转账成功后，请即时联系在线客服为您添加额度。</p>
+            </div>
+            <div class="eveb_popup_btn">
+                <a name="pop_close" id="pop_close" href="javascript:void(0);" class="button_medium button_1">知道了</a>
+                <a href="/user/depositlist.html" class="button_medium button_3">查看记录</a>
+                <a href="/user/transfer.html" class="button_medium button_3">前往转账</a>
+            </div>
+        </div>
+    </div>
+
+    @section EndScripts{
+        <script type="text/javascript">
+            // 转账类型
+            var _TRANS_TYPE = {
+                online: '@((int)TransferType.OnlineBank)',
+                mobile: '@((int)TransferType.MobileBank)',
+                atmtrans: '@((int)TransferType.ATMTrans)',
+                atmdeposit: '@((int)TransferType.ATMDeposit)',
+                bank: '@((int)TransferType.BankCounter)'
+            };
+        </script>
+
+        @Url.RenderScriptFile("/scripts/user/depositwechat.js")
+        @Url.RenderScriptFile("/scripts/lib/zclip/jquery.zclip.js")
+    }

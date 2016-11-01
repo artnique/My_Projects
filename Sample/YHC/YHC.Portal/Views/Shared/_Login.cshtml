@@ -1,0 +1,120 @@
+﻿<!--弹窗登陆区块-->
+<style>
+    .ele-login-wrap{position:fixed;z-index:99999;top:0;left:0;width:100%;height:100%;background:url(/Content/images/template/element/login_area_bg.png) repeat}
+    .ele-login-wrap .ele-login-bg{position:absolute;top:50%;left:50%;width:723px;height:450px;margin:-225px 0 0 -362px;background:url(/Content/images/template/element/login_bg01.png)}
+    .ele-login-wrap .ele-login-bg form{width:100%;height:100%;padding-left:380px;padding-top:85px;box-sizing:border-box;}
+    .ele-login-wrap form p{position:relative!important;display:block!important;float:none!important}
+    .ele-login-wrap .glogin-title{background:url(/Content/images/template/element/login_icon_sport.png) 0 0 no-repeat;width:250px;height:30px;line-height:30px;color:#34CAAE;font-size:14px;text-indent:39px;margin-bottom:13px;text-shadow:1px 1px 2px #000}
+    .ele-login-wrap .ele-login-unit{width:248px!important;height:28px!important;margin:0 0 12px 0!important;padding:0!important;background:url(/Content/images/template/element/loginInput_icon.png) #FFF no-repeat!important;border-radius:3px;border:1px solid #CCC!important}
+    .ele-login-wrap .ele-login-unit.ele-login-unit-pwd{background-position:0 -28px!important}
+    .ele-login-wrap .ele-login-unit.ele-login-unit-chk{background-position:0 -56px!important}
+    .ele-login-wrap .ele-login-input{float:left!important;position:static!important;width:248px!important;height:28px!important;padding:6px 12px 6px 30px!important;margin:0!important;font-size:13px!important;color:#555!important;border:none!important;outline:0!important;background:0 0!important;line-height:16px!important;box-sizing:border-box!important}
+    .ele-login-wrap .ele-login-input.ele-login-acc{padding:6px 48px 6px 30px!important}
+    .ele-login-wrap .ele-login-unit .ele-login-placeholder{position:absolute;left:33px;top:0;line-height:30px;color:#8C8C8C;cursor:text;font-family:arial}
+    .ele-login-wrap .ele-acc-unicode{position:absolute;right:9px;top:0;line-height:27px;color:#555;font-size:14px;font-family:arial}
+    #vPic-game{position:absolute;right:5px;top:5px;cursor:pointer;}
+    .ele-login-wrap .ele-login-submit{float:none!important;position:static!important;background:0 0!important;width:250px!important;height:30px!important;line-height:normal!important;margin:0 0 11px!important;padding:0!important;font-size:13px!important;border-radius:3px;border:1px solid #FFF!important;box-sizing:border-box!important;color:#FFF!important;cursor:pointer!important}
+    .ele-login-wrap .glogin-forget a{display:block;margin-bottom:11px;width:250px;height:28px;line-height:28px;color:#CCC;text-align:center}
+    .ele-login-wrap .glogin-joinmem a{display:block;background:url(/Content/images/template/element/login_btn.png) no-repeat;width:250px;height:32px;color:#FFF;text-decoration:none;text-align:center;line-height:30px;font-size:14px}
+    .ele-login-wrap .glogin-joinmem a:hover{background-position:0 100%}
+    .ele-login-wrap .glogin-close{background:url(/Content/images/template/element/login_close.png) no-repeat;position:absolute;width:28px;height:28px;top:55px;right:55px;cursor:pointer}
+</style>
+<div class="ele-login-wrap" style="display:none">
+    <div class="ele-login-bg">
+	    <form name="eleLoginForm" id="eleLoginForm" action="#" method="POST">
+		    <p class="glogin-title">
+			    会员登入
+		    </p>
+		    <p class="ele-login-unit login-unit-user">
+			    <input name="username" type="text" size="12" id="username-game" title="请填写 4-15 位大小写英数字" maxlength="16" class="ele-login-input ele-login-acc" tabindex="7" pattern="[a-zA-Z0-9]{4,15}" required="" placeholder="帐号">
+			    <span id="js-acc-unicode" class="ele-acc-unicode"></span>
+		    </p>
+		    <p class="ele-login-unit ele-login-unit-pwd">
+			    <input name="passwd" type="password" autocomplete="off" size="13" id="passwd-game" title="请填写 6-12 位大小写英数字" maxlength="13" class="ele-login-input" tabindex="8" pattern="[a-zA-Z0-9]{6,13}" required="" placeholder="密码">
+		    </p>
+		    <p class="ele-login-unit ele-login-unit-chk">
+			    <input name="rmNum" type="text" id="rmNum-game" size="7" maxlength="4" class="ele-login-input" tabindex="9" pattern="\d{4}" required="" placeholder="验证码" />
+			    <img src="#" id="vPic-game" alt="( 点选此处产生新验证码 )" title="( 点选此处产生新验证码 )" onclick="this.src='/authcode/createimagecode.html?q='+new Date().getTime();" width="40" height="18" />
+		    </p>
+		    <p>
+			    <input name="Submit" type="button" value="登入" onclick="goLogin();" class="ele-login-submit" tabindex="10">
+		    </p>
+		    <p class="glogin-forget">
+			    <a href="/forgetpwd.html">忘记密码?</a>
+		    </p>
+		    <p class="glogin-joinmem">
+			    <a id="js-join-link" href="/regist.html"><i class="fa fa-plus"></i>&nbsp;&nbsp;加入会员</a>
+		    </p>
+	    </form>
+	    <div class="glogin-close"></div>
+    </div>
+</div>
+<script>
+    "use strict"; //strict mode
+    var loginWrap = {
+        init: function () {
+            loginWrap.showAlert();
+            //loginWrap.joinLink();
+            //loginWrap.alertNotice();
+        },
+        /**
+            * 彈出登入區塊
+            *
+            */
+        showUp: function () {
+            $('.ele-login-wrap').show();
+            $('#vPic-game').attr("src", "/authcode/createimagecode.html?q=" + Math.random());
+        },
+        /**
+            * 加入會員連結
+            * ESBALL & 博九 分層特例
+            *
+            */
+        joinLink: function () {
+            $("#js-join-link").on('click', function () {
+                f_com.getPager('MAdvertis', 'JoinMember');
+            });
+        },
+        /**
+            * 登入區塊
+            *
+            */
+        showAlert: function () {
+            $("body").append($(".ele-login-wrap").detach());
+            $('#eleLoginForm').find('label').InputLabels();
+            $('.ele-login-bg').on('click', '.glogin-close', function () {
+                $('.ele-login-wrap').hide();
+            })
+            $('.ele-login-wrap').click(function (event) {
+                if (!$(event.target).closest('#eleLoginForm').length) {
+                    if ($('.ele-login-wrap').is(":visible")) {
+                        $('.ele-login-wrap').hide();
+                    }
+                }
+            });
+        },
+        /**
+            * 提示訊息
+            *
+            */
+        alertNotice: function () {
+            $("#eleLoginForm ").loginAuth({
+                'accNull': '请输入帐号!!',
+                'accShort': '帐号长度不能少于%s个字元',
+                'accLong': '帐号长度不能多于%s个字元',
+                'accFalse': '帐号须符合0~9、a~z及A~Z字元',
+                'pwNull': '请输入密码!!',
+                'pwShort': '密码长度不能少于%s个字元',
+                'pwLong': '密码长度不能多于%s个字元',
+                'pwFalse': '密码须符合0~9及a~z字元',
+                'pwUpper': '提醒：密码须为小写，大写锁定启用中',
+                'chkCodeNull': '请输入验证码!!'
+            });
+        }
+    };
+    loginWrap.init();
+
+    function goLogin() {
+        login($("#username-game"), $("#passwd-game"), $('#rmNum-game'));
+    }
+</script>

@@ -1,0 +1,307 @@
+﻿@using YHC.Portal.Extensions;
+@using System.Linq;
+@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+
+    Ad images_background = null;
+    Ad images_t = null;
+
+    Ad casino_bbin = null;
+    Ad casino_ag = null;
+    Ad casino_mg = null;
+    Ad casino_og = null;
+    Ad casino_hg = null;
+    Ad casino_ea = null;
+    Ad casino_t188 = null;
+    Ad casino_ob = null;
+    Ad casino_pt = null;
+
+    Ad hover_bbin = null;
+    Ad hover_ag = null;
+    Ad hover_mg = null;
+    Ad hover_og = null;
+    Ad hover_hg = null;
+    Ad hover_ea = null;
+    Ad hover_t188 = null;
+    Ad hover_ob = null;
+    Ad hover_pt = null;
+
+    ViewBag.PageTag = "casino";
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+    IList<Ad> page_images = ViewBag.PageImages as List<Ad>;
+    IList<Ad> banners = ViewBag.Banner as List<Ad>;
+    IList<Ad> ads = ViewBag.Ads as List<Ad>;
+    IList<Ad> link_images = ViewBag.LinkImages as List<Ad>;
+    IList<Ad> hover_images = ViewBag.HoverImages as List<Ad>;
+    var rd = new Random();
+
+
+    if (page_images != null)
+    {
+        images_background = page_images.First(x => x.Title == "yc_casino_background");
+        images_t = page_images.First(x => x.Title == "yc_casino_t_image");
+    }
+
+    if (link_images != null)
+    {
+        casino_bbin = link_images.First(x => x.Title == "yc_casino_bbin_link_image");
+        casino_ag = link_images.First(x => x.Title == "yc_casino_ag_link_image");
+        casino_mg = link_images.First(x => x.Title == "yc_casino_mg_link_image");
+        casino_og = link_images.First(x => x.Title == "yc_casino_og_link_image");
+        casino_hg = link_images.First(x => x.Title == "yc_casino_hg_link_image");
+        casino_ea = link_images.First(x => x.Title == "yc_casino_ea_link_image");
+        casino_t188 = link_images.First(x => x.Title == "yc_casino_t188_link_image");
+        casino_ob = link_images.First(x => x.Title == "yc_casino_ob_link_image");
+        casino_pt = link_images.First(x => x.Title == "yc_casino_pt_link_image");
+    }
+
+    if (hover_images != null)
+    {
+        hover_bbin = hover_images.First(x => x.Title == "yc_casino_bbin_hover_image");
+        hover_ag = hover_images.First(x => x.Title == "yc_casino_ag_hover_image");
+        hover_mg = hover_images.First(x => x.Title == "yc_casino_mg_hover_image");
+        hover_og = hover_images.First(x => x.Title == "yc_casino_og_hover_image");
+        hover_hg = hover_images.First(x => x.Title == "yc_casino_hg_hover_image");
+        hover_ea = hover_images.First(x => x.Title == "yc_casino_ea_hover_image");
+        hover_t188 = hover_images.First(x => x.Title == "yc_casino_t188_hover_image");
+        hover_ob = hover_images.First(x => x.Title == "yc_casino_ob_hover_image");
+        hover_pt = hover_images.First(x => x.Title == "yc_casino_pt_hover_image");
+    }
+    
+}
+
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <div id="slideBox1" class="slideBox1 branner">
+            <a href="javascript:void(0)" class="prev"></a>
+            <a href="javascript:void(0)" class="next"></a>
+            <div class="bd">
+                <ul>
+                    @if (banners != null)
+                    {
+                        foreach (Ad flash_ad in banners)
+                        {
+                            <li>
+                                <img src="@(imageServerUrl + flash_ad.ImgUrl)" alt="" />
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(".slideBox1").slide({ mainCell: ".bd ul", autoPlay: true, interTime: "3000" });
+        </script>
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="casinow" style="background: #040404 url(@(images_background != null ? imageServerUrl + images_background.ImgUrl : "")) center bottom no-repeat;">
+    <div class="divc w1050 clearfix">
+        <div class="t" style="background: url(@(images_t != null ? imageServerUrl + images_t.ImgUrl : ""))  center top no-repeat;"></div>
+        <div class="c ffw">
+            <div class="tabtit tc">
+                <div class="lbg"></div>
+                <a href="javascript:void(0);" @(casino_bbin != null ? Html.Raw(casino_bbin.Link) : Html.Raw(""))>BBIN娱乐场</a>
+                <a href="javascript:void(0);" @(casino_ag != null ? Html.Raw(casino_ag.Link) : Html.Raw(""))>AG娱乐场</a>
+                <a href="javascript:void(0);" @(casino_mg != null ? Html.Raw(casino_mg.Link) : Html.Raw(""))>MG娱乐场</a>
+                <a href="javascript:void(0);" @(casino_og != null ? Html.Raw(casino_og.Link) : Html.Raw(""))>OG娱乐场</a>
+                <a href="javascript:void(0);" @(casino_pt != null ? Html.Raw(casino_pt.Link) : Html.Raw(""))>PT娱乐场</a>
+                <a href="javascript:void(0);" @(casino_t188 != null ? Html.Raw(casino_t188.Link) : Html.Raw(""))>188娱乐场</a>
+                <a href="javascript:void(0);" @(casino_hg != null ? Html.Raw(casino_hg.Link) : Html.Raw(""))>HG娱乐场</a>
+                <a href="javascript:void(0);" @(casino_ea != null ? Html.Raw(casino_ea.Link) : Html.Raw(""))>EA娱乐场</a>
+                <a href="javascript:void(0);" @(casino_ob != null ? Html.Raw(casino_ob.Link) : Html.Raw(""))>欧博娱乐场</a>
+                <div class="rbg"></div>
+            </div>
+            <div class="casinoc clearfix p20">
+                <div class="fl l">
+                    <div class="hall">
+                        <a href="javascript:void(0);" @(casino_ag != null ? Html.Raw(casino_ag.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="@(hover_ag != null ? imageServerUrl + hover_ag.ImgUrl : "")">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_ag != null ? imageServerUrl + casino_ag.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name">AG娱乐场</div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hall">
+                        <a href="javascript:void(0);" @(casino_mg != null ? Html.Raw(casino_mg.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="@(hover_mg != null ? imageServerUrl + hover_mg.ImgUrl : "")">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_mg != null ? imageServerUrl + casino_mg.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name">MG娱乐场</div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hall">
+                        <a href="javascript:void(0);" @(casino_og != null ? Html.Raw(casino_og.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="@(hover_og != null ? imageServerUrl + hover_og.ImgUrl : "")">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_og != null ? imageServerUrl + casino_og.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name">OG娱乐场</div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="fl m">
+                    <div class="hall hall2">
+                        <a href="javascript:void(0);" @(casino_bbin != null ? Html.Raw(casino_bbin.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="@(hover_bbin != null ? imageServerUrl + hover_bbin.ImgUrl : "")">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_bbin != null ? imageServerUrl + casino_bbin.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name iblock">
+                                        BBIN
+                                        <br>娱乐场
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix">
+                        <div class="hall fl">
+                            <a href="javascript:void(0);" @(casino_hg != null ? Html.Raw(casino_hg.Link) : Html.Raw(""))>
+                                <div class="casino-t casino-overlay">
+                                    <img src="@(hover_hg != null ? imageServerUrl + hover_hg.ImgUrl : "")">
+                                </div>
+                                <div class="picw grey">
+                                    <img src="@(casino_hg != null ? imageServerUrl + casino_hg.ImgUrl : "")" alt="" />
+                                    <div class="info">
+                                        <div class="name">HG娱乐场</div>
+                                    </div>
+                                </div>
+                                <div class="casino-b casino-overlay">
+                                    <span class="casino-btn iblock">进入游戏</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="hall fr">
+                            <a href="javascript:void(0);" @(casino_ea != null ? Html.Raw(casino_ea.Link) : Html.Raw(""))>
+                                <div class="casino-t casino-overlay">
+                                    <img src="@(hover_ea != null ? imageServerUrl + hover_ea.ImgUrl : "")">
+                                </div>
+                                <div class="picw grey">
+                                    <img src="@(casino_ea != null ? imageServerUrl + casino_ea.ImgUrl : "")" alt="" />
+                                    <div class="info">
+                                        <div class="name">EA娱乐场</div>
+                                    </div>
+                                </div>
+                                <div class="casino-b casino-overlay">
+                                    <span class="casino-btn iblock">进入游戏</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fr r">
+                    <div class="hall">
+                        <a href="javascript:void(0);" @(casino_pt != null ? Html.Raw(casino_pt.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="@(hover_pt != null ? imageServerUrl + hover_pt.ImgUrl : "")">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_pt != null ? imageServerUrl + casino_pt.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name">PT娱乐场</div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hall">
+                        <a href="javascript:void(0);" @(casino_t188 != null ? Html.Raw(casino_t188.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="/Content/images/casino_8t.png">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_t188 != null ? imageServerUrl + casino_t188.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name">188娱乐场</div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="hall">
+                        <a href="javascript:void(0);" @(casino_ob != null ? Html.Raw(casino_mg.Link) : Html.Raw(""))>
+                            <div class="casino-t casino-overlay">
+                                <img src="@(hover_ob != null ? imageServerUrl + hover_ob.ImgUrl : "")">
+                            </div>
+                            <div class="picw grey">
+                                <img src="@(casino_ob != null ? imageServerUrl + casino_ob.ImgUrl : "")" alt="" />
+                                <div class="info">
+                                    <div class="name">欧博娱乐场</div>
+                                </div>
+                            </div>
+                            <div class="casino-b casino-overlay">
+                                <span class="casino-btn iblock">进入游戏</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="cl"></div>
+                <div class="casino-img clearfix">
+                    <div class="casino-btn">
+                        <a class="prev"></a>
+                        <a class="next"></a>
+                    </div>
+                    <div class="casino-photo">
+                        <ul>
+                            @if (ads != null)
+                            {
+                                foreach (Ad ad in ads)
+                                {
+                                    <li>
+                                        <a href="#">
+                                            <img src="@(imageServerUrl + ad.ImgUrl)" alt="" />
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <script>$(".casino-img").slide({ titCell: ".casino-btn ul", mainCell: ".casino-photo ul", autoPage: true, effect: "left", vis: 2, trigger: "click" });</script>
+                <div class="casino_bottom"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 结束-->

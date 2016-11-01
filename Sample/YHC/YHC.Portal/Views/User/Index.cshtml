@@ -1,0 +1,140 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "会员中心";
+    ViewBag.TopMenu = "icon_nav_home";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+
+    Config config = ViewBag.Config as Config;
+
+    Boolean emailBindStatus = user.EmailValidateStatus;
+    Boolean phoneBindStatus = user.PhoneValidateStatus;
+    Boolean bankBindStatus = Convert.ToBoolean(ViewBag.BankBindStatus);
+
+
+    String emailStatusStyle = "icon_validation_email_no", phoneStatusStyle = "icon_validation_phone_no", bankStatusStyle = "icon_validation_card_no";
+    String emailStatusText = "尚未认证", phoneStatusText = "尚未认证", bankStatusText = "尚未绑定";
+    if(emailBindStatus)
+    {
+        emailStatusStyle = "icon_validation_email";
+        emailStatusText = "已认证";
+    }
+    if(phoneBindStatus)
+    {
+        phoneStatusStyle = "icon_validation_phone";
+        phoneStatusText = "已认证";
+    }
+    if(bankBindStatus)
+    {
+        bankStatusStyle = "icon_validation_card";
+        bankStatusText = "已绑定";
+    }
+}
+<div class="eveb_content">
+	<table class="eveb_box eveb_table">
+		<tr>
+			<th>上次游戏</th>
+			<th>上次登录游戏时间</th>
+			<th>上周有效投注</th>
+			<th>本周有效投注</th>
+			<th>最近一次存款</th>
+			<th>最近一次提款</th>
+		</tr>
+		<tr>
+			<td><a id="lastLoginGameName" href="javascripts:;" class="light" target="_blank">loading...</a></td>
+			<td id="lastLoginGameTime">loading...</td>
+			<td id="lastWeekRealBet" class="dark" >loading...</td>
+			<td id="theWeekRealBet" class="dark">loading...</td>
+			<td id="lastDepositTime">loading...</td>
+			<td id="lastWithdrawalTime">loading...</td>
+		</tr>
+	</table>
+	<div class="eveb_box_3">
+		<div class="eveb_box mr_10">
+			<h4>认证状态</h4>
+			<ul class="eveb_index_validation">
+				<li><a href="@(config.IsBindingEmail ? "/user/bindemail.html" : "javascript:void(0);")" title="@emailStatusText"><i class="icon_big @emailStatusStyle"></i><p>邮箱</p></a></li>
+				<li><a href="@(config.IsBindingPhone ? "/user/bindmobile.html" : "javascript:void(0);")" title="@phoneStatusText"><i class="icon_big @phoneStatusStyle"></i><p>手机</p></a></li>
+				<li><a title="@bankStatusText"><i class="icon_big @bankStatusStyle"></i><p>银行卡</p></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="eveb_box_3">
+		<div class="eveb_box ml_10 mr_10">
+			<ul class="eveb_index_money">
+                <li><a href="#">会员等级</a><span title="@user.UserLevel 星会员" id="level"></span></li>
+				<li><a id="masterCash" href="javascript:;">钱包余额</a><span><em class="light">@user.Cash.ToStringN2()</em> 元</span><a href="/user/depositonline.html" class="fr" style="margin-top:3px;"><img src="/Content/User/image/bank.gif" alt="" /></a></li>
+				<li><a id="gameCash" href="javascript:;">游戏余额</a><span><em>loading...</em> 元</span></li>
+				<li><a id="walletCash" href="javascript:;">优惠钱包</a><span><em>loading...</em> 元</span></li>
+			</ul>
+		</div>
+	</div>
+	<div class="eveb_box_3">
+		<div class="eveb_box ml_10">
+			<h4><span><a href="/user/messagelist.html">more</a></span>站内信</h4>
+			<ul class="eveb_index_letter">
+				<li>
+					<a href="javascript:;"></a>
+					<span></span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="eveb_box_3 mt_20">
+		<div class="eveb_box mr_10 eveb_index_promo">
+			<p>可申请的优惠总共有</p>
+			<div class="eveb_index_promo_btn">
+				<a href="#;" class="icon icon_promo_l"></a>
+				<a href="#;" class="icon icon_promo_r"></a>
+			</div>
+			<div class="eveb_index_promo_num"><span>1/</span><em>0</em></div>
+		</div>
+	</div>
+	<div class="eveb_box_2 mt_20">
+		<ul class="ml_10 eveb_index_promo_banner">
+		</ul>
+	</div>
+</div>
+
+<!--弹窗 黑底-->
+<div class="eveb_popup_wrap"></div>
+<!--弹窗 站内信-->
+<div class="eveb_popup" id="eveb_popup_message">
+	<div class="eveb_popup_hd">
+		<h4 class="fl">站内信</h4>
+		<a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+	</div>
+	<div class="eveb_popup_bd">
+		<div class="eveb_message">
+		<ul class="eveb_form">
+			<li class="pop-main">
+            @*<div class="pop-title">一张图看懂：中国流量费/网费到一张图看懂：中国流量费/网费到</div><br />*@
+            <div class="pop-date"></div>
+            <br />@*<br />*@
+            <div class="pop-content"></div>
+			</li>
+		</ul>		
+		</div>
+	</div>
+</div>
+
+<input id="_imgServerUrl" type="hidden" value="@YHC.Portal.Helper.ConfigHelper.ImageServerUrl" />
+@Url.RenderScriptFile("/scripts/user/index.js")
+<script type="text/javascript">
+    $(function () {
+        $.post('/user/getlevel', {}, function (data) {
+            var level = data.responseText;
+            var number = '@user.UserLevel';
+            var html = [];
+            for (var i = 0; i < level.UserLevel; i++) {
+                var style = 'icon_level_no';
+                if (i < number) {
+                    style = 'icon_level';
+                }
+                html.push('<i class="icon_mini ', style, '"></i>');
+            }
+            $('#level').html(html.join(''));
+        });
+    });
+</script>

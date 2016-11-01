@@ -1,0 +1,40 @@
+﻿@using YHC.Portal.Core;
+@{
+    Layout = "~/Views/Page/_PageLayout.cshtml";
+    PagerFrontViewModel<News> notice = ViewBag.Notices as PagerFrontViewModel<News>;
+}
+    <div class="fr aboutr ffw">
+        <div class="t">
+            <p class="cn">最新公告</p>
+            <p class="en">Notice</p>
+        </div>
+        <div class="c f14">
+            <div class="about-main-m">
+                <div class="notice">
+                    <small class="notice-time">公告时间</small><small class="notice-main">公告内容</small>
+                    <div class="fenlei">
+                        <ul id="notice-page-name">
+                            @if (notice != null)
+                            {
+                                int i = 0;
+                                foreach (var item in notice.list)
+                                {
+                                    i++;
+                                    <li>
+                                        <h3 class="@(i==1? "on" : "")"><span>@item.OperatTime.ToShortDateString()</span><i>@item.Title</i><em></em></h3>
+                                        <p>
+                                            @item.Content
+                                        </p>
+                                    </li>
+
+                                }
+                            }
+                        </ul>
+                        <div class="notice-page holder"></div>
+                    </div>
+                    <script src="js/jPages.js" language="javascript" type="text/javascript"></script>
+                    <script>$(".notice-page").jPages({ containerID: "notice-page-name", perPage: 10 });	</script>
+                </div>
+            </div>
+        </div>
+    </div>

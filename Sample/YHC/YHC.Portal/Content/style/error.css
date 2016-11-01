@@ -1,0 +1,23 @@
+@charset "utf-8";
+/*css重置*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, small { margin: 0; padding: 0; }
+body { font: 12px/1.5 'Helvetica Neue', "微软雅黑",'Hiragino Sans GB',arial,'宋体',"Microsoft Yahei",tahoma,sans-serif; color: #727272;background: #0f0f0f;}
+h1, h2, h3, h4, h5, h6, small { font-size: 100%; overflow: hidden; font-weight: normal; }
+input, select { vertical-align: middle; font-size: 12px;font-family: inherit;color: inherit; }
+ol, ul, li { list-style: none; }
+i { font-style: normal; }
+img { border: 0; }
+ul, li { list-style-type: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+
+/*错误提示*/
+.error{ width:804px; height:373px; background:url(error_bg.png) no-repeat; position:absolute; left:50%; top:50%; margin-left:-422px; margin-top:-211px; padding:30px 20px 20px; }
+.error h1, .error h2, .error p, .error span, .error_footer{ display:block; width:804px; text-align:center;}
+.error h1{ font-size:26px; color:#daa33e; line-height:73px; }
+.error h2{ font-size:30px; margin-top:30px; line-height:40px; }
+.error p{ line-height:25px; }
+.error a{ display:block; width:113px; height:52px; color:#ffffff; background:url(error_btn.png) no-repeat 0px 0px; line-height:52px; text-decoration:none; padding-left:78px; margin:20px auto; }
+.error a:hover{ color:#a46c06; background-position:0px -52px; }
+.error span{ font-size:14px; color:#daa33e; line-height:40px; }
+.error em{ font-style:normal; }
+.error_footer{ color:#2c2c2c; line-height:20px; }

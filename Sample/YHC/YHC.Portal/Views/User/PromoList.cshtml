@@ -1,0 +1,86 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "优惠记录";
+    ViewBag.TopMenu = "icon_nav_record";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+    
+    IList<BonusType> types = ViewBag.BonusTypes as List<BonusType>;
+    
+    String beginTime = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li><a href="/user/depositlist.html">存款记录</a></li>
+        <li><a href="/user/withdrawallist.html">提款记录</a></li>
+        <li><a href="/user/transferlist.html">转账记录</a></li>
+        <li><a href="/user/betlist.html">投注记录</a></li>
+        <li class="on"><a href="/user/promolist.html">优惠记录</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+	<h2>
+		<div class="eveb_search eveb_search_h2">
+			类型：
+			<select id="type">
+                <option value="">所有</option>
+                @if (types != null && types.Count > 0)
+                {
+                    foreach (var item in types)
+                    {
+                        <option value="@(item.Id)">@(item.BonusName)</option>
+                    }
+                }
+            </select>
+			起止时间：
+			<input id="beginTime" type="text" size="10" onfocus="WdatePicker({ minDate:'@(beginTime)}',maxDate:'#F{$dp.$D(\'endTime\')||\'%y-%M-%d\'}' })" value="@(beginTime)" /> 
+            - 
+            <input id="endTime" type="text" size="10" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'beginTime\')|| \'%y-%M-{%d-@(30)}\'}',maxDate:'%y-%M-%d' })" value="@(DateTime.Today.ToString("yyyy-MM-dd"))" />
+			<a id="refreshDataList" href="javascript:;" class="button_small button_1">筛选</a>
+			<a id="theDay" href="javascript:;" class="button_small button_4">今日</a>
+			<a id="threeDay" href="javascript:;" class="button_small button_4">3天</a>
+			<a id="theWeek" href="javascript:;" class="button_small button_4">本周</a>
+		</div>
+	<i class="icon_medium icon_record"></i>优惠记录</h2>
+    <table class="eveb_box eveb_table">
+	    <tr>
+		    <th>日期</th>
+		    <th>优惠类型</th>
+		    <th>优惠金额</th>
+		    <th>状态</th>
+	    </tr>
+	    <tbody id="mainBody">
+            <tr>
+                <td class="norecord" colspan="4">正在加载数据...
+                </td>
+            </tr>
+            <textarea name="template_jst_list" id="template_jst_list" style="display: none" cols="0" rows="0">
+            {var index = 0}
+            {for t in list}
+                <tr index="${index++}">
+                    <td>${Date.fromJson(t.CreateTime).format("yyyy-MM-dd HH:mm:ss")}</td>
+                    <td>${t.BonusName}</td>
+			        <td class="light">${t.Amount.format("#,###.##")}</td>
+			        <td style="color:red">${t.StatusText}</td>
+                </tr>
+            {forelse}
+                <tr>
+                    <td class="norecord"  colspan="4">没有符合条件的记录</td>
+                </tr>  
+            {/for}
+            </textarea>
+        </tbody>
+    </table>
+	<div class="eveb_amount fl">当前小计<span id="totalPageAmount"> 0 </span>元，总计<span id="totalAmount"> 0 </span>元</div>
+    <!--分页start-->
+    <div id="pagination" class="fr"></div>
+    <!--分页end-->
+</div>
+
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/lib/template/trimpath-template.js")
+    @Url.RenderScriptFile("/scripts/lib/datepicker/WdatePicker.js")
+    @*@Url.RenderScriptFile("/scripts/user/pagination/jquery.pagination.js")*@
+    @Url.RenderScriptFile("/scripts/user/common.reportdate.js")
+    @Url.RenderScriptFile("/scripts/user/promolist.js")
+}

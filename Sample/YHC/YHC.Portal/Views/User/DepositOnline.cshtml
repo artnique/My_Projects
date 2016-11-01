@@ -1,0 +1,148 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "在线支付";
+    ViewBag.TopMenu = "icon_nav_bank";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+    
+    Int32 currThirdPayId = ViewBag.CurrThirdPayId;
+    User user = ViewBag.User as User;
+    
+    // 获取已启用的第三方支付
+    IList<ThirdPay> paies = ViewBag.Pies as IList<ThirdPay>;
+    IList<Promo> prefInfos = ViewBag.PrefInfos as List<Promo>;
+
+    ThirdPay currPay = null;
+    
+    // 支付宝/微信支付
+    var alipayBanks = ViewBag.AliPay as List<AdminBank>;
+    var wechatBank = ViewBag.WebChat as List<AdminBank>;
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        @if (paies != null && paies.Count > 0)
+        {
+            if (currThirdPayId == 0)
+            {
+                // 未传入支付平台，则使用第一个
+                currPay = paies.First();
+                currThirdPayId = currPay.Id;
+            }
+            else
+            {
+                // 传入一个支付平台，则使用它
+                currPay = paies.Where(p => p.Id == currThirdPayId).FirstOrDefault();
+                if (currPay == null)
+                {
+                    currPay = paies.First();
+                }
+            }
+
+            foreach (var item in paies)
+            {
+                // 处理选中样式
+                String menutOnStyle = string.Empty;
+                if (item.Id == currThirdPayId)
+                {
+                    menutOnStyle = "class=\"on\"";
+                }
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.DINWXPAY.ToString())
+                {
+                    <li id="td_menuc6"><a href="/user/dinwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.XBEIWXPAY.ToString())
+                {
+                    <li id="td_menuc7"><a href="/user/xbeiwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                <li @Html.Raw(menutOnStyle)><a href="/user/depositonline.html?id=@(item.Id)">@(item.MerName)</a></li>
+            }
+        }
+        <li><a href="/user/deposit.html">银行转账</a></li>
+        @if (alipayBanks != null && alipayBanks.Count > 0)
+        {
+            <li><a href="/user/depositalipay.html">支付宝</a></li>
+        }
+        @if (wechatBank != null && wechatBank.Count > 0)
+        {
+            <li><a href="/user/depositwechat.html">微信支付</a></li>
+        }
+    </ul>
+    </div>
+    <div class="eveb_content">
+        <h2><i class="icon_medium icon_bank"></i>在线支付</h2>
+        @if (currPay == null)
+        {
+            <span class="light">温馨提示：您所在的会员组不允许在线充值，如有疑问，请咨询客服人员。</span>
+        }
+        else
+        {
+            <form id="payform" name="payform" target="_blank" action="/pay/dopay.html" method="post">
+                <ul class="eveb_form">
+                    <li>
+                        <span>充值金额：</span>
+                        <input id="online_amount" name="online_amount" type="text" size="6" onkeyup="this.value=this.value.replace(/\D/gi,'')" required="" onpaste="return !clipboardData.getData('text').match(/\D/)" />
+                        <label for="money" class="eveb_form_error">* 单笔金额最低@(user.ThirdPayDepositSingleMin)元，最高@(user.ThirdPayDepositSingleMax)元</label>
+                    </li>
+                    <li>
+                        <span>选择银行：</span>
+                        <div class="eveb_form_box eveb_bank_list">
+                            @if (currPay.Show)
+                            {
+                                // 判断是否需要输出支付图标
+                                <label>
+                                    <input type="radio" name="payPlatform" pay="pay" value="@(currPay.ThirdPayCode)" mercode="@(currPay.MerCode)" />
+                                    <img src="@(YHC.Portal.Helper.ConfigHelper.ImageServerUrl + currPay.ThirdPayLogoImg)" alt="" />
+                                </label>
+                            }
+
+                            @{
+                            // 输出银行列表
+                            var bankList = currPay.BankList;
+                            if (bankList != null && bankList.Count() > 0)
+                            {
+                                foreach (var item in bankList)
+                                {
+                                    <label>
+                                        <input type="radio" name="payPlatform" pay="pay" value="@(currPay.ThirdPayCode)" bankcode="@(item.BankCode)" bankname="@(item.BankName)" mercode="@(currPay.MerCode)" />
+                                        <em class="banklogo @(item.CssName)" title="@(item.BankName)"></em>
+                                    </label>
+                                }
+                            }
+                            }
+                        </div>
+                        @if (bankList != null && bankList.Count() > 10)
+                        {
+                            <div class="fr">
+                                <label for="bank" class="eveb_form_error" style="display:none;"></label>
+                                <a href="javascript:;" class="button_small button_2" id="eveb_bank_open">+ 更多银行</a>
+                                <a href="javascript:;" class="button_small button_2" id="eveb_bank_close" style="display:none;">- 收起</a>
+                            </div>
+                        }
+                    </li>
+                    @if (prefInfos != null && prefInfos.Count > 0)
+                    {
+                        <li>
+                            <span>可选优惠：</span>
+                            <div class="eveb_form_box">
+                                <p><label><input id="pref_selNobonus_none" name="online_prefKey" type="radio" class="checkbox" value="" checked="checked" /> 不参加优惠</label></p>
+                                @foreach (var item in prefInfos)
+                                {
+                                    <p><label for="pref_@(item.Id)"><input id="pref_@(item.Id)" name="online_prefKey" type="radio" class="checkbox" value="@(item.PreferentialKey)" /> @(item.PreferentialTitle)</label></p>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <div class="eveb_form_submit">
+                    <input id="btn_save" name="btn_save" type="submit" value="生成订单" class="button_medium button_1" />
+                </div>
+                <input type="hidden" name="payMerCode" id="payMerCode" value="" />
+                <input type="hidden" id="payBankCode" name="payBankCode" value="" />
+                <input type="hidden" id="payBankName" name="payBankName" value="" />
+                <input type="hidden" id="thirdPayDepositSingleMin" value="@(user.ThirdPayDepositSingleMin)" />
+                <input type="hidden" id="thirdPayDepositSingleMax" value="@(user.ThirdPayDepositSingleMax)" />
+            </form>
+        }
+    </div>

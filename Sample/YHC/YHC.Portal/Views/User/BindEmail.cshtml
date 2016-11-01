@@ -1,0 +1,41 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "邮箱验证";
+    ViewBag.TopMenu = "icon_nav_setting";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li class="on"><a href="/user/setting.html">个人资料</a></li>
+        <li><a href="/user/loginpassword.html">登录密码</a></li>
+        <li><a href="/user/withdrawalpassword.html">提款密码</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_setting"></i>个人通信验证</h2>
+	<ul class="eveb_step">
+		<li class="on"><em>1</em><p>选择认证方式</p></li>
+		<li><em>2</em><p>完成验证</p></li>
+		<li><em>3</em><p>验证成功</p></li>
+	</ul>
+	<form>
+	<ul class="eveb_form eveb_validation_form">
+		<li>
+			<label>
+				<span><input name="way" type="radio" value="" checked="checked"/> 电子邮箱：</span>
+				@(user.MaskEmail)
+			</label>
+		</li>
+	</ul>
+	<div class="eveb_form_submit">
+		<a id="next" href="javascrpit:;" class="button_medium button_1">下一步</a>
+        <input id="email" type="hidden" value="@(user.Email)"/>
+	</div>
+	</form>
+</div>
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/user/bindemail.js")
+}

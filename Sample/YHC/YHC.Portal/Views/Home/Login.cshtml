@@ -1,0 +1,32 @@
+﻿
+@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "login";
+}
+
+<!--login start-->
+<div class="login-b">
+    <div class="login container">
+        <div class="login-div-l">
+        	<a href="#"><img src="/Content/images/login.jpg" /></a>
+        </div>
+        <div class="login-div-r">
+        	<h2>登陆<span>Login</span></h2>
+            <ul>
+            	<li><span>用户名：</span><small><input id="topusername" type="text" class="login-i" /></small></li>
+                <li><span>登陆密码：</span><small><input id="toppasswd" type="password" class="login-i"/></small></li>
+                <li><span>验证码：</span><small><input id="topcode" type="text" class="login-y"/></small><i><img src="/authcode/createimagecode.html?q=@(Guid.NewGuid().ToString())" onclick="this.src='/authcode/createimagecode.html?q='+new Date().getTime();" /></i></li>
+            </ul>
+            <div class="login-dl"><a href="/forgetpwd.html">忘记密码？</a>@*<span><input name="" type="checkbox" value="" />自动登录</span>*@</div>
+            <div class="login-bt">
+            	<button class="login-sign" id="okBtn" >登&nbsp;&nbsp;录</button><button class="login-register" onclick="location.href='/regist.html';">注&nbsp;&nbsp;册</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--login end--> 
+

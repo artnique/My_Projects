@@ -1,0 +1,26 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <title>@ViewBag.Title</title>    
+        @Styles.Render("~/bundles/Stylescss")
+    @RenderSection("styles", required: false)
+
+    @Scripts.Render("~/bundles/Scriptslib")
+    <script type="text/javascript" src="~/Scripts/lib/layer/layer.js"></script>
+
+    @Scripts.Render("~/bundles/Scriptspage")
+    @RenderSection("scripts_head", required: false)
+</head>
+<body>
+    @Html.Partial("_Header")
+    @RenderBody()
+    @Html.Partial("_Footer")
+    @Html.Partial("_ExtenalJS")
+    @RenderSection("scripts_body", required: false)
+    @Html.Partial("_Float")
+</body>
+</html>

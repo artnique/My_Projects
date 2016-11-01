@@ -1,0 +1,313 @@
+﻿@using YHC.Portal.Core;
+@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "ptslot";
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+
+    Ad mobileLink = null;
+    Ad onlineServiceLink = null;
+    News slot_promo = null;
+        
+    IList<Ad> carousel = ViewBag.Carousel as IList<Ad>;
+    IList<Ad> slotImage = ViewBag.SlotImages as IList<Ad>;
+
+
+    if (slotImage != null)
+    {
+        mobileLink = slotImage.First(x => x.Title == "yc_slot_images_mobile_link");
+        onlineServiceLink = slotImage.First(x => x.Title == "yc_slot_images_livechat_link");
+    }
+    
+    PagerFrontViewModel<News> slotPromo = ViewBag.SlotPromo as PagerFrontViewModel<News>;
+    if (slotPromo != null)
+    {
+        slot_promo = slotPromo.list.First(x => x.Key == "yc_electronic_slot_promo_1");
+    }
+
+    IList<GameCategory> categories = ViewBag.Categories as IList<GameCategory>;
+
+    GameApi jackpotApi = ViewBag.JackpotAPI as GameApi;
+    String jackpotUrl = jackpotApi == null ? "http://tickers.playtech.com/jackpots/new_jackpotxml.php" : jackpotApi.LoginUrl2;
+    jackpotUrl += "?info=4&currency=cny";
+}@section styles{
+    @Styles.Render("~/bundles/Stylesslot")
+}
+@section scripts_head{
+    <script type="text/javascript">
+        var _jackpotInfoType =
+        {
+
+            CASINOBASED: '@((int)JackpotsInfoType.CASINOBASED)',
+            CASINOSTOTAL: '@((int)JackpotsInfoType.CASINOSTOTAL)',
+            GAMEBASED: '@((int)JackpotsInfoType.GAMEBASED)',
+            GAMEGROUPTOTAL: '@((int)JackpotsInfoType.GAMEGROUPTOTAL)',
+            GAMETOTAL: '@((int)JackpotsInfoType.GAMETOTAL)'
+        };
+    </script>
+    @Scripts.Render("~/bundles/Scriptspagination")
+    @Scripts.Render("~/bundles/Scriptsslot")
+}
+<input type="hidden" id="hiddenPlatform" value="@ViewBag.Platform" />
+<input type="hidden" id="hiddenCategoryId" value="" />
+<input type="hidden" id="hiddenType" value="" />
+<input type="hidden" id="hiddenImageServer" value="@ConfigHelper.ImageServerUrl" />
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <div id="slideBox1" class="slideBox1 branner">
+            <a href="javascript:void(0)" class="prev"></a>
+            <a href="javascript:void(0)" class="next"></a>
+            <div class="bd">
+                <ul>
+                    @if (carousel != null)
+                    {
+                        if (carousel.Count > 0)
+                        {
+                            foreach (var item in carousel)
+                            {
+                                <li>
+                                    <img src="@(imageServerUrl + item.ImgUrl)" alt="" />
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(".slideBox1").slide({ mainCell: ".bd ul", autoPlay: true, interTime: "3000" });
+        </script>
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="zzzx_bottom"></div>
+<div class="w1000 divc ffw">    <!-- 游戏下载开始 -->
+    <div class="sloat-download clearfix">
+        <ul>
+            <li class="nol">
+                <h3>
+                    PT老虎机 <i>PT SLOTS</i>
+                </h3>
+                <span class="mr20">
+                    <i class="sloat-d-btn1"></i>
+                    <a href="/ptslot.html">立即游戏</a>
+                </span>
+                <span>
+                    <i class="sloat-d-btn2"></i>
+                    <a href="/download.html">客户端下载</a>
+                </span>
+            </li>
+            <li>
+                <h3>
+                    MG老虎机
+                    <i>MG SLOTS</i>
+                </h3>
+                <span class="mr20">
+                    <i class="sloat-d-btn1"></i>
+                    <a href="/mgslot.html">立即游戏</a>
+                </span>
+                <span>
+                    <i class="sloat-d-btn2"></i>
+                    <a href="/download.html">客户端下载</a>
+                </span>
+            </li>
+            <li>
+                <h3>
+                    AG老虎机
+                    <i>AG SLOTS</i>
+                </h3>
+                <span class="mr20">
+                    <i class="sloat-d-btn1"></i>
+                    <a href="/agslot.html">立即游戏</a>
+                </span>
+                <span>
+                    <i class="sloat-d-btn3"></i>
+                    <a href="/download.html" class="he">未开放下载</a>
+                </span>
+            </li>
+            <li>
+                <h3>
+                    BBIN老虎机
+                    <i>BBIN SLOTS</i>
+                </h3>
+                <span class="mr20">
+                    <i class="sloat-d-btn1"></i>
+                    <a href="/bbinslot.html">立即游戏</a>
+                </span>
+                <span>
+                    <i class="sloat-d-btn3"></i>
+                    <a href="/download.html" class="he">未开放下载</a>
+                </span>
+            </li>
+            <li class="no">
+                <small>英皇老虎机即将上线</small>
+            </li>
+        </ul>
+    </div>
+    <div class="slot-game">
+        <div class="h3-title b-b h3-slot slot_awining">
+            <h3></h3>
+            <div class="slot-winning l">
+                <div class="slot-winning-btn r">
+                    <a class="prev"></a>
+                    <a class="next"></a>
+                </div>
+                <!-- 中奖玩家start -->
+                <div class="slot-winning-main l">
+                    <ul>
+                        <li>
+                            <div class="scroll">
+                                <a href="#">
+                                    <img src="/Content/img/winning-img1.jpg" width="60" height="40" />
+                                </a>
+                                <p>
+                                    恭喜来自A66游戏长春玩家 <em class="shuang">陈***生</em>
+                                    <br />
+                                    在X战警游戏中赢得 <em class="shuang">￥633,123元</em>
+                                </p>
+                            </div>
+                            <div class="scroll">
+                                <a href="#">
+                                    <img src="/Content/img/winning-img2.jpg" width="60" height="40" />
+                                </a>
+                                <p>
+                                    恭喜来自A66游戏北京玩家
+                                    <em class="shuang">j***a</em>
+                                    <br />
+                                    在百万富翁游戏中赢得
+                                    <em class="shuang">￥423,121元</em>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="scroll">
+                                <a href="#">
+                                    <img src="/Content/img/winning-img3.jpg" width="60" height="40" />
+                                </a>
+                                <p>
+                                    恭喜来自A66游戏上海玩家
+                                    <em class="shuang">y***1</em>
+                                    <br />
+                                    在船长的宝藏游戏中赢得
+                                    <em class="shuang">￥325,113元</em>
+                                </p>
+                            </div>
+                            <div class="scroll">
+                                <a href="#">
+                                    <img src="/Content/img/winning-img4.jpg" width="60" height="40" />
+                                </a>
+                                <p>
+                                    恭喜来自A66游戏深圳玩家
+                                    <em class="shuang">a***a</em>
+                                    <br />
+                                    在钢铁侠3游戏中赢得
+                                    <em class="shuang">￥234,654元</em>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="scroll">
+                                <a href="#">
+                                    <img src="/Content/img/winning-img5.jpg" width="60" height="40" />
+                                </a>
+                                <p>
+                                    恭喜来自A66游戏吉林玩家
+                                    <em class="shuang">李***生</em>
+                                    <br />
+                                    在高速公路游戏中赢得
+                                    <em class="shuang">￥768,661元</em>
+                                </p>
+                            </div>
+                            <div class="scroll">
+                                <a href="#">
+                                    <img src="/Content/img/winning-img6.jpg" width="60" height="40" />
+                                </a>
+                                <p>
+                                    恭喜来自A66游戏广州玩家
+                                    <em class="shuang">刘***姐</em>
+                                    <br />
+                                    在雷霆万钧游戏中赢得
+                                    <em class="shuang">￥883,242元</em>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 中奖玩家end -->
+            <div class="slot-download r">
+                <span></span>
+                <a href="mobile.html">
+                    <i>PT客户端下载</i>
+                    点击即可下载
+                </a>
+            </div>
+        </div>
+        <!-- 热门游戏start -->
+        <div class="slot-hot-game">
+            <div class="slot-hot-btn">
+                <a class="prev"></a>
+                <a class="next"></a>
+            </div>            
+            @Html.Partial("_TopRecommendedGame")
+        </div>
+        <div class="ljjc clearfix">
+            <a href="@(mobileLink != null ? Html.Raw(mobileLink.Link) : Html.Raw(""))" class="fl">
+                <img src="@(mobileLink != null ? imageServerUrl + mobileLink.ImgUrl : "")" alt="" />
+            </a>
+            <span class="jackpotStyle1"></span>
+            <a href="javascript:void(0);" name="top_livechat" class="fr">
+                <img src="@(onlineServiceLink != null ? imageServerUrl + onlineServiceLink.ImgUrl : "")" alt="" />
+            </a>
+        </div>
+        <div id="slot-game" class="t10">
+            <div class="slot-game-tab">
+                <span>游戏分类</span>
+                <ul id="cats">
+                    @if (categories != null)
+                    {
+                        var i = 1;
+                        foreach (var item in categories)
+                        {
+                            <li onclick="$('#keys').val('');getGames('@item.Id');">@item.Name</li>
+                            if (i == 1)
+                            {
+                                <input type="hidden" id="slot_item_id" value="@item.Id">
+                            }
+                            i++;
+                        }
+                    }
+                </ul>
+                <small class="radius">
+                    <form>
+                        <input type="text" id="keys" value="" placeholder="请输入要查询的游戏关键字.." class="text" />
+                        <input type="button" value="" class="button" id="btnSearch" />
+                    </form>
+                </small>
+            </div>
+            <div class="slot-game-hot">
+                <!-- 游戏分类（热门游戏）start -->
+                <div class="fenlei">
+                    <ul id="games"></ul>
+                    <div style="clear:both;"></div>
+                    <div class="sloat-tab-t1 holder" id="pagination"></div>
+                </div>
+                <!-- 游戏分类end -->
+            </div>
+        </div>
+        <!-- 热门游戏end -->
+        <div class="cl"></div>
+    </div>
+    @(Html.Raw(slot_promo.Content.ToString()))
+</div>
+<script type="text/javascript">
+    getGames($('#slot_item_id').val());
+</script>
+<!-- 页面主体结束 -->

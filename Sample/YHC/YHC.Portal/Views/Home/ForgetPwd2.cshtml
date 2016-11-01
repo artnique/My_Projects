@@ -1,0 +1,101 @@
+﻿
+@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    User user = ViewBag.User as User;
+    //var email = "";
+    //if (!string.IsNullOrEmpty(user.Email))
+    //{
+    //    var temp = user.Email.Split('@');
+    //    if (temp.Length > 1)
+    //    {
+    //        email = "@"+ temp[1];
+    //    }
+    //}
+    //var phone = "";
+    //if (!string.IsNullOrEmpty(user.Phone))
+    //{
+    //    var temp = user.Phone.Substring(user.Phone.Length - 4);
+    //    phone = temp;
+    //}
+}@section styles{
+    @Styles.Render("~/bundles/Stylesalert")
+}
+@section scripts_head{
+    @Scripts.Render("~/bundles/Scriptsforgetpwd")
+    @Scripts.Render("~/bundles/Scriptsalert")
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="/Content/images/b_aboutus.png" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div id="zhaohui1"  class="divc w1000 pt15 clearfix">
+    <!-- 第二步开始 -->
+    <div id="zhaohui1" class="aboutr registw ffw divc singlecon fpwdw">
+        <div class="t">
+            <p class="cn shuang">
+                <span class="shuang">密码找回</span>
+            </p>
+            <p class="en"></p>
+        </div>
+        <div class="c f14">
+            <ul class="fpwdbz tc hui">
+                <li class="iblock item1">确认账户</li>
+                <li class="iblock item2 on">安全验证</li>
+                <li class="iblock item3">密码重置</li>
+            </ul>
+            <input type="hidden" id="userName" value="@user.UserName" />
+            <input type="hidden" id="email" value="@user.Email" />
+            <input type="hidden" id="mobile" value="@user.Phone" />
+            <input type="hidden" id="vtype" value="Mobile" />
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="200" class="tr">&nbsp;</td>
+                    <td width="300">
+                        <ul class="zhfs">
+                            <li id="sel_code_type_mobile" class="bysj on "></li>
+                            <li id="sel_code_type_email"  class="byyx sel_code_type"></li>
+                        </ul>
+                    </td>
+                    <td width="200" class="helptext">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="tr">&nbsp;</td>
+                    <td>
+                        <input id="prevzh2" type="submit" value="上一步" class="btn-md fl" style="width: 148px;" />
+                        <input id="btn_step2" type="submit" value="下一步" class="btn-md fr" style="width: 148px;" />
+                    </td>
+                    <td class="helptext">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="tr">&nbsp;</td>
+                    <td>
+                        如用户名也忘记请联系<a href="javascript:void(0);" name="top_livechat" class="shuang">24小时在线客服</a>协商解决
+                    </td>
+                    <td class="helptext">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- 第二步结束 -->
+    <!-- 表单验证开始 -->
+    <script src="/Scripts/page/home/checkinput.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#prevzh2').click(function () {
+                parent.history.back();
+                return false;
+            });
+        });
+    </script>
+    <!-- 表单验证结束 -->
+</div>
+<!-- 页面主体 结束-->

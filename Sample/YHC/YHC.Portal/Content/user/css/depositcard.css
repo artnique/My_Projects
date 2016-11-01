@@ -1,0 +1,303 @@
+.input_txt {
+    padding: 5px;
+    border: 1px solid #9d9d9d;
+    font-size: 14px;
+}
+.banklist {
+    width: 620px;
+    float: left;
+}
+.banklist li {
+    padding: 10px 0;
+}
+.bankimg {
+    vertical-align: middle;
+    margin-left: 10px;
+    border: 1px solid #dddddd;
+}
+.bankinfo {
+    background: url(../image/bankinfobg.gif) no-repeat;
+    width: 191px;
+    height: 104px;
+    float: left;
+    padding: 10px;
+    overflow: hidden;
+}
+.banklogo {
+    display: inline-block;
+    overflow: hidden;
+    width: 120px;
+    height: 35px;
+    vertical-align: middle;
+}
+.bankOnline li {
+    float: left;
+    margin-right: 20px;
+}
+.ico_arrow_b {
+    background: url(../image/membermap.png?v=2?v=1) -120px -44px no-repeat;
+    width: 13px;
+    height: 13px;
+    display: block;
+    margin: 0 auto;
+}
+.eveb_bank_list {
+    height: 90px;
+    overflow: hidden;
+}
+.pm_cont {
+    margin: 5px 0px;
+}
+.pm_cont h2 {
+    margin-bottom: 15px;
+}
+.pm_cont .pay-bank {
+    margin-bottom: 10px;
+}
+.pm_cont .pay-bank li {
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    position: relative;
+    white-space: nowrap;
+}
+.pm_cont .pay-bank li a {
+    line-height: 35px;
+}
+.pm_cont .pay-bank li .btxt-box table {
+    width: 100%;
+    border: 0px solid #999;
+    text-align: center;
+}
+.pm_cont .pay-bank li .btxt-box table th {
+    font-weight: bold;
+    text-align: center;
+}
+.pm_cont .pay-bank .on {
+    border: 0px solid #ff2121;
+}
+.pm_cont .pm_txt {
+    background-color: #ff6600;
+    color: #fff;
+    line-height: 16px;
+    padding: 5px 10px;
+    margin-top: 20px;
+}
+.pm_cont .selectpayimg {
+    float: left;
+    border: 0px #ccc solid;
+    width: 136px;
+    position: relative;
+    cursor: pointer;
+}
+/*.pm_cont .selectpayimg span { background-color:#0099FF; border-radius:1.5px; color:#FFF; font-size:11px; margin-left:1px;}*/
+
+.pm_cont .selectpayimg span {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #CCC;
+    width: 122px;
+    height: 35px;
+    cursor: pointer;
+    margin-left: 1px;
+}
+.pm_cont .radio {
+    display: block;
+    width: 14px;/
+    height: 14px;
+    margin-top: 9px;
+    _margin-top: 7px;
+    +margin-top: 7px;
+    margin-right: 2px;
+	margin-left: 2px;
+    vertical-align: middle;
+}
+.pm_cont .payimg {
+    float: left;
+    margin-right: 16px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.pm_cont .paystaging {
+    background-color: #F8F8F8;
+    height: 45px;
+    padding: 10px;
+    margin-top: 20px;
+}
+.pm_cont .paystaging dl dt {
+    font-weight: bolder;
+    border-right: 1px #ccc dotted;
+    float: left;
+    padding-right: 10px;
+    height: 45px;
+}
+.pm_cont .paystaging dl dd {
+    float: left;
+    padding: 0px 12px;
+}
+.pm_cont .paystaging dl dd p {
+    margin-bottom: 3px;
+}
+.pm_cont .paystaging .tt {
+    width: 350px;
+}
+.pm_cont .paystaging .tt1 {
+    line-height: 45px;
+    color: #333;
+}
+.pay-item1 .item .lab {
+    width: 140px;
+}
+
+.leftformStyle {
+    padding-top: 45px;
+	margin-bottom:30px;
+}
+.leftformStyle label {
+    line-height: 45px;
+    display: block;
+    width: 100px;
+    text-align: right;
+    float: left;
+    margin-left: -100px;
+}
+.leftformStyle input {
+    vertical-align: middle;
+}
+.leftformStyle .leftInput {
+    height: 35px;
+    padding: 5px 5px 5px 12px;
+    line-height: 45px;
+    border: 1px solid #dad7d3;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+.leftformStyle li {
+    padding-left: 150px;
+    clear: both;
+    margin-bottom: 5px;
+    line-height: 45px;
+}
+.leftformStyle span a {
+	color:#0570d8;
+	font-weight:700;
+}
+.leftformStyle span a:hover {
+	color:#f60;
+}
+.btn_back,
+.btn_redarrow,
+.btn_org,
+.btn_green,
+.btn_red,
+.btn_red_small {
+    width: 220px;
+    height: 38px;
+    background: #7db80c;
+    vertical-align: middle;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-family: "微软雅黑";
+    cursor: pointer;
+    margin-right: 2px;
+}
+.btn_green:hover {
+    background: #8ece13;
+}
+.btn_red {
+    background: #0570d8;
+}
+.btn_red_small:hover,
+.btn_red:hover {
+    background: #ff9900;
+}
+.btn_red_small {
+    background: #ae002f;
+    width: 133px;
+    height: 38px;
+    font-size: 14px;
+}
+.btn_org {
+    background: #ff9515;
+    width: 253px;
+}
+.btn_org:hover {
+    background: #ffac36;
+}
+.btn_back {
+    background: #f2e9de;
+    color: #ae002f;
+}
+.btn_redarrow {
+    background-image: url(../images/iconmap.png);
+    background-color: inherit;
+    background-position: 0 -395px;
+    width: 200px;
+    height: 61px;
+    padding-top: 15px;
+}
+.btn_5w,
+.btn_2w {
+    height: 37px;
+    background-image: url(../images/iconmap.png);
+    background-position: -184px -112px;
+    color: #666;
+    border: none;
+    line-height: 33px;
+    font-size: 12px;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+.btn_5w {
+    width: 89px;
+    background-position: -184px -112px;
+    padding-bottom: 2px;
+}
+.btn_2w {
+    width: 70px;
+    background-position: -184px -158px;
+    padding-bottom: 2px;
+}
+.mem_content .mhauto .pm_cont ul li { margin-bottom: 15px; }
+.mem_content .mhauto ul li { margin-bottom: 0; }
+
+/*按钮*/
+.button_small,
+.button_medium{border:none;border-radius:3px;cursor:pointer;font-family:'Microsoft Yahei';}
+.button_small{padding:5px 10px;font-size:12px;}
+.button_medium{padding:10px 30px;font-size:14px;}
+.button_1,
+.button_1:link,
+.button_1:visited{color:#FFF;background:#0570D8;}
+.button_1:hover{background:#1F8CFA;}
+.button_2,
+.button_2:link,
+.button_2:visited{color:#FFF;background:#f90;}
+.button_2:hover{background:#FF5C26;}
+.button_3,
+.button_3:link,
+.button_3:visited{border:1px solid #DDD;color:#888;background:#FFF;}
+.button_3:hover{background:#F5F5F5;}
+.button_4,
+.button_4:link,
+.button_4:visited{color:#888;background:#EEE;border:1px solid #EEE;}
+.button_4:hover{border:1px solid #DDD;background:#FFF;}
+.button_disabled,
+.button_disabled:hover{color:#999;background:#CCC;}
+
+/* Deposit layout */
+.tabbox_title {
+	width:130px;
+	float:left;
+	font-size:14px;
+	padding:8px 0 0 10px;
+}
+.tabbox {
+	width:800px;
+	float:left;
+	margin-bottom:30px;
+}
+.wrap {
+	margin-top:20px;
+}

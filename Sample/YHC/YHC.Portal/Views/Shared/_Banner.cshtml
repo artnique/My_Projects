@@ -1,0 +1,208 @@
+﻿@{
+    if (ViewBag.PageTag == "index")
+    {
+        <!-- 幻灯片-->
+        <div class="ad-flash-bg">
+	        <div class="ad-flash">
+		        <style>
+		            .ele-slideshow-wrap {
+		                width: 1920px;
+		                position: relative;
+		                margin: 0 auto;
+		            }
+		            .ele-slideshow-scroll {
+		                width: 1920px;
+		                height: 450px;
+		                overflow: hidden;
+		                position: relative;
+		                z-index: 1;
+		                margin: 0 auto;
+		            }
+		            .ele-slideshow-wrap ul {
+		                position: absolute;
+		                left: 0;
+		                top: 0;
+		                width: 1920px;
+		                height: 450px;
+		            }
+		            .ele-slideshow-wrap li {
+		                position: absolute;
+		                left: 0;
+		                top: 0;
+		                width: 1920px;
+		                height: 450px;
+		                opacity: 0;
+		                filter: alpha(opacity=0);
+		            }
+		                .ele-slideshow-wrap li a {
+		                    display: block;
+		                    width: 1920px;
+		                    height: 450px;
+		                }
+		                    .ele-slideshow-wrap li a img {
+		                        image-rendering: optimizeQuality;
+		                    }
+		            .ele-slideshow-arrow {
+		                position: absolute;
+		                z-index: 3;
+		                width: 0;
+		                height: 0;
+		                width: 22px;
+		                height: 22px;
+		            }
+		                .ele-slideshow-arrow i {
+		                    width: 22px;
+		                    height: 22px;
+		                    display: inline-block;
+		                }
+		            .ele-slideshow-arrow-left {
+		                left: 5px;
+		            }
+		            .ele-slideshow-arrow-right {
+		                right: 5px;
+		            }
+		            .ele-slideshow-arrow-left i {
+		                background: url() left center no-repeat;
+		            }
+		            .ele-slideshow-arrow-right i {
+		                background: url() left center no-repeat;
+		            }
+		            .ele-slideshow-arrow-left:hover i {
+		                background: url() left center no-repeat;
+		            }
+		            .ele-slideshow-arrow-right:hover i {
+		                background: url() left center no-repeat;
+		            }
+		            .ele-slideshow-clip {
+		                background-repeat: no-repeat;
+		            }
+		        </style>
+		        <div id="js-ele-slideshow1" class="ele-slideshow-wrap" onselectstart="return false;">
+			        <div class="js-ele-slideshow-scroll ele-slideshow-scroll">
+				        <ul>
+                            @{
+                                string imageServerUrl = ConfigHelper.ImageServerUrl;
+                                IList<Ad> banners = ViewBag.Ad as List<Ad>;
+                                if (banners != null)
+                                {
+                                    var index = 1;
+                                    foreach (var item in banners)
+                                    {                             
+                                        <li data-index="@index" data-autoplaytime="5000" class="ele-slideshow-active">
+						                    <a href="@(!string.IsNullOrEmpty(item.Link) ? item.Link : "#")" target="@item.LinkTarget">
+						                        <img src="@(imageServerUrl + item.ImgUrl)" width="1920" height="450">
+						                    </a>
+					                    </li>
+                                        index++;
+                                    }
+                                }
+                            }
+				        </ul>
+			        </div>
+			        <div class="ele-slideshow-control-outwrap">
+				        <div class="js-ele-slideshow-control-wrap ele-slideshow-control-wrap" style="left: 0px;">
+					        <div id="js-ele-slideshow-control1" class="ele-slideshow-control">
+						        <a href="#" id="js-ele-slideshow-start1" class="ele-slideshow-start" style="display: none;"></a><a href="###" id="js-ele-slideshow-stop1" class="ele-slideshow-stop">
+						            <div class="ele-slideshow-stop-left"></div>
+						            <div class="ele-slideshow-stop-right"></div>
+						        </a>
+					        </div>
+				        </div>
+			        </div>
+		        </div>
+		        <script src="/Scripts/lib/TweenMax.min.js"></script>
+		        <script src="/Scripts/lib/tween.slideshow.js"></script>
+		        <script>
+		            $(window).load(function () {
+		                $('.ele-slideshow-wrap img').each(function () {
+		                    var img = $(this).prop('src');
+		                    if (img.indexOf('.png') != -1 && navigator.userAgent.indexOf("MSIE") != -1) {
+		                        $(this).attr('style', 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + img + '",sizingMethod="scale")');
+		                    }
+		                });
+		                $('#js-ele-slideshow' + 1).slideshow({
+		                    uni: 1,
+		                    animationType: 'slideshow',
+		                    animationTime: 1.5,
+		                    animationOption: {
+		                        row: 10,
+		                        col: 6
+		                    },
+		                    isNav: !!0,
+		                    isControl: !!1,
+		                    navPosition: 'center',
+		                    isNumber: !!1,
+		                    isArrow: !!1,
+		                    isText: !!0,
+		                    textX: 50,
+		                    textY: 10,
+		                    textTime: 2,
+		                    random: !!1,
+		                    //自動撥放
+		                    isAutoPlay: !!1,
+		                    hovePause: !!1,
+		                    isLink: !!1,
+		                    isRunLine: !!0,
+		                    runLinePos: 'bottom',
+		                    fullScreen: 0,
+		                    fullScreenIEType: 'slideh'
+		                });
+		            });
+		        </script>
+	        </div>
+        </div>
+        <!-- 幻灯片end-->
+    }
+    if (ViewBag.PageTag == "casino" || ViewBag.PageTag == "promo")
+    {
+        <!--banner-->
+		<div class="header-banner-bg">
+			<div class="header-banner-wrap"></div>
+		</div>
+		<!--bannerEND-->
+    }
+    if (ViewBag.PageTag == "regist" || ViewBag.PageTag == "agent")
+    {
+        <div class="article-page-bg">
+			<div class="article-page-top"></div>
+		</div>
+		<div class="header-banner-bg">
+			<div class="header-banner-wrap"></div>
+		</div>
+    }
+    if (ViewBag.PageTag == "help")
+    {
+        <div class="article-page-bg">
+			<div class="article-page-btn">
+				<ul class="clearfix">
+					<li>
+					    <a href="/help/about.html" class="article-top-1"></a>
+					</li>
+					<span class="article-top-line"></span>
+					<li>
+					    <a href="/help/contact.html" class="article-top-2"></a>
+					</li>
+					<span class="article-top-line"></span>
+					<li>
+					    <a href="/help/agent.html" class="article-top-3"></a>
+					</li>
+					<span class="article-top-line"></span>
+					<li>
+					    <a href="/help/deposit.html" class="article-top-4"></a>
+					</li>
+					    <span class="article-top-line"></span>
+					<li>
+					    <a href="/help/withdraw.html" class="article-top-5"></a>
+					</li>
+					<span class="article-top-line"></span>
+					<li class="article-last-btn">
+					    <a href="/help/question.html" class="article-top-6"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="header-banner-bg">
+			<div class="header-banner-wrap"></div>
+		</div>
+    }
+}

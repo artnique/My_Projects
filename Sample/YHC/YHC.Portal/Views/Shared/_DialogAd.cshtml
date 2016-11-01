@@ -1,0 +1,9 @@
+﻿<div id="dialogAd" style="display:none;">
+    @*@{
+        News promo = ViewBag.Promo as News;
+        if (promo != null)
+        {
+            @Html.Raw(promo.Content);
+        }
+    }*@
+</div>

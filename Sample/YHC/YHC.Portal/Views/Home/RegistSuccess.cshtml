@@ -1,0 +1,27 @@
+﻿@{
+    User user = ViewBag.LoginUser as User;
+    if (user == null)
+    {
+        user = LoginHelper.GetUser();
+    }
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="/Content/images/b_aboutus.png" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc w1000 clearfix login_s">
+    <span class="dis"></span>
+    <h1 class="dis w1000 ffw f28">恭喜  <em>@user.TrueName</em>  注册成为英皇国际娱乐城会员</h1>
+    <p>Congratulations to register as a member of Emperor International Entertainment City</p>
+    <div class="login_btn">
+        <a href="" class="btn1 ffw">游戏中心</a>
+        <a href="" class="btn2 ffw">会员中心</a>
+        <a href="" class="btn3 ffw">立即存款</a>
+    </div>
+</div>
+<!-- 页面主体 结束-->

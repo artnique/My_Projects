@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+    GameApi api = ViewBag.Api as GameApi;
+    var gameAccount = ViewBag.GameAccount as UserGameAccount;
+    var gameUrl = ViewBag.GameUrl;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>正在加载游戏</title>
+    <script type="text/javascript" src="/scripts/lib/jquery.js"></script>
+    <script type="text/javascript" src="@api.ApiUrl2"></script>
+</head>
+<body>
+    <div>
+        <span id="loading">请稍候，正在加载游戏....</span>
+        <input type="hidden" id="username" name="username" value="@gameAccount.Account">
+        <input type="password" id="password" name="password" value="@gameAccount.Password" style="display:none">
+        <input type="hidden" id="gameUrl" name="gameUrl" value="@gameUrl" />
+    </div>
+
+    <script type="text/javascript">
+        iapiSetCallout('Login', calloutLogin);
+        iapiSetCallout('Logout', calloutLogout);
+
+        $(function () {
+            // 登录
+            login(1);
+        });
+
+        function login(realMode) {
+            iapiLogin($('#username').val().toUpperCase(), $('#password').val(), realMode, "ch");
+
+            // 让登录执行2秒，这里也考虑到打开并下载游戏需要10秒左右
+            //setTimeout(function () {
+            //    location.href = $('#gameUrl').val();
+            //}, 2000);
+        };
+
+        function logout(allSessions, realMode) {
+            iapiLogout(allSessions, realMode);
+        };
+
+        function calloutLogin(response) {
+            // 以下错误在登录时会发生，但游戏可以玩
+            // errorCode=6,errorText=Request time out
+            var code = response.errorCode;
+            if (code && code != 6) {
+                alert('登录失败,错误码:' + code + ',' + response.errorText).show();
+                return;
+            }
+            // 等待登录，解决有时单点登录失败问题
+            location.href = $('#gameUrl').val();
+        };
+
+        function calloutLogout(response) {
+            if (response.errorCode) {
+                alert("登录失败, " + response.errorCode);
+            }
+            else {
+                // delete_cookie();
+            }
+        };
+
+    </script>
+</body>
+</html>

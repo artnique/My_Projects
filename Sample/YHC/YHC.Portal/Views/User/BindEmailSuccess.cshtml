@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "邮箱验证";
+    ViewBag.TopMenu = "icon_nav_setting";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    String details = ViewBag.Details;
+    String status = ViewBag.Status;
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li class="on"><a href="/user/setting.html">个人资料</a></li>
+        <li><a href="/user/loginpassword.html">登录密码</a></li>
+        <li><a href="/user/withdrawalpassword.html">提款密码</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_setting"></i>个人通信验证</h2>
+	<ul class="eveb_step">
+		<li><em>1</em><p>选择认证方式</p></li>
+		<li><em>2</em><p>完成验证</p></li>
+		<li class="on"><em>3</em><p>@(status)</p></li>
+	</ul>
+	<form>
+	<div class="eveb_tip light"><i class="icon_mini icon_ok"></i>@(details)。@*你可以申请我们提供的个人讯息完善优惠。<a href="#" class="button_small button_2">立即申请</a>*@</div>
+	<div class="eveb_form_submit">
+		<a href="/user/withdrawal.html" class="button_medium button_1">返回提款</a>
+		<a href="/user/index.html" class="button_medium button_3">返回个人中心</a>
+	</div>
+	</form>
+</div>

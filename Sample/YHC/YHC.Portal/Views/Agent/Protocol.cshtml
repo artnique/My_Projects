@@ -1,0 +1,33 @@
+﻿@{
+    News protocol = ViewBag.Protocol as News;
+    
+    ViewBag.Title = "合作方案";
+    ViewBag.PageTag = "protocol";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+    Ad bannerImage = null;
+
+    IList<Ad> banners = ViewBag.Banner as IList<Ad>;
+
+
+    if (banners != null)
+    {
+        bannerImage = banners.First(x => x.AdNo == "yc_help_banner_image_1_1");
+    }
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="@(imageServerUrl + bannerImage.ImgUrl)" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc w1000 pt15 clearfix aboutw">    
+    @Html.Partial("_AgentMenu")
+    @(protocol != null ? Html.Raw(protocol.Content) : Html.Raw(""))
+    <div class="cl40"></div>
+</div>
+<!-- 页面主体 结束-->

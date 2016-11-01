@@ -1,0 +1,68 @@
+﻿@using YHC.Portal.Core;
+@{
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+
+    Ad bgImage = null;
+    Ad kenoImage = null;
+    Ad bbinImage = null;
+
+    IList<Ad> flashAds = ViewBag.FlashAds as IList<Ad>;
+    IList<Ad> lotteryImages = ViewBag.Images as IList<Ad>;
+
+
+    if (lotteryImages != null)
+    {
+        bgImage = lotteryImages.First(x => x.Title == "yc_lottery_images_background");
+        kenoImage = lotteryImages.First(x => x.Title == "yc_lottery_images_keno");
+        bbinImage = lotteryImages.First(x => x.Title == "yc_lottery_images_bbin");
+    }
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <div id="slideBox1" class="slideBox1 branner">
+            <a href="javascript:void(0)" class="prev"></a>
+            <a href="javascript:void(0)" class="next"></a>
+            <div class="bd">
+                <ul>
+                    @if (flashAds != null)
+                    {
+                        if (flashAds.Count > 0)
+                        {
+                            foreach (var item in flashAds)
+                            {
+                                <li>
+                                    <img src="@(imageServerUrl + item.ImgUrl)" alt="" />
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(".slideBox1").slide({ mainCell: ".bd ul", autoPlay: true, interTime: "3000"});
+        </script>
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="fullwidth lottery_main" style="background: url(@(bgImage != null ? imageServerUrl + bgImage.ImgUrl : "")) no-repeat center center;">
+    <div class="divc clearfix lottery_content">
+        <div class="lottery fl">
+            <a href="javascript:void(0);" onclick="@(bbinImage != null ? Html.Raw(bbinImage.Link) : Html.Raw(""))"><img src="@(bbinImage != null ? imageServerUrl + bbinImage.ImgUrl : "")" /></a>
+            <span class="bbin dis fl t30 mr10"></span>
+            <p class="dis fl t30">BB真人彩票/一般彩票/BBIN<br />时时彩/纷纷彩/快3/十一选五</p>
+            <a href="" class="btn fr t30"></a>
+        </div>
+        <div class="lottery fr">
+            <a href="javascript:void(0);" onclick="@(kenoImage != null ? Html.Raw(kenoImage.Link) : Html.Raw(""))"><img src="@(kenoImage != null ? imageServerUrl + kenoImage.ImgUrl : "")" /></a>
+            <span class="keno dis fl t30 mr10"></span>
+            <p class="dis fl t30">低颗彩球/时时彩/快乐十分<br />骰宝/快3/十一选五/其他</p>
+            <a href="" class="btn fr t30"></a>
+        </div>
+    </div>
+</div>
+<!-- 页面主体 结束-->

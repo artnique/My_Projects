@@ -1,0 +1,125 @@
+﻿@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "sport";
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+    IList<Ad> banners = ViewBag.Ad as List<Ad>;
+
+    string game = ViewBag.Game == null ? "T188" : ViewBag.Game;
+    string className, gameLink;
+    switch (game)
+    {
+        case "IBC":
+            className = "sport-m-188";
+            gameLink = "/game/launchsport.html?game=IBC&type=sport";
+            break;
+        case "TB":
+            className = "sport-m-188";
+            gameLink = "/game/play.html?game=TB&type=sport";
+            break;
+        case "BB":
+            className = "sport-m-188";
+            gameLink = "/game/play.html?game=BB&type=sport";
+            break;
+        default:
+            className = "sport-m-188";
+            gameLink = "/game/launchsport.html?game=T188&type=sport";
+            break;
+    }
+}
+@section styles{
+}
+@section scripts_head{
+    @Scripts.Render("~/bundles/Scriptssport")
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <div id="slideBox1" class="slideBox1 branner">
+            <a href="javascript:void(0)" class="prev"></a>
+            <a href="javascript:void(0)" class="next"></a>
+            <div class="bd">
+                <ul>
+                    @if (banners != null)
+                    {
+                        foreach (Ad ads in banners)
+                        {
+                            <li>
+                                <img src="@(imageServerUrl + ads.ImgUrl)" alt="" />
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(".slideBox1").slide({ mainCell: ".bd ul", autoPlay: true, interTime: "3000" });
+        </script>
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc w1000 clearfix sportw t15">
+    <div class="sport-btn ffw">
+        <ul>
+            <li class="item1 @( ViewBag.Game == "T188" ? "on" : "")" data=" t188" onclick="load_game_link('T188', 'sport', '');"><div class="sico"></div><div class="info">体育</div></li>
+            <li class="item2 @( ViewBag.Game == "IBC" ? "on" : "")" data="IBC" onclick="load_game_link('IBC', 'sport', '');"><div class="sico"></div><div class="info">体育</div></li>
+            <li class="item3 @( ViewBag.Game == "BBIN" ? "on" : "")" data="BBIN" onclick="load_game_link('BBIN', 'sport', '');"><div class="sico"></div><div class="info">体育</div></li>
+            <li class="item4 @( ViewBag.Game == "TB" ? "on" : "")" onclick="load_game_link('TB', 'sport', '');"><div class="sico"></div><div class="info">体育</div></li>
+        </ul>
+    </div>
+    <div id="sportCode"></div>
+    <div class="sport-m-188">
+        <iframe scrolling="no" src="@gameLink" style="width: 100%; height:1200px; border:0;" id="jzcon" frameborder="0"></iframe>
+    </div>
+</div>
+<div class="cl20"></div>
+<script src="js/utility.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        var q_type = utility.queryString('type') || 'T188';
+        getGame(q_type);
+        $('.sport-btn ul li').each(function () {
+            var type = $(this).attr("data");
+            if (q_type == type) {
+                $(this).addClass('on');
+            }
+        });
+        $('.sport-btn ul li').click(function () {
+            $('.sport-btn ul li').removeClass('on');
+            $(this).addClass('on');
+            var type = $(this).attr("data");
+            getGame(type);
+        });
+
+        $.when(utility.getData('http://api.vbetctrl.net/Config/GetNewsContent', { 'key': utility.apiTag + 'sport_block_ad' })).done(function (data) {
+            $("#sportCode").html(data);
+            //体育手机下注
+            $(".sport-download").hide();
+            $(".sport-code").hover(function () {
+                $(".sport-download").show();
+            }, function () {
+                $(".sport-download").hide();
+            });
+        });
+
+    });
+    function getGame(type) {
+        $.when(utility.getData('Game/GetGameUrl', { "gamePlatform": type, "gameType": "sport" })).done(function (data) {
+            if (data && data.StatusCode != undefined && data.StatusCode != 0) {
+                $('.sport').html('<div style="width: 100%; height:300px; border:0;background:white;">' + data.Message + '</div>');
+            }
+            else {
+                if (data) {
+                    $('iframe#jzcon').attr('src', data);
+                }
+            }
+        });
+    }
+</script>
+<!-- 页面主体 结束-->

@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "代理协议";
+    ViewBag.PageTag = "agreement";
+    Layout = "~/Views/Agent/_Layout.cshtml";
+
+    News page = ViewBag.Brand as News;
+}
+    @(page != null ? Html.Raw(page.Content) : Html.Raw(""))
+

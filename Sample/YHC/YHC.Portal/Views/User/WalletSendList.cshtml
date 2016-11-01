@@ -1,0 +1,68 @@
+﻿@using YHC.Portal.Extensions;
+@using YHC.Portal.Core;
+@{
+    ViewBag.Title = "优惠钱包";
+    ViewBag.TopMenu = "icon_nav_market";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li class="on"><a href="/user/walletinitlist.html">优惠钱包</a></li>
+        <li><a href="/user/recommendlist.html">推荐返利</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_market"></i>市场活动</h2>
+	<div class="eveb_tab">
+		@Html.Partial("_PartialWalletMenu", "send")
+	</div>
+	<div class="eveb_market_list">
+		<table class="eveb_box eveb_table" style="display:table">
+			<tr>
+				<th>优惠名称</th>
+                <th>优惠类型</th>
+                <th>金额</th>
+                <th>领取时间</th>
+                <th>投注额要求</th>
+                <th>状态</th>
+			</tr>
+            <tbody id="mainBody">
+                <tr>
+                    <td colspan="6">正在加载数据...
+                    </td>
+                </tr>
+                <textarea name="template_jst_list" id="template_jst_list" style="display: none" cols="0" rows="0">
+                    {var index = 0}
+                    {for t in list}
+                        <tr index="${index++}">
+                            <td>${t.SourceName}</td>
+                            <td>${t.TypeText}</td>
+                            <td class="light">${t.Amount}</td>
+                            <td>${Date.fromJson(t.SendTime).format("yyyy-MM-dd HH:mm:ss")}</td> 
+                            <td>${t.InspectRealBet}</td>
+                            <td>${t.StatusText}</td>		                   
+                        </tr>
+                    {forelse}
+                    <tr>
+                        <td class="norecord" colspan="6">没有符合条件的记录</td>
+                    </tr>  
+                    {/for}
+                    </textarea>
+            </tbody>
+		</table>
+    </div>
+    <!--分页start-->
+    <div id="pagination" class="fr"></div>
+    <!--分页end-->
+    <input type="hidden" id="hiddenStatus" value="@((int)UserWalletStatus.Send)"  />
+</div>
+
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/lib/template/trimpath-template.js")
+    @Url.RenderScriptFile("/scripts/lib/datepicker/WdatePicker.js")
+    @*@Url.RenderScriptFile("/scripts/user/jquery.pagination.js")*@
+    @Url.RenderScriptFile("/scripts/user/jquery.alerts.js")
+    @Url.RenderScriptFile("/scripts/user/walletlistcommon.js")
+    @Url.RenderScriptFile("/scripts/user/walletsendlist.js")
+}

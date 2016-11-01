@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "品牌打造";
+    ViewBag.PageTag = "brand";
+    Layout = "~/Views/Agent/_Layout.cshtml";
+    
+    News page = ViewBag.Agreement as News;
+}
+    @(page != null ? Html.Raw(page.Content) : Html.Raw(""))

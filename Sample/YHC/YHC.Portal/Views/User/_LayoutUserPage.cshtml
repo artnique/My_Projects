@@ -1,0 +1,79 @@
+﻿@using YHC.Portal.Extensions;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.keywords"/>
+    <meta name="description" content="@ViewBag.Description" />
+    @Styles.Render("~/bundles/Stylescss")
+    @Url.RenderCssFile("/content/user/css/global.css")
+    @Url.RenderCssFile("/content/user/css/default.css")
+    @Url.RenderCssFile("/Scripts/lib/sticky/sticky.css")
+    @Url.RenderCssFile("/scripts/user/pagination/jquery.pagination.css")
+    @RenderSection("HeadStyle", false)
+    @Scripts.Render("~/bundles/Scriptslib")
+    <script type="text/javascript" src="~/Scripts/lib/layer/layer.js"></script>
+    @Url.RenderScriptFile("/scripts/lib/jquery.js")
+    @Url.RenderScriptFile("/scripts/lib/json2.js")
+    @Url.RenderScriptFile("/scripts/lib/jquery.signalR-2.0.1.min.js")
+    @Url.RenderScriptFile("/scripts/lib/jquery.cookie.js")
+    @Url.RenderScriptFile("/scripts/lib/layer/layer.js")
+    @Url.RenderScriptFile("/scripts/lib/sticky/sticky.js")
+    @Html.Partial("_TimeZoneConfig")
+    @Scripts.Render("~/bundles/Scriptspage")
+    @Url.RenderScriptFile("/scripts/page/core.js")
+    @Url.RenderScriptFile("/scripts/user/pagination/jquery.pagination.js")
+
+    @RenderSection("HeadScripts", false)
+</head>
+<body navid="@ViewBag.TopMenu">   
+     @Html.Partial("_Header")
+    <div class="eveb_wrap">
+        <!-- NAV START -->
+        <ul class="eveb_nav">
+            <li><a href="/user/index.html"><i class="icon_medium icon_nav_home"></i>会员首页</a></li>
+            <li><a href="/user/depositonline.html"><i class="icon_medium icon_nav_bank"></i>存款</a></li>
+            <li><a href="/user/withdrawal.html"><i class="icon_medium icon_nav_withdraw"></i>提款</a></li>
+            <li><a href="/user/transfer.html"><i class="icon_medium icon_nav_transfer"></i>转账</a></li>
+            <li><a href="/user/messagelist.html"><i class="icon_medium icon_nav_letter"></i>站内信</a></li>
+            <li><a href="/user/walletinitlist.html"><i class="icon_medium icon_nav_market"></i>市场活动</a></li>
+            <li><a href="/user/depositlist.html"><i class="icon_medium icon_nav_record"></i>历史记录</a></li>
+            <li><a href="/user/setting.html"><i class="icon_medium icon_nav_setting"></i>账户设置</a></li>
+        </ul>
+        <!-- NAV END -->
+        <!-- CONTENT START -->
+        @RenderBody()
+        <!-- CONTENT END -->
+        <!--弹窗 黑底-->
+        <div class="eveb_popup_wrap"></div>
+        <!--弹窗 公告-->
+        <div class="eveb_popup" id="eveb_popup_news">
+            <div class="eveb_popup_hd">
+                <h4 class="fl">公告</h4>
+                <a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+            </div>
+            <div class="eveb_popup_bd">
+                <div class="eveb_message">
+                    <ul class="eveb_form">
+                        <li class="pop-main">
+                            <div class="pop-title"></div><br />
+                            <div class="pop-date"></div>
+                            <br />@*<br />*@
+                            <div class="pop-content"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>    
+    @Url.RenderScriptFile("/scripts/user/global.js")
+    @Html.Partial("_Footer")
+    @Html.Partial("_ExtenalJS")
+    @RenderSection("scripts_body", required: false)
+    @Html.Partial("_Float")
+    @RenderSection("EndScripts", false)
+</body>
+</html>

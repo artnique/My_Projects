@@ -1,0 +1,6 @@
+﻿@{
+    Layout = "~/Views/Page/_PageLayout.cshtml";
+
+    News page = ViewBag.Preferential as News;
+}
+    @(page != null ? Html.Raw(page.Content) : Html.Raw(""))

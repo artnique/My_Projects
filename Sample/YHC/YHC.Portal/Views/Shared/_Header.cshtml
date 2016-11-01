@@ -1,0 +1,241 @@
+﻿@using YHC.Portal.Services;
+@{
+    User user = ViewBag.LoginUser as User;
+    if (user == null)
+    {
+        user = LoginHelper.GetUser();
+    }
+
+    ConfigService serviceConfig = new ConfigService();
+    var config = serviceConfig.Get();
+    
+    DateTime beginTime =  ConfigTime.Today().AddDays(-(config.CustomerQueryTime - 1));
+    DateTime endTime = ConfigTime.Today();
+
+    UserService serviceUser = new UserService();
+    int unReadedCount = serviceUser.GetUnreadMessagesCount(beginTime, endTime);
+
+    GameApi jackpotApi = ViewBag.JackpotAPI as GameApi;
+    String jackpotUrl = jackpotApi == null ? "http://tickers.playtech.com/jackpots/new_jackpotxml.php" : jackpotApi.LoginUrl2;
+    jackpotUrl += "?info=4&currency=cny";
+    
+}
+<!-- header 开始-->
+<div class="header">
+    <div class="divc w1000">
+        <div class="topbar clearfix">
+            <div class="fl">
+                <span class="fl">
+                    选择语系：
+                    <span class="xsj iblock"></span>
+                </span>
+                <div class="fl mr15 drop xzyx">
+                    <div class="dropt">
+                        <span class="get">简体中文</span>
+                        <span class="xsj iblock"></span>
+                    </div>
+                    <ul class="dropc droplink">
+                        <li class="sel">简体中文</li>
+                        <li class="sel">繁体中文</li>
+                        <li class="sel">ENGLISH</li>
+                    </ul>
+                </div>
+                <a href="/program.html" class="fl huang">代理合作</a>
+                <a href="javascript:void(0)" onclick="tanchu('#fwxy')" class="fl ml10">反馈中心</a>
+            </div>
+            <div class="fr">
+                <a href="/alternate_url.html" class="wraperl-sm">线路检测</a>
+                |
+                <a href="javascript:void(0);" name="top_livechat" class="wraperl-sm">在线客服</a>
+                |
+                <a href="/guide.html" class="wraperl-sm">新手教程</a>
+                |
+                <a class="btn_like" href="javascript:void();" onclick="return add_favorite(this, @(Request.Url.AbsoluteUri))">收藏本站</a>
+            </div>
+        </div>
+        <div class="top-middle clearfix">
+            <div class="fl topad"></div>
+            <div class="mainlogow fl">
+                <div class="mainlogo">
+                    <a href="/index.html"><img src="/Content/images/mainlogo.gif" alt="" /></a>
+                </div>
+            </div>
+            <div class="fr">
+                <!-- 登录 -->
+                @if (user == null)
+                {
+                    <div class="loginbox">
+                        <div class="t">
+                            <img src="/Content/images/logint.png" alt="" />
+                        </div>
+                        <div class="c clearfix">
+                            <form action="#" class="form" method="post">
+                                <ul>
+                                    <li>
+                                        <label name="username" for="username" class="login-placeholder">账号</label>
+                                        <input type="text" name="txt" id="top_username" size="12" title="请填写 4-15 位大小写英数字" maxlength="15" pattern="[a-zA-Z0-9]{4,15}" class="itxt" required />
+                                    </li>
+                                    <li class="loginyzm">
+                                        <label name="rmNum" for="rmNum" class="login-placeholder">验证码</label>
+                                        <input type="text" class="itxt" name="txt" id="top_code" />
+                                        <img src="/authcode/createloginimagecode.html?q=@(Guid.NewGuid().ToString())" alt="验证码" onclick="this.src='/authcode/createloginimagecode.html?q='+new Date().getTime();" />
+                                    </li>
+                                    <li>
+                                        <label name="passwd" for="passwd" class="login-placeholder">密码</label>
+                                        <input type="password" name="password" id="top_password" class="itxt" autocomplete="off" required />
+                                    </li>
+                                    <li class="last">
+                                        <input type="submit" value="" id="btn_login" class="logbtn op fl btn_send"  />
+                                        <a href="/regist.html" class="regbtn op fl"></a>
+                                        <a href="/forgetpwd.html" class="bai fl">忘记密码</a>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                }
+                @if(user != null)
+                {
+                <script>
+                    G_ISLOGIN = true;
+                </script>
+				<div class="userbox">
+					<div>
+						<span class="ml5">
+							账号：
+							<a href="" class="huang">@user.UserName</a>
+						</span>
+						<span class="ml15">
+							主账户余额：
+							<span href="" class="huang">@user.Cash.ToStringN2()</span>
+							<span class="moremoner huang tishi">
+								✚
+								<div class="tishic hui">
+									<div class="cic">
+										<p>体育投注余额：@(ViewBag.GameSportData != null ? ViewBag.GameSportData : 0.00)</p>
+										<p>AG视讯余额：@(ViewBag.GameAGData != null ? ViewBag.GameAGData : 0.00)</p>
+										<p>欧博视讯余额：@(ViewBag.GameABData != null ? ViewBag.GameABData : 0.00)</p>
+										<p>东方视讯余额：@(ViewBag.GameSportOGData != null ? ViewBag.GameOGData : 0.00)</p>
+										<p>GD视讯余额：@(ViewBag.GameGDData != null ? ViewBag.GameGDData : 0.00)</p>
+										<p>MG电子余额：@(ViewBag.GameMGData != null ? ViewBag.GameMGData : 0.00)</p>
+									</div>
+								</div>
+							</span>
+						</span>
+					</div>
+					<div>
+                        <a href="/user/index.html" target="usercenter" class="wraperl-xs" >会员中心</a>
+						|
+                        <a href="/user/depositonline.html" target="usercenter" class="wraperl-xs">线上存款</a>
+						|
+                        <a href="/user/withdrawal.html" target="usercenter" class="wraperl-xs" >线上取款</a>
+						|
+                        <a href="/user/transfer.html" class="wraperl-xs">额度转换</a>
+					</div>
+					<div class="clearfix">
+                        <a href="/user/messagelist.html" target="usercenter" class="fl">
+                            未读信息（
+                            <span class="huang"><em id="unreadMsgCount2">@(unReadedCount)</em></span>
+                            ）
+                        </a>
+                        <a id="logout" href="javascript:void(0);" onclick="logout();" class="fr logout">退出</a>
+</div>
+				</div>
+                }
+                <!-- 登录 -->
+            </div>
+        </div>
+        <!-- 导航 -->
+        <div class="nav clearfix">
+            <div class="logobg"></div>
+            <ul class="clearfix">
+                <li class="nLi li1">
+                    <h3>
+                        <a href="/index.html">首页</a>
+                    </h3>
+                </li>
+                <li class="nLi">
+                    <h3>
+                        <a href="/sport.html">体育赛事</a>
+                    </h3>
+                    <div class="sub" style="left: -80px;width: 272px;">
+                        <div class="cic">
+                            <div class="subl"></div>
+                            <a href="/sport.html?game=IBC" target="IBC">沙巴体育</a>
+                            <a href="/sport.html?game=T188" target="T188">188体育</a>
+                            <a href="/sport.html?game=BBIN" target="BBIN">BB体育</a>
+                            <a href="/sport.html?game=TB" target="TB">皇冠体育</a>
+                            <div class="subr"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nLi li3">
+                    <h3>
+                        <a href="/casino.html">视讯直播</a>
+                    </h3>
+                    <div class="sub" style="left: -150px;width: 662px;">
+                        <div class="cic">
+                            <div class="subl"></div>
+                            <a href="javascript:void(0);" onclick="load_game_link('BBIN', 'casino', '');">BBIN娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('AG','casino','');">AG娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('MG', 'casino', '');">MG娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('OG', 'casino', '');">OG娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('PT','casino','');">PT娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('T188','casino','');">188娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('HG','casino','');">HG娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('EA','casino','');">EA娱乐场</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('OB','casino','');">欧博娱乐场</a>
+                            <div class="subr"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nLi li4">
+                    <h3>
+                        <a href="/slot.html">电子游艺</a>
+                    </h3>
+                    <div class="sub" style="left: -100px;width: 314px;">
+                        <div class="cic">
+                            <div class="subl"></div>
+                            <a href="/ptslot.html">PT老虎机</a>
+                            <a href="/mgslot.html">MG老虎机</a>
+                            <a href="/bbinslot.html">BBIN老虎机</a>
+                            <a href="/agslot.html">AG老虎机</a>
+                            <div class="subr"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nLi li5">
+                    <h3>
+                        <a href="lottery.html">彩票游戏</a>
+                    </h3>
+                    <div class="sub" style="left: -20px;width: 142px;">
+                        <div class="cic">
+                            <div class="subl"></div>
+                            <a href="/lottery.html">六合彩</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('KG','lottery','');">BB彩票</a>
+                            <a href="javascript:void(0);" onclick="load_game_link('BBIN','lottery','');">KG彩票</a>
+                            <div class="subr"></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nLi">
+                    <h3>
+                        <a href="/promo.html" class="shandong color">优惠活动</a>
+                    </h3>
+                </li>
+                <li class="nLi li8">
+                    <h3>
+                        <a href="/mobile.html">手机下注</a>
+                    </h3>
+                </li>
+                <li class="nLi li9">
+                    <h3>
+                        <a href="javascript:void(0);" name="top_livechat">在线客服</a>
+                    </h3>
+                </li>
+            </ul>
+        </div>
+        <!-- 导航 -->
+    </div>
+</div>
+<!-- header 结束-->

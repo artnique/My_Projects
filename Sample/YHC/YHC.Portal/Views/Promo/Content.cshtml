@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+    PromoInfo info = ViewBag.Promo as PromoInfo;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>優惠卷內容頁</title>
+        <link href="/Content/style/reset_css.css" rel="stylesheet" />
+        <link href="/Content/style/all.css" rel="stylesheet" />
+		<script language="javascript" type="text/javascript" src="/Scripts/page/game/respond.src.js"></script>
+        <script language="javascript" type="text/javascript" src="/Scripts/lib/jquery.js"></script>
+        <script language="javascript" type="text/javascript" src="/Scripts/lib/jqueryXslider.js"></script>
+        <script language="javascript" type="text/javascript" src="/Scripts/page/load.js"></script> 
+        <!--[if IE]>
+        <script src="js/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="header3">
+@*            <a href="#" class="logo" ><img src="images/logo.png" alt="图片描述" /></a>
+            <div class="btn">
+                <a href="javascript:show('userlogin.html',680,240);">立即加入</a>
+            </div>*@
+        </div>
+        <!-- header3结束 -->
+        @{
+            if (info != null)
+            {
+                <div id="promoContent">
+            <h3 class="huiTitle">@info.Title</h3>
+            <img src="@(ConfigHelper.ImageServerUrl + info.Img)">
+            <div class="content">@Html.Raw(info.Content)</div>
+        </div>
+        }
+        
+        <!-- promoContent结束 -->
+        }
+
+    </body>
+</html>

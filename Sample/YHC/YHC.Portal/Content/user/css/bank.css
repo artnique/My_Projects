@@ -1,0 +1,725 @@
+@charset "utf-8";
+.bank_logo {
+    background:url(../image/bank_logo_2.gif)left top no-repeat;
+}
+.bank01020000,
+.bank50,
+.bank52,
+.bank53,
+.bank-icbc {
+    background-position: 0 -33px;
+}
+.bank01030000,
+.bank-abchina {
+    background-position: 0 -66px;
+}
+.bank01040000,
+.bank56,
+.bank-chinabank {
+    background-position: 0 -99px;
+}
+.bank01050000,
+.bank59,
+.bank-ccb {
+    background-position: 0 -132px;
+}
+.bank03010000,
+.bank61,
+.bank62,
+.bank63,
+.bank64,
+.bank-comm {
+    background-position: 0 -165px;
+}
+.bank01000000,
+.bank01009998,
+.bank01009999,
+.bank-psbc {
+    background-position: 0 -198px;
+}
+.bank03020000,
+.bank63020000,
+.bank70,
+.bank-ecitic {
+    background-position: 0 -231px;
+}
+.bank03030000,
+.bank63030000,
+.bank79,
+.bank-cebbank {
+    background-position: 0 -264px;
+}
+.bank03040000,
+.bank03040001,
+.bank63040000,
+.bank14 {
+    background-position: 0 -297px;
+}
+.bank-hxb {
+    background-position: 0 -297px;
+}
+.bank03050000,
+.bank03059998,
+.bank71,
+.bank-cmbc {
+    background-position: 0 -330px;
+}
+.bank03060000,
+.bank77,
+.bank-cgbchina {
+    background-position: 0 -363px;
+}
+.bank03070000 {
+    background-position: 0 -396px;
+}
+.bank03080000,
+.bank63080000,
+.bank03080010,
+.bank65,
+.bank67,
+.bank68,
+.bank-cmb {
+    background-position: 0 -429px;
+}
+.bank03090000,
+.bank-cib {
+    background-position: 0 -462px;
+}
+.bank03100000,
+.bank73,
+.bank74,
+.bank75,
+.bank-spdb {
+    background-position: 0 -495px;
+}
+.bank04105840,
+.bank04100000,
+.bank05105840,
+.bank06105840,
+.bank84,
+.bank-pingan {
+    background-position: 0 -528px;
+}
+.bank-cbhb {
+    background-position: 0 -594px;
+}
+.bank-czbank {
+    background-position: 0 -627px;
+}
+.bank04031000,
+.bank03131000,
+.bank64031000,
+.bank-bankofbeijing {
+    background-position: 0 -660px;
+}
+.bank04012900,
+.bank04012902,
+.bank04010000,
+.bank83,
+.bank-bankofshanghai {
+    background-position: 0 -693px;
+}
+.bank-hzbank {
+    background-position: 0 -4991px;
+}
+.bank-srcb {
+    background-position: 0 -3042px;
+}
+.bank99 {
+    background-position: 0 -761px;
+}
+.bank57 {
+    background-position: 0 -5486px;
+}
+.bank69 {
+    background-position: 0 -5552px;
+}
+.bank51 {
+    background-position: 0 -5618px;
+}
+.bank60 {
+    background-position: 0 -5519px;
+}
+.bank66 {
+    background-position: 0 -5585px;
+}
+.bank54 {
+    background-position: 0 -5652px;
+}
+.bank55 {
+    background-position: 0 -5684px;
+}
+.bank78 {
+    background-position: 0 -5717px;
+}
+.bank72 {
+    background-position: 0 -5750px;
+}
+.bank82 {
+    background-position: 0 -5783px;
+}
+.bank80 {
+    background-position: 0 -5816px;
+}
+.bank14 {
+    background-position: 0 -5849px;
+}
+.bank81 {
+    background-position: 0 -5882px;
+}
+.bank76 {
+    background-position: 0 -5915px;
+}
+.bank58 {
+    background-position: 0 -5948px;
+}
+.bank01040000_big {
+    background-position: 0 -761px;
+}
+.bank14394200 {
+    background-position: 0 -794px;
+}
+.bank14055810,
+.bank-961111 {
+    background-position: 0 -827px;
+}
+.bank05658880 {
+    background-position: 0 -860px;
+}
+.bank04314730,
+.bank64314730 {
+    background-position: 0 -893px;
+}
+.bank04634280,
+.bank64634280 {
+    background-position: 0 -926px;
+}
+.bank04023930 {
+    background-position: 0 -959px;
+}
+.bank04053910 {
+    background-position: 0 -992px;
+}
+.bank04956140 {
+    background-position: 0 -1025px;
+}
+.bank14156020 {
+    background-position: 0 -1058px;
+}
+.bank14105200 {
+    background-position: 0 -1091px;
+}
+.bank14303050 {
+    background-position: 0 -1124px;
+}
+.bank14373020 {
+    background-position: 0 -1157px;
+}
+.bank05684960 {
+    background-position: 0 -1190px;
+}
+.bank04885050 {
+    background-position: 0 -1227px;
+}
+.bank05675060 {
+    background-position: 0 -1256px;
+}
+.bank05354970 {
+    background-position: 0 -1289px;
+}
+.bank05625080 {
+    background-position: 0 -1325px;
+}
+.bank05365030 {
+    background-position: 0 -1355px;
+}
+.bank14561100 {
+    background-position: 0 -1388px;
+
+}
+.bank04263380 {
+    background-position: 0 -1421px;
+}
+.bank05646710 {
+    background-position: 0 -1454px;
+}
+.bank04368710 {
+    background-position: 0 -1490px;
+}
+.bank14486400 {
+    background-position: 0 -1520px;
+}
+.bank04083320,
+.bank-nbcb {
+    background-position: 0 -1553px;
+}
+.bank04392270 {
+    background-position: 0 -1586px;
+}
+.bank04916170 {
+    background-position: 0 -1619px;
+}
+.bank04588510,
+.bank64588510 {
+    background-position: 0 -1652px;
+}
+.bank05755200 {
+    background-position: 0 -1687px;
+}
+.bank-njcb {
+    background-position: 0 -1718px;
+}
+.bank05083000,
+.bank05213000 {
+    background-position: 0 -1751px;
+}
+.bank14023052 {
+    background-position: 0 -1784px;
+}
+.bank14033055 {
+    background-position: 0 -1817px;
+}
+.bank14123022 {
+    background-position: 0 -1850px;
+}
+.bank14163056 {
+    background-position: 0 -1883px;
+}
+.bank14243000,
+.bank65243000 {
+    background-position: 0 -1916px;
+}
+.bank14283054 {
+    background-position: 0 -1949px;
+}
+.bank14333051 {
+    background-position: 0 -1982px;
+}
+.bank14394200 {
+    background-position: 0 -2015px;
+}
+.bank04544240,
+.bank64544240 {
+    background-position: 0 -2048px;
+}
+.bank04484210,
+.bank64484210 {
+    background-position: 0 -2081px;
+}
+.bank05264330,
+.bank65264330 {
+    background-position: 0 -2114px;
+}
+.bank04791920 {
+    background-position: 0 -2147px;
+}
+.bank05342050 {
+    background-position: 0 -2180px;
+}
+.bank04741910 {
+    background-position: 0 -2213px;
+}
+.bank14511900 {
+    background-position: 0 -2246px;
+}
+.bank05311930 {
+    background-position: 0 -2279px;
+}
+.bank05031680 {
+    background-position: 0 -2312px;
+}
+.bank05591750 {
+    background-position: 0 -2345px;
+}
+.bank14551600 {
+    background-position: 0 -2378px;
+}
+.bank05631650 {
+    background-position: 0 -2411px;
+}
+.bank15205840 {
+    background-position: 0 -2444px;
+}
+.bank-961200 {
+    background-position: 0 -2477px;
+}
+.bank05197117 {
+    background-position: 0 -2510px;
+}
+.bank64437010 {
+    background-position: 0 -2543px;
+}
+.bank04422610,
+.bank64422610 {
+    background-position: 0 -2576px;
+}
+.bank05167030 {
+    background-position: 0 -2609px;
+}
+.bank04302240 {
+    background-position: 0 -2642px;
+}
+.bank14385500,
+.bank65385500 {
+    background-position: 0 -2675px;
+}
+.bank04615510 {
+    background-position: 0 -2708px;
+}
+.bank05027360 {
+    background-position: 0 -2741px;
+}
+.bank05247410 {
+    background-position: 0 -2774px;
+}
+.bank14436100 {
+    background-position: 0 -2811px;
+}
+.bank04922600,
+.bank64922690 {
+    background-position: 0 -2840px;
+}
+.bank05253450,
+.bank05253454 {
+    background-position: 0 -2873px;
+}
+.bank04593451,
+.bank04593450 {
+    background-position: 0 -2906px;
+}
+.bank04966730 {
+    background-position: 0 -2939px;
+}
+.bank14075882 {
+    background-position: 0 -2972px;
+}
+.bank14452400 {
+    background-position: 0 -3005px;
+}
+.bank14012900,
+.bank65012900 {
+    background-position: 0 -3038px;
+}
+.bank04202220 {
+    background-position: 0 -3071px;
+}
+.bank04278810 {
+    background-position: 0 -3104px;
+}
+.bank05478820 {
+    background-position: 0 -3137px;
+}
+.bank14498500 {
+    background-position: 0 -3170px;
+}
+.bank04478210,
+.bank64478210 {
+    background-position: 0 -3203px;
+}
+.bank04761430 {
+    background-position: 0 -3236px;
+}
+.bank05131410,
+.bank65131410 {
+    background-position: 0 -3269px;
+}
+.bank05171270 {
+    background-position: 0 -3302px;
+}
+.bank04221210,
+.bank64221210 {
+    background-position: 0 -3335px;
+}
+.bank05611480 {
+    background-position: 0 -3368px;
+}
+.bank04991240 {
+    background-position: 0 -3401px;
+}
+.bank05541310 {
+    background-position: 0 -3434px;
+}
+.bank04901380 {
+    background-position: 0 -3467px;
+}
+.bank04986580 {
+    background-position: 0 -3500px;
+}
+.bank05516620 {
+    background-position: 0 -3533px;
+}
+.bank05326550 {
+    background-position: 0 -3566px;
+}
+.bank14226510,
+.bank65226510 {
+    background-position: 0 -3599px;
+}
+.bank05406650 {
+    background-position: 0 -3632px;
+}
+.bank05556840 {
+    background-position: 0 -3665px;
+}
+.bank05666770 {
+    background-position: 0 -3698px;
+}
+.bank03190001 {
+    background-position: 0 -3731px;
+}
+.bank-hkbea {
+    background-position: 0 -3764px;
+}
+.bank03220000 {
+    background-position: 0 -3797px;
+}
+.bank05484950 {
+    background-position: 0 -3830px;
+}
+.bank05503320 {
+    background-position: 0 -3863px;
+}
+.bank04135810,
+.bank-gzcb {
+    background-position: 0 -3896px;
+}
+.bank48080000 {
+    background-position: 0 -3967px;
+}
+.bank48100000 {
+    background-position: 0 -5191px;
+}
+.bank04062410 {
+    background-position: 0 -4036px;
+}
+.bank03330001 {
+    background-position: 0 -4069px;
+}
+.bank04504520 {
+    background-position: 0 -3930px;
+}
+.bank65085883,
+.bank-sdebank {
+    background-position: 0 -4102px;
+}
+.bank04667310,
+.bank64667310 {
+    background-position: 0 -4135px;
+}
+.bank04332350 {
+    background-position: 0 -4167px;
+}
+.bank14097310 {
+    background-position: 0 -4200px;
+}
+.bank14603040 {
+    background-position: 0 -4233px;
+}
+.bank14473600 {
+    background-position: 0 -4266px;
+}
+.bank64504520 {
+    background-position: 0 -3932px;
+}
+.bank14468700 {
+    background-position: 0 -4299px;
+}
+.bank04296510 {
+    background-position: 0 -4332px;
+}
+.bank14181000,
+.bank14181001,
+.bank-bjrcb {
+    background-position: 0 -4366px;
+}
+.bank03340000 {
+    background-position: 0 -4398px;
+}
+.bank04836560 {
+    background-position: 0 -4431px;
+}
+.bank14505800 {
+    background-position: 0 -4464px;
+}
+.bank14411200 {
+    background-position: 0 -4497px;
+}
+.bank04403600,
+.bank64403600 {
+    background-position: 0 -4530px;
+}
+.bank04703350 {
+    background-position: 0 -4563px;
+}
+.bank14024500,
+.bank14144510,
+.bank14144520 {
+    background-position: 0 -4596px;
+}
+.bank05284630 {
+    background-position: 0 -4629px;
+}
+.bank04094510,
+.bank64094510 {
+    background-position: 0 -4662px;
+}
+.bank04643970 {
+    background-position: 0 -4695px;
+}
+.bank04814650,
+.bank64814650 {
+    background-position: 0 -4728px;
+}
+.bank04624580,
+.bank64624580 {
+    background-position: 0 -4761px;
+}
+.bank04123330,
+.bank05063330 {
+    background-position: 0 -4794px;
+}
+.bank05303387,
+.bank05303380 {
+    background-position: 0 -4827px;
+}
+.bank14136900,
+.bank15136900 {
+    background-position: 0 -4860px;
+}
+.bank64416910 {
+    background-position: 0 -4893px;
+}
+.bank05274550,
+.bank65274550 {
+    background-position: 0 -4926px;
+}
+.bank14173900,
+.bank65173900 {
+    background-position: 0 -4959px;
+}
+.bank64233311 {
+    background-position: 0 -4992px;
+}
+.bank04325260 {
+    background-position: 0 -5025px;
+}
+.bank14203320 {
+    background-position: 0 -5058px;
+}
+.bank64733450 {
+    background-position: 0 -5091px;
+}
+.bank04571260 {
+    background-position: 0 -5124px;
+}
+.bank05521340 {
+    background-position: 0 -5157px;
+}
+.bank05121660 {
+    background-position: 0 -5223px;
+}
+.bank04786110 {
+    background-position: 0 -5252px;
+}
+.bank05565040 {
+    background-position: 0 -5283px;
+}
+.bank03280000 {
+    background-position: 0 -5311px;
+}
+.bank04652280 {
+    background-position: 0 -5340px;
+}
+.bank04354910 {
+    background-position: 0 -5369px;
+}
+.bank05492340 {
+    background-position: 0 -5399px;
+}
+.bank03360000 {
+    background-position: 0 -5430px;
+}
+.bank14538200 {
+    background-position: 0 -5461px;
+}
+.banknew20001 {
+    background-position: 0 -5985px;
+}
+.banknew20002 {
+    background-position: 0 -6019px;
+}
+.banknew20003 {
+    background-position: 0 -6057px;
+}
+.banknew20004 {
+    background-position: 0 -6095px;
+}
+.banknew20005 {
+    background-position: 0 -6134px;
+}
+.banknew20006 {
+    background-position: 0 -6172px;
+}
+.banknew20007 {
+    background-position: 0 -6208px;
+}
+.banknew20008 {
+    background-position: 0 -6255px;
+}
+.banknew20009 {
+    background-position: 0 -6294px;
+}
+.bank-bank-of-tianjin {
+    background-position: 0 -6329px;
+}
+.bank-unionpay {
+    background-position: 0 2px;
+}
+.card-china-union {
+    background-position: 0 -6361px;
+}
+.card-china-mobile {
+    background-position: 0 -6391px;
+}
+.card-junwang {
+    background-position: 0 -6424px;
+}
+.card-shenda {
+    background-position: 0 -6453px;
+}
+.card-telcom {
+    background-position: 0 -6484px;
+}
+.card-zhentu {
+    background-position: 0 -6525px;
+}
+.card-qq {
+    background-position: 0 -6567px;
+}
+.card-wanmeishijie {
+    background-position: 0 -6601px;
+}
+.card-tianxia-1 {
+    background-position: 0 -6635px;
+}
+.card-jiuyou {
+    background-position: 0 -6666px;
+}
+.card-tianhong {
+    background-position: 0 -6702px;
+}
+.card-tianxia-2 {
+    background-position: 0 -6731px;
+}
+.card-zhongyou {
+    background-position: 0 -6767px;
+}
+.card-sohu {
+    background-position: 0 -6817px;
+}
+.card-163 {
+    background-position: 0 -6862px;
+}
+.card-shenghutong {
+    background-position: 0 -6895px;
+}

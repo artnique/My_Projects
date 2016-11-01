@@ -1,0 +1,78 @@
+﻿
+@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+}
+@section styles{
+    
+}
+@section scripts_head{
+    @Scripts.Render("~/bundles/Scriptsforgetpwd")
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="/Content/images/b_aboutus.png" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc w1000 pt15 clearfix">
+    <!-- 第一步开始 -->
+    <div id="zhaohui1" class="aboutr registw ffw divc singlecon fpwdw">
+        <div class="t">
+            <p class="cn shuang">
+                <span class="shuang">密码找回</span>
+            </p>
+            <p class="en"></p>
+        </div>
+        <div class="c f14">
+            <ul class="fpwdbz tc hui">
+                <li class="iblock item1 on">确认账户</li>
+                <li class="iblock item2">安全验证</li>
+                <li class="iblock item3">密码重置</li>
+            </ul>
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="200" class="tr">用户名：</td>
+                    <td width="300">
+                        <input id="sourceName" name="sourceName" placeholder="4-12位，由字母，数字，下划线组成" type="text" class="bginput" />
+                    </td>
+                    <td width="200" class="helptext"><span class="shuang">*</span></td>
+                </tr>
+                <tr>
+                    <td class="tr">验证码：</td>
+                    <td>
+                        <img src="/authcode/createimagecode.html?q=@(Guid.NewGuid().ToString())" onclick="this.src='/authcode/createimagecode.html?q='+new Date().getTime();" class="iblock fr" />
+                        <input id="checkcode1" name="checkcode1" type="text" class="bginput" style="width: 212px;" />
+                    </td>
+                    <td class="helptext"></td>
+                </tr>
+                <tr>
+                    <td class="tr">&nbsp;</td>
+                    <td>
+                        <input id="btn_step1" type="submit" value="下一步" class="btn-md" />
+                    </td>
+                    <td class="helptext">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="tr">&nbsp;</td>
+                    <td>
+                        如用户名也忘记请联系<a href="javascript:void(0);" name="top_livechat" class="shuang">24小时在线客服</a>协商解决
+                    </td>
+                    <td class="helptext">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- 第一步结束 -->
+    <!-- 第三部结束 -->
+    <!-- 表单验证开始 -->
+    <script src="/Scripts/page/home/checkinput.js" type="text/javascript"></script>
+    <!-- 表单验证结束 -->
+</div>
+<!-- 页面主体 结束-->
+

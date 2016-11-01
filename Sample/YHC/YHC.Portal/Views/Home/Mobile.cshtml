@@ -1,0 +1,68 @@
+﻿@{
+    
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+
+    Ad download_images = null;
+
+    IList<Ad> Images = ViewBag.Images as IList<Ad>;
+    IList<Ad> mobile_download = ViewBag.MobileDownloadList as IList<Ad>;
+    IList<Ad> computer_download = ViewBag.ComputerDownloadList as IList<Ad>;
+
+
+    if (Images != null)
+    {
+        download_images = Images.First(x => x.AdNo == "yc_download_banner_1_1");
+    }
+}
+<!-- 页面主体 开始-->
+<!-- 频道banner开始 -->
+<div class="pdbanner">
+    <div class="divc w1000 tc c">
+        <img src="@(download_images != null ? imageServerUrl + download_images.ImgUrl : "")" alt="" />
+    </div>
+</div>
+<!-- 频道banner结束 -->
+@Html.Partial("_Notice")
+<div class="divc clearfix download t5">
+    <h3 class="mobile w1000 ffw f20">
+        <div class="cn">手机客户端下载</div>
+        <div class="en f12">Mobile Download</div>
+    </h3>
+    <ul class="clearfix">
+    @if (mobile_download != null)
+    {
+        foreach (var mobile in mobile_download)
+        {
+        <li>
+            <img src="@(mobile != null ? imageServerUrl + mobile.ImgUrl : "")" class="code" />
+            <a href="@(mobile != null ? Html.Raw(mobile.Link) : Html.Raw(""))" class="a1 ffw f16 dis">@(mobile != null ? mobile.Title : "")</a>
+            <em class="dis"><span class="dis f14 shuang fl">下载方式：</span>点击链接下载<br />扫描二维码下载 </em>
+            <p class="dis">
+                @(mobile != null ? Html.Raw(mobile.Description) : Html.Raw(""))
+            </p>
+        </li>
+        }
+    }  
+    </ul>
+    <h3 class="pc w1000 ffw f20">
+        <div class="cn">电脑客户端下载</div>
+        <div class="en f12">Computer Download</div>
+    </h3>
+    <ul class="clearfix">
+        @if (computer_download != null)
+        {
+            foreach (var computer in computer_download)
+            {
+                <li>
+                    <img src="@(computer != null ? imageServerUrl + computer.ImgUrl : "")" class="code" />
+                    <a href="@(computer != null ? Html.Raw(computer.Link) : Html.Raw(""))" class="a1 ffw f16 dis">@(computer != null ? computer.Title : "")</a>
+                    <em class="dis"><span class="dis f14 shuang fl">下载方式：</span>点击链接下载<br />扫描二维码下载 </em>
+                    <p class="dis">
+                        @(computer != null ? Html.Raw(computer.Description) : Html.Raw(""))
+                    </p>
+                </li>
+            }
+        }
+    </ul>
+</div>
+<!-- 页面主体 结束-->

@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{220A3BDA-6D91-4B6D-BCFD-2B8E5CA0B230}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YHC.Portal</RootNamespace>
+    <AssemblyName>YHC.Portal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\abnoutrline.png" />
+    <Content Include="Content\images\aboutico.png" />
+    <Content Include="Content\images\aboutico_h.png" />
+    <Content Include="Content\images\aboutlbg.jpg" />
+    <Content Include="Content\images\aboutlbline.png" />
+    <Content Include="Content\images\aboutllibg.jpg" />
+    <Content Include="Content\images\aboutlogo.png" />
+    <Content Include="Content\images\aboutr.png" />
+    <Content Include="Content\images\anavlibg.png" />
+    <Content Include="Content\images\arrow.png" />
+    <Content Include="Content\images\arrow1.png" />
+    <Content Include="Content\images\arrow3.png" />
+    <Content Include="Content\images\banner1.jpg" />
+    <Content Include="Content\images\banner2.jpg" />
+    <Content Include="Content\images\banner3.jpg" />
+    <Content Include="Content\images\banner4.jpg" />
+    <Content Include="Content\images\banner5.jpg" />
+    <Content Include="Content\images\banner6.jpg" />
+    <Content Include="Content\images\banner7.jpg" />
+    <Content Include="Content\images\bg01_x.jpg" />
+    <Content Include="Content\images\bginput.png" />
+    <Content Include="Content\images\bgtextarea.png" />
+    <Content Include="Content\images\b_aboutus.png" />
+    <Content Include="Content\images\casino-a8.png" />
+    <Content Include="Content\images\casino.png" />
+    <Content Include="Content\images\casino_1.jpg" />
+    <Content Include="Content\images\casino_1t.png" />
+    <Content Include="Content\images\casino_2.jpg" />
+    <Content Include="Content\images\casino_2t.png" />
+    <Content Include="Content\images\casino_3.jpg" />
+    <Content Include="Content\images\casino_3t.png" />
+    <Content Include="Content\images\casino_4.jpg" />
+    <Content Include="Content\images\casino_4t.png" />
+    <Content Include="Content\images\casino_5.jpg" />
+    <Content Include="Content\images\casino_5t.png" />
+    <Content Include="Content\images\casino_6.jpg" />
+    <Content Include="Content\images\casino_6t.png" />
+    <Content Include="Content\images\casino_7.jpg" />
+    <Content Include="Content\images\casino_7t.png" />
+    <Content Include="Content\images\casino_8.jpg" />
+    <Content Include="Content\images\casino_8t.png" />
+    <Content Include="Content\images\casino_9.jpg" />
+    <Content Include="Content\images\casino_9t.png" />
+    <Content Include="Content\images\casino_bg.jpg" />
+    <Content Include="Content\images\casino_bottom.png" />
+    <Content Include="Content\images\casino_info.png" />
+    <Content Include="Content\images\casino_t.jpg" />
+    <Content Include="Content\images\code.png" />
+    <Content Include="Content\images\computer.png" />
+    <Content Include="Content\images\container_bg.png" />
+    <Content Include="Content\images\cuo.png" />
+    <Content Include="Content\images\download.png" />
+    <Content Include="Content\images\dui.png" />
+    <Content Include="Content\images\error_bg.png" />
+    <Content Include="Content\images\error_btn.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\footer1.png" />
+    <Content Include="Content\images\footer2.png" />
+    <Content Include="Content\images\footer3.png" />
+    <Content Include="Content\images\footer4.png" />
+    <Content Include="Content\images\footer5.png" />
+    <Content Include="Content\images\footer6.png" />
+    <Content Include="Content\images\footer7.png" />
+    <Content Include="Content\images\fpwd_bz.png" />
+    <Content Include="Content\images\fpwd_bzh.png" />
+    <Content Include="Content\images\fpwd_fs.png" />
+    <Content Include="Content\images\fpwd_fsh.png" />
+    <Content Include="Content\images\fpwd_tbg.png" />
+    <Content Include="Content\images\guide_tab.png" />
+    <Content Include="Content\images\guide_tabh.png" />
+    <Content Include="Content\images\header.png" />
+    <Content Include="Content\images\hz.png" />
+    <Content Include="Content\images\hzbg.png" />
+    <Content Include="Content\images\icon.png" />
+    <Content Include="Content\images\line.png" />
+    <Content Include="Content\images\load.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\logbtn.png" />
+    <Content Include="Content\images\logint.png" />
+    <Content Include="Content\images\login_checkmark.png" />
+    <Content Include="Content\images\login_s_btn1.png" />
+    <Content Include="Content\images\login_s_btn2.png" />
+    <Content Include="Content\images\logitxt.png" />
+    <Content Include="Content\images\logobottom.png" />
+    <Content Include="Content\images\logout.png" />
+    <Content Include="Content\images\lottery.png" />
+    <Content Include="Content\images\lottery_bg.jpg" />
+    <Content Include="Content\images\lottery_ico.png" />
+    <Content Include="Content\images\lottery_main_bg.png" />
+    <Content Include="Content\images\mainlogo.gif" />
+    <Content Include="Content\images\mobile.png" />
+    <Content Include="Content\images\mobile_bg.png" />
+    <Content Include="Content\images\mobile_h3.png" />
+    <Content Include="Content\images\nav02.png" />
+    <Content Include="Content\images\nav03.png" />
+    <Content Include="Content\images\nav04.png" />
+    <Content Include="Content\images\nav06.png" />
+    <Content Include="Content\images\notice.png" />
+    <Content Include="Content\images\pdbanner.jpg" />
+    <Content Include="Content\images\prize_bg.png" />
+    <Content Include="Content\images\promo.png" />
+    <Content Include="Content\images\promotit.png" />
+    <Content Include="Content\images\pt.jpg" />
+    <Content Include="Content\images\regbtn.png" />
+    <Content Include="Content\images\reg_tbg.png" />
+    <Content Include="Content\images\service.png" />
+    <Content Include="Content\images\sloat_at.png" />
+    <Content Include="Content\images\slot-banner-bottom-bg.png" />
+    <Content Include="Content\images\slot1.png" />
+    <Content Include="Content\images\slot2.png" />
+    <Content Include="Content\images\slot3.png" />
+    <Content Include="Content\images\slot4.png" />
+    <Content Include="Content\images\slot_download.png" />
+    <Content Include="Content\images\slot_khdxz.png" />
+    <Content Include="Content\images\slot_ljjc.png" />
+    <Content Include="Content\images\slot_zxkf.png" />
+    <Content Include="Content\images\sport-btn.png" />
+    <Content Include="Content\images\sport-btnbg.png" />
+    <Content Include="Content\images\sport-btn_h.png" />
+    <Content Include="Content\images\sport.png" />
+    <Content Include="Content\images\ssj.png" />
+    <Content Include="Content\images\ssj2.png" />
+    <Content Include="Content\images\sub.png" />
+    <Content Include="Content\images\subl.png" />
+    <Content Include="Content\images\subr.png" />
+    <Content Include="Content\images\tabtit_bg.png" />
+    <Content Include="Content\images\tabtit_l.png" />
+    <Content Include="Content\images\tabtit_r.png" />
+    <Content Include="Content\images\tabt_on.png" />
+    <Content Include="Content\images\tanchu_close.png" />
+    <Content Include="Content\images\topad.png" />
+    <Content Include="Content\images\userbox.png" />
+    <Content Include="Content\images\xsj.png" />
+    <Content Include="Content\images\y1.png" />
+    <Content Include="Content\images\y1_h.png" />
+    <Content Include="Content\images\y2.png" />
+    <Content Include="Content\images\y2_h.png" />
+    <Content Include="Content\images\y3.png" />
+    <Content Include="Content\images\y3_h.png" />
+    <Content Include="Content\images\z-bg.png" />
+    <Content Include="Content\images\z-bg1.png" />
+    <Content Include="Content\images\z1-h.png" />
+    <Content Include="Content\images\z1.png" />
+    <Content Include="Content\images\z2-h.png" />
+    <Content Include="Content\images\z2.png" />
+    <Content Include="Content\images\z3-h.png" />
+    <Content Include="Content\images\z3.png" />
+    <Content Include="Content\images\z4-h.png" />
+    <Content Include="Content\images\z4.png" />
+    <Content Include="Content\images\zcyh.png" />
+    <Content Include="Content\images\zxxx.png" />
+    <Content Include="Content\images\zzxx_b.jpg" />
+    <Content Include="Content\img\ad1.jpg" />
+    <Content Include="Content\img\ad2.jpg" />
+    <Content Include="Content\img\ad3.jpg" />
+    <Content Include="Content\img\code.png" />
+    <Content Include="Content\img\download_ag.png" />
+    <Content Include="Content\img\error_bg.png" />
+    <Content Include="Content\img\error_btn.png" />
+    <Content Include="Content\img\lottery_img1.png" />
+    <Content Include="Content\img\lottery_img2.png" />
+    <Content Include="Content\img\sloat-img1.jpg" />
+    <Content Include="Content\img\sloat-img2.jpg" />
+    <Content Include="Content\img\sloat-img3.jpg" />
+    <Content Include="Content\img\sloat-img4.jpg" />
+    <Content Include="Content\img\sloat-img5.jpg" />
+    <Content Include="Content\img\wechat_code.png" />
+    <Content Include="Content\img\winning-img1.jpg" />
+    <Content Include="Content\img\winning-img2.jpg" />
+    <Content Include="Content\img\winning-img3.jpg" />
+    <Content Include="Content\img\winning-img4.jpg" />
+    <Content Include="Content\img\winning-img5.jpg" />
+    <Content Include="Content\img\winning-img6.jpg" />
+    <Content Include="Content\img\yzm.jpg" />
+    <Content Include="Content\img\yzma.jpg" />
+    <Content Include="Content\style\error.css" />
+    <Content Include="Content\style\main.css" />
+    <Content Include="Content\user\bank_logo_2.gif" />
+    <Content Include="Content\user\css\bank.css" />
+    <Content Include="Content\user\css\dd.css" />
+    <Content Include="Content\user\css\default.css" />
+    <Content Include="Content\user\css\depositcard.css" />
+    <Content Include="Content\user\css\global.css" />
+    <Content Include="Content\user\css\green.css" />
+    <Content Include="Content\user\css\inspect.css" />
+    <Content Include="Content\user\css\layer.css" />
+    <Content Include="Content\user\css\newmember.css" />
+    <Content Include="Content\user\css\red.css" />
+    <Content Include="Content\user\image\add.png" />
+    <Content Include="Content\user\image\bank.gif" />
+    <Content Include="Content\user\image\bank\ccb.jpg" />
+    <Content Include="Content\user\image\bank\ceb.jpg" />
+    <Content Include="Content\user\image\bank\icbc.jpg" />
+    <Content Include="Content\user\image\bank_logo.gif" />
+    <Content Include="Content\user\image\bank_logo_2.gif" />
+    <Content Include="Content\user\image\chat.png" />
+    <Content Include="Content\user\image\default\body.jpg" />
+    <Content Include="Content\user\image\default\icon.png" />
+    <Content Include="Content\user\image\default\th.png" />
+    <Content Include="Content\user\image\green\body.jpg" />
+    <Content Include="Content\user\image\green\icon.png" />
+    <Content Include="Content\user\image\green\th.png" />
+    <Content Include="Content\user\image\logo.jpg" />
+    <Content Include="Content\user\image\logo.png" />
+    <Content Include="Content\user\image\red\body.jpg" />
+    <Content Include="Content\user\image\red\icon.png" />
+    <Content Include="Content\user\image\red\th.png" />
+    <Content Include="Content\user\image\tip.png" />
+    <Content Include="Content\user\image\top_bg.jpg" />
+    <Content Include="Content\user\image\u143.jpg" />
+    <Content Include="Content\user\image\u32.jpg" />
+    <Content Include="Content\user\image\u33.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Config\log4net.config" />
+    <Content Include="navigation\css\css.css" />
+    <Content Include="navigation\image\bg.png" />
+    <Content Include="navigation\image\bottom-logo.gif" />
+    <Content Include="navigation\image\btbg.png" />
+    <Content Include="navigation\image\icon.gif" />
+    <Content Include="navigation\image\icon.png" />
+    <Content Include="navigation\image\logo.png" />
+    <Content Include="navigation\image\main-bg-b.png" />
+    <Content Include="navigation\image\main-bg-t.png" />
+    <Content Include="navigation\index.htm" />
+    <Content Include="navigation\js\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\lib\alert\jquery.alerts.css" />
+    <Content Include="Scripts\lib\alert\jquery.alerts.js" />
+    <Content Include="Scripts\lib\datepicker\calendar.js" />
+    <Content Include="Scripts\lib\datepicker\lang\en.js" />
+    <Content Include="Scripts\lib\datepicker\lang\zh-cn.js" />
+    <Content Include="Scripts\lib\datepicker\lang\zh-tw.js" />
+    <Content Include="Scripts\lib\datepicker\skin\datePicker.gif" />
+    <Content Include="Scripts\lib\datepicker\skin\default\datepicker.css" />
+    <Content Include="Scripts\lib\datepicker\skin\default\img.gif" />
+    <Content Include="Scripts\lib\datepicker\skin\WdatePicker.css" />
+    <Content Include="Scripts\lib\datepicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Scripts\lib\datepicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Scripts\lib\datepicker\skin\whyGreen\img.gif" />
+    <Content Include="Scripts\lib\datepicker\WdatePicker.js" />
+    <Content Include="Scripts\lib\dt.js" />
+    <Content Include="Scripts\lib\jPages.js" />
+    <Content Include="Scripts\lib\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\lib\jquery.cookie.js" />
+    <Content Include="Scripts\lib\jquery.js" />
+    <Content Include="Scripts\lib\jquery.min.js" />
+    <Content Include="Scripts\lib\jquery.signalR-2.0.1.min.js" />
+    <Content Include="Scripts\lib\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="Scripts\lib\json2.js" />
+    <Content Include="Scripts\lib\layer\extend\layer.ext.js" />
+    <Content Include="Scripts\lib\layer\layer.js" />
+    <Content Include="Scripts\lib\layer\layer.min.js" />
+    <Content Include="Scripts\lib\layer\skin\default\icon_ext.png" />
+    <Content Include="Scripts\lib\layer\skin\default\textbg.png" />
+    <Content Include="Scripts\lib\layer\skin\default\xubox_ico0.png" />
+    <Content Include="Scripts\lib\layer\skin\default\xubox_loading0.gif" />
+    <Content Include="Scripts\lib\layer\skin\default\xubox_loading1.gif" />
+    <Content Include="Scripts\lib\layer\skin\default\xubox_loading2.gif" />
+    <Content Include="Scripts\lib\layer\skin\default\xubox_loading3.gif" />
+    <Content Include="Scripts\lib\layer\skin\default\xubox_title0.png" />
+    <Content Include="Scripts\lib\layer\skin\layer.css" />
+    <Content Include="Scripts\lib\layer\skin\layer.ext.css" />
+    <Content Include="Scripts\lib\main.js" />
+    <Content Include="Scripts\lib\pagination\jquery.pagination.css" />
+    <Content Include="Scripts\lib\pagination\jquery.pagination.js" />
+    <Content Include="Scripts\lib\pluging\es5-sham.min.js" />
+    <Content Include="Scripts\lib\pluging\es5-shim.min.js" />
+    <Content Include="Scripts\lib\pluging\jquery.anythingslider1.9.2.js" />
+    <Content Include="Scripts\lib\pluging\jquery.bgiframe.js" />
+    <Content Include="Scripts\lib\pluging\jquery.blockUI.min.js" />
+    <Content Include="Scripts\lib\pluging\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Scripts\lib\pluging\jquery.selectbox-0.2.js" />
+    <Content Include="Scripts\lib\pluging\jquery.validate.min.js" />
+    <Content Include="Scripts\lib\pluging\jquery.xdomainrequest.min.js" />
+    <Content Include="Scripts\lib\pluging\JSXTransformer.js" />
+    <Content Include="Scripts\lib\pluging\react-0.13.3.min.js" />
+    <Content Include="Scripts\lib\pluging\respond.min.js" />
+    <Content Include="Scripts\lib\slideshow\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="Scripts\lib\slideshow\plugin_fade.js" />
+    <Content Include="Scripts\lib\slideshow\plugin_slideshow.js" />
+    <Content Include="Scripts\lib\sticky\close.png" />
+    <Content Include="Scripts\lib\sticky\sticky.css" />
+    <Content Include="Scripts\lib\sticky\sticky.js" />
+    <Content Include="Scripts\lib\template\trimpath-template.js" />
+    <Content Include="Scripts\lib\utility.js" />
+    <Content Include="Scripts\lib\zclip\jquery.zclip.js" />
+    <Content Include="Scripts\lib\zclip\jquery.zclip.min.js" />
+    <Content Include="Scripts\lib\zclip\ZeroClipboard.swf" />
+    <Content Include="Scripts\page\a.js" />
+    <Content Include="Scripts\page\agent\regist.js" />
+    <Content Include="Scripts\page\core.js" />
+    <Content Include="Scripts\page\game\jPages.js" />
+    <Content Include="Scripts\page\game\ptslot_2.js" />
+    <Content Include="Scripts\page\game\ptslot.js" />
+    <Content Include="Scripts\page\game\slot.js" />
+    <Content Include="Scripts\page\game\sport.js" />
+    <Content Include="Scripts\page\home\checkinput.js" />
+    <Content Include="Scripts\page\home\comet.js" />
+    <Content Include="Scripts\page\home\forgetpwd.js" />
+    <Content Include="Scripts\page\home\index.js" />
+    <Content Include="Scripts\page\home\regist.js" />
+    <Content Include="Scripts\page\home\testSpeed.js" />
+    <Content Include="Scripts\page\load.js" />
+    <Content Include="Scripts\page\portal.js" />
+    <Content Include="Scripts\page\promo\index.js" />
+    <Content Include="Scripts\page\validator.js" />
+    <None Include="Properties\PublishProfiles\YHC.pubxml" />
+    <None Include="Views\Error\Error403.cshtml" />
+    <None Include="Views\Error\Error404.cshtml" />
+    <None Include="Views\Error\Error500.cshtml" />
+    <None Include="Views\Error\Limit.cshtml" />
+    <None Include="Views\Error\Maintainance.cshtml" />
+    <Content Include="Scripts\user\BetList.js" />
+    <Content Include="Scripts\user\BindEmail.js" />
+    <Content Include="Scripts\user\BindEmailStep2.js" />
+    <Content Include="Scripts\user\BindMobile.js" />
+    <Content Include="Scripts\user\BindMobileStep2.js" />
+    <Content Include="Scripts\user\common.reportdate.js" />
+    <Content Include="Scripts\user\deposit.js" />
+    <Content Include="Scripts\user\depositalipay.js" />
+    <Content Include="Scripts\user\depositasia.js" />
+    <Content Include="Scripts\user\depositcard.js" />
+    <Content Include="Scripts\user\depositlist.js" />
+    <Content Include="Scripts\user\depositonline.js" />
+    <Content Include="Scripts\user\depositwechat.js" />
+    <Content Include="Scripts\user\dinwxpay.js" />
+    <Content Include="Scripts\user\global.js" />
+    <Content Include="Scripts\user\index.js" />
+    <Content Include="Scripts\user\jquery.alerts.js" />
+    <Content Include="Scripts\user\jquery.pagination.js" />
+    <Content Include="Scripts\user\LoginPassword.js" />
+    <Content Include="Scripts\user\messagelist.js" />
+    <Content Include="Scripts\user\pagination\jquery.pagination.css" />
+    <Content Include="Scripts\user\pagination\jquery.pagination.js" />
+    <Content Include="Scripts\user\PromoList.js" />
+    <Content Include="Scripts\user\RecommendList.js" />
+    <Content Include="Scripts\user\setting.js" />
+    <Content Include="Scripts\user\transfer.js" />
+    <Content Include="Scripts\user\TransferList.js" />
+    <Content Include="Scripts\user\validator.js" />
+    <Content Include="Scripts\user\WalletApplyList.js" />
+    <Content Include="Scripts\user\WalletCancelList.js" />
+    <Content Include="Scripts\user\walletinitlist.js" />
+    <Content Include="Scripts\user\WalletInvalidList.js" />
+    <Content Include="Scripts\user\WalletListCommon.js" />
+    <Content Include="Scripts\user\WalletSendList.js" />
+    <Content Include="Scripts\user\withdrawal.js" />
+    <Content Include="Scripts\user\WithdrawalList.js" />
+    <Content Include="Scripts\user\WithdrawalPassword.js" />
+    <Content Include="Scripts\user\XbeiWxPay.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\AgentController.cs" />
+    <Compile Include="Controllers\AuthCodeController.cs" />
+    <Compile Include="Controllers\BaseAsyncController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Controllers\PromoController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Core\Enums.cs" />
+    <Compile Include="Core\PagerFrontViewModel.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Extensions\DecimalExtension.cs" />
+    <Compile Include="Extensions\EnumerableExtension.cs" />
+    <Compile Include="Extensions\HttpRequestExtension.cs" />
+    <Compile Include="Extensions\HttpResponseMessageExtension.cs" />
+    <Compile Include="Extensions\IntExtension.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Extensions\WebExtension.cs" />
+    <Compile Include="Filters\CheckLoginAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\ConvertHelper.cs" />
+    <Compile Include="Helper\HtmlHelperExtensions.cs" />
+    <Compile Include="Helper\LogHelper.cs" />
+    <Compile Include="Helper\LoginHelper.cs" />
+    <Compile Include="Helper\SystemTime.cs" />
+    <Compile Include="Helper\UtilHelper.cs" />
+    <Compile Include="Models\Ad.cs" />
+    <Compile Include="Models\AdminBank.cs" />
+    <Compile Include="Models\Bank.cs" />
+    <Compile Include="Models\Bonus.cs" />
+    <Compile Include="Models\BonusType.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameApi.cs" />
+    <Compile Include="Models\GameCategory.cs" />
+    <Compile Include="Models\InspectWithdrawal.cs" />
+    <Compile Include="Models\InspectWithdrawalItem.cs" />
+    <Compile Include="Models\LoginInfo.cs" />
+    <Compile Include="Models\Footer.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsCategory.cs" />
+    <Compile Include="Models\Promo.cs" />
+    <Compile Include="Models\PromoInfo.cs" />
+    <Compile Include="Models\PromoInfoType.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Recommend.cs" />
+    <Compile Include="Models\RecommendRebateInfo.cs" />
+    <Compile Include="Models\RegistSetting.cs" />
+    <Compile Include="Models\SEO.cs" />
+    <Compile Include="Models\SpareDomain.cs" />
+    <Compile Include="Models\ThirdPay.cs" />
+    <Compile Include="Models\ThirdPayPlatform.cs" />
+    <Compile Include="Models\ThridPayBank.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserBank.cs" />
+    <Compile Include="Models\UserDeposit.cs" />
+    <Compile Include="Models\UserGameAccount.cs" />
+    <Compile Include="Models\UserTransfer.cs" />
+    <Compile Include="Models\UserWallet.cs" />
+    <Compile Include="Models\UserWithdrawal.cs" />
+    <Compile Include="Models\VAdmin.cs" />
+    <Compile Include="Models\VAdminRole.cs" />
+    <Compile Include="Models\VAgent.cs" />
+    <Compile Include="Models\VAgentPhysicalLevel.cs" />
+    <Compile Include="Models\VAutoPayPlatform.cs" />
+    <Compile Include="Models\VBet.cs" />
+    <Compile Include="Models\VColumn.cs" />
+    <Compile Include="Models\VPermission.cs" />
+    <Compile Include="Models\VPermissionCategory.cs" />
+    <Compile Include="Models\VThirdPayPlatformBank.cs" />
+    <Compile Include="Models\VUserGroup.cs" />
+    <Compile Include="Models\VUserLevel.cs" />
+    <Compile Include="Models\VUserMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\BetService.cs" />
+    <Compile Include="Services\ConfigService.cs" />
+    <Compile Include="Helper\CheckArgument.cs" />
+    <Compile Include="Helper\ConfigHelper.cs" />
+    <Compile Include="Helper\Constants.cs" />
+    <Compile Include="Helper\Logger.cs" />
+    <Compile Include="Services\DepositService.cs" />
+    <Compile Include="Services\GameService.cs" />
+    <Compile Include="Services\InformationService.cs" />
+    <Compile Include="Services\CommonService.cs" />
+    <Compile Include="Services\NewsService.cs" />
+    <Compile Include="Services\PayService.cs" />
+    <Compile Include="Services\PromoInfoService.cs" />
+    <Compile Include="Services\PromoService.cs" />
+    <Compile Include="Services\TransferService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\WithdrawalService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Config\appSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Float.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Game\Sport.cshtml" />
+    <Content Include="Views\User\BetList.cshtml" />
+    <Content Include="Views\User\BindEmail.cshtml" />
+    <Content Include="Views\User\BindEmailStep2.cshtml" />
+    <Content Include="Views\User\BindEmailSuccess.cshtml" />
+    <Content Include="Views\User\BindMobile.cshtml" />
+    <Content Include="Views\User\BindMobileStep2.cshtml" />
+    <Content Include="Views\User\BindMobileSuccess.cshtml" />
+    <Content Include="Views\User\Deposit.cshtml" />
+    <Content Include="Views\User\DepositList.cshtml" />
+    <Content Include="Views\User\DepositOnline.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\LoginPassword.cshtml" />
+    <Content Include="Views\User\MessageList.cshtml" />
+    <Content Include="Views\User\PromoList.cshtml" />
+    <Content Include="Views\User\RecommendList.cshtml" />
+    <Content Include="Views\User\Setting.cshtml" />
+    <Content Include="Views\User\Transfer.cshtml" />
+    <Content Include="Views\User\TransferList.cshtml" />
+    <Content Include="Views\User\WalletApplyList.cshtml" />
+    <Content Include="Views\User\WalletCancelList.cshtml" />
+    <Content Include="Views\User\WalletInitList.cshtml" />
+    <Content Include="Views\User\WalletInvalidList.cshtml" />
+    <Content Include="Views\User\WalletSendList.cshtml" />
+    <Content Include="Views\User\Withdrawal.cshtml" />
+    <Content Include="Views\User\WithdrawalList.cshtml" />
+    <Content Include="Views\User\WithdrawalPassword.cshtml" />
+    <Content Include="Views\User\_LayoutUserPage.cshtml" />
+    <Content Include="Views\User\_PartialWalletMenu.cshtml" />
+    <Content Include="Views\Shared\_ExtenalJS.cshtml" />
+    <Content Include="Views\Shared\_TimeZoneConfig.cshtml" />
+    <Content Include="Views\Shared\_TopAd.cshtml" />
+    <Content Include="Views\Game\Casino.cshtml" />
+    <Content Include="Views\Game\Slot.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Game\Lottery.cshtml" />
+    <Content Include="Views\Promo\Index.cshtml" />
+    <Content Include="Views\Agent\Index.cshtml" />
+    <Content Include="Views\Help\Index.cshtml" />
+    <Content Include="Views\Home\Regist.cshtml" />
+    <Content Include="Views\Home\ForgetPwd.cshtml" />
+    <Content Include="Views\Home\ForgetPwd2.cshtml" />
+    <Content Include="Views\Home\ForgetPwdModifyPwd.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Home\Download.cshtml" />
+    <Content Include="Views\Home\Signal.cshtml" />
+    <Content Include="Views\Home\Maintenance.cshtml" />
+    <Content Include="Views\Agent\Regist.cshtml" />
+    <Content Include="Views\Help\Licence.cshtml" />
+    <Content Include="Views\Game\PTLoading.cshtml" />
+    <Content Include="Views\Shared\_DialogAd.cshtml" />
+    <Content Include="Views\Promo\Content.cshtml" />
+    <Content Include="Views\User\DepositWechat.cshtml" />
+    <Content Include="Views\User\DepositAlipay.cshtml" />
+    <Content Include="Views\Help\SiteMap.cshtml" />
+    <Content Include="Views\Shared\_Banner.cshtml" />
+    <Content Include="Views\Help\PwdForget.cshtml" />
+    <Content Include="Views\Shared\_Notice.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Agent\Program.cshtml" />
+    <Content Include="Views\Agent\_Layout.cshtml" />
+    <Content Include="Views\Agent\Brand.cshtml" />
+    <Content Include="Views\Agent\Agreement.cshtml" />
+    <Content Include="Views\Game\PTSlot.cshtml" />
+    <Content Include="Views\User\DINWXPay.cshtml" />
+    <Content Include="Views\User\XBEIWXPay.cshtml" />
+    <Content Include="Views\Page\About.cshtml" />
+    <Content Include="Views\Page\Contact.cshtml" />
+    <Content Include="Views\Page\Guide.cshtml" />
+    <Content Include="Views\Page\Provision.cshtml" />
+    <Content Include="Views\Page\Preferential.cshtml" />
+    <Content Include="Views\Page\Privacy.cshtml" />
+    <Content Include="Views\Page\GameHelp.cshtml" />
+    <Content Include="Views\Page\Notice.cshtml" />
+    <Content Include="Views\Page\_PageLayout.cshtml" />
+    <Content Include="Views\Game\MGSlot.cshtml" />
+    <Content Include="Views\Game\AGSlot.cshtml" />
+    <Content Include="Views\Game\BBINSlot.cshtml" />
+    <Content Include="Views\Shared\_PageMenu.cshtml" />
+    <Content Include="Views\Home\RegistSuccess.cshtml" />
+    <Content Include="Views\Shared\_AgentMenu.cshtml" />
+    <Content Include="Views\Agent\Protocol.cshtml" />
+    <Content Include="Views\Error\_Layout.cshtml" />
+    <Content Include="Views\Home\Mobile.cshtml" />
+    <Content Include="Views\Shared\_TopRecommendedGame.cshtml" />
+    <Content Include="Views\Page\AlternateURL.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59202</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7344/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,14 @@
+﻿@using YHC.Portal.Helper
+<div style="display: none">@(Request.ServerVariables.Get("Local_Addr").ToString())</div>
+<script type="text/javascript">var _cometUrl = '@(ConfigHelper.CometServerUrl)';</script>
+<script type="text/javascript" src="/scripts/page/home/comet.js"></script>
+<!--custom service-->
+<script type="text/javascript">
+    $(function () {
+        $('[name=top_livechat]').click(function () {
+            var charUrl = 'http://f88op.live800.com/live800/chatClient/chatbox.jsp?companyID=550705&configID=131307&jid=9126036203';
+            var chat = window.open(charUrl, 'service', 'width=1100,height=900,toolbar=0,resizable=1,location=no');
+            return chat;
+        });
+    });
+</script>

@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "智付微信支付";
+    ViewBag.TopMenu = "icon_nav_bank";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+
+    // 获取已启用的第三方支付
+    IList<ThirdPay> paies = ViewBag.Pies as IList<ThirdPay>;
+    IList<Promo> prefInfos = ViewBag.PrefInfos as List<Promo>;
+
+    // 智付微信支付
+    var zfWxPay = paies == null ? null : paies.SingleOrDefault(p => p.Status && p.ThirdPayCode == ThirdPayPlatFormEnum.DINWXPAY.ToString());
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        @if (paies != null && paies.Count > 0)
+        {
+            foreach (var item in paies)
+            {
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.DINWXPAY.ToString())
+                {
+                    <li id="td_menuc6" class="on"><a href="/user/dinwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.XBEIWXPAY.ToString())
+                {
+                    <li id="td_menuc7"><a href="/user/xbeiwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                <li><a href="/user/depositonline.html?id=@(item.Id)">@(item.MerName)</a></li>
+            }
+        }
+        <li><a href="/user/deposit.html">银行转账</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+    <h2><i class="icon_medium icon_bank"></i>
+    @if (zfWxPay != null)
+    {
+        @zfWxPay.MerName
+    }</h2>
+    @if (zfWxPay == null)
+    {
+        <span class="light">温馨提示：您所在的会员组不允许在线充值，如有疑问，请咨询客服人员。</span>
+    }
+    else
+    {
+        
+            <ul class="eveb_form">
+                <li>
+                    <span>充值金额：</span>
+                    <input id="online_amount" name="online_amount" type="text" size="6" onkeyup="this.value=this.value.replace(/\D/gi,'')" required="" onpaste="return !clipboardData.getData('text').match(/\D/)" />
+                    <label for="money" class="eveb_form_error">* 单笔金额最低@(user.WXMinAmount.RoundOfChina())元，最高@(user.WXMaxAmount.RoundOfChina())元</label>
+                </li>
+                <li style="display: none;">
+                    <span>选择银行：</span>
+                    <div class="eveb_form_box eveb_bank_list">
+                        @if (zfWxPay!=null)
+                        {
+                            // 判断是否需要输出支付图标
+                            <label>
+                                <input type="radio" name="payPlatform" pay="pay" value="@(zfWxPay.ThirdPayCode)" checked="checked"
+                                       platform="@(zfWxPay.ThirdPayCode)" mercode="@(zfWxPay.MerCode)" />
+                                <img src="@(ConfigHelper.ImageServerUrl + zfWxPay.ThirdPayLogoImg)" alt="" />
+                                <input type="hidden" name="payMerCode" value="@zfWxPay.MerCode" />
+                            </label>
+                        }
+                    </div>
+                </li>
+                @if (prefInfos != null && prefInfos.Count > 0)
+                {
+                    <li>
+                        <span>可选优惠：</span>
+                        <div class="eveb_form_box">
+                            <p><label><input id="pref_selNobonus_none" name="online_prefKey" type="radio" class="checkbox" value="" checked="checked" /> 不参加优惠</label></p>
+                            @foreach (var item in prefInfos)
+                            {
+                                <p><label for="pref_@(item.Id)"><input id="pref_@(item.Id)" name="online_prefKey" type="radio" class="checkbox" value="@(item.PreferentialKey)" /> @(item.PreferentialTitle)</label></p>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="eveb_form_submit">
+                <input id="btnOnline" name="btnOnline" type="button" value="生成订单" class="button_medium button_1" />
+            </div>
+            <input type="hidden" id="hidMinDeposit" value="@(user.WXMinAmount.RoundOfChina())" />
+            <input type="hidden" id="hidMaxDeposit" value="@(user.WXMaxAmount.RoundOfChina())" />
+        
+    }
+</div>
+
+<!--弹窗 黑底-->
+<div class="eveb_popup_wrap"></div>
+<!--弹窗 银行存款成功-->
+<div class="eveb_popup" id="eveb_popup_bank_ok">
+    <div class="eveb_popup_hd">
+        <h4 class="fl">登录网上银行付款</h4>
+        <a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+    </div>
+    <div class="eveb_popup_bd">
+        <div class="eveb_popup_content">
+            <span><i class="icon_big icon_ok_3"></i></span>
+            <p>请在新开网银页面完成付款后选择</p>
+        </div>
+        <div class="eveb_popup_btn">
+            <a href="/user/depositlist.html" class="button_medium button_3">查看记录</a>
+            <a href="/user/transfer.html" class="button_medium button_3">前往转账</a>
+        </div>
+    </div>
+</div>
+
+@section EndScripts{
+<script>
+    var imagePath = '@ConfigHelper.ImageServerUrl';
+</script>
+    @Url.RenderScriptFile("/scripts/lib/zDialog.js")
+    @Url.RenderScriptFile("/scripts/user/dinwxpay.js")
+}

@@ -1,0 +1,58 @@
+@charset "utf-8";
+/*页面宽度*/
+.eveb_wrap{width:1000px;margin:0 auto;}
+/*头部背景*/
+body{background:#F8F8F8 url("../image/red/body.jpg") center top no-repeat;}
+/*链接*/
+a:link,
+a:visited{color:#C40000;text-decoration:none;}
+a:hover{color:#333;}
+/*图标*/
+.icon,
+.icon_mini,
+.icon_small,
+.icon_medium,
+.icon_big{background-image:url("../image/red/icon.png");}
+/*按钮*/
+.button_small,
+.button_medium{border:none;border-radius:3px;cursor:pointer;font-family:'Microsoft Yahei';}
+.button_small{padding:5px 10px;font-size:12px;}
+.button_medium{padding:10px 30px;font-size:14px;}
+.button_1,
+.button_1:link,
+.button_1:visited{color:#FFF;background:#C40000;}
+.button_1:hover{background:#E10000;}
+.button_2,
+.button_2:link,
+.button_2:visited{color:#FFF;background:#FF7F00;}
+.button_2:hover{background:#FF5C26;}
+.button_3,
+.button_3:link,
+.button_3:visited{border:1px solid #DDD;color:#888;background:#FFF;}
+.button_3:hover{background:#F5F5F5;}
+.button_4,
+.button_4:link,
+.button_4:visited{color:#888;background:#EEE;border:1px solid #EEE;}
+.button_4:hover{border:1px solid #DDD;background:#FFF;}
+.button_disabled,
+.button_disabled:hover{color:#999;background:#CCC;}
+/*风格*/
+.eveb_header_nav .on a:link,
+.eveb_header_nav .on a:visited,
+.eveb_header_nav a:hover{border-bottom:2px solid #C40000;}
+.eveb_nav{background:#C40000;}
+.eveb_nav .on a:link,
+.eveb_nav .on a:visited{background:#E10000;}
+.eveb_nav a:hover{background:#A70505;}
+.eveb_nav li{border-right:1px solid #A70505;}
+.eveb_index_promo_num{color:#C40000;}
+.eveb_table th,
+.eveb_box h4,
+.eveb_popup .eveb_popup_hd{background-image:url("../image/red/th.png");}
+.eveb_bank_list .on .banklogo,
+.eveb_withdraw_list .on{border-color:#C40000;}
+.eveb_page a:hover,.eveb_page a.on{background:#C40000;}
+.eveb_step li.on em{background:#C40000;}
+.eveb_step li.on p{color:#C40000;}
+.eveb_transfer_2_list .on div{border:1px solid #C40000;}
+.eveb_transfer_2_list .on p{background:#C40000;}

@@ -1,0 +1,163 @@
+﻿@using YHC.Portal.Extensions;
+@using YHC.Portal.Core;
+@{
+    ViewBag.Title = "银行转账";
+    ViewBag.TopMenu = "icon_nav_bank";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+    IList<ThirdPay> paies = ViewBag.Pies as IList<ThirdPay>;
+    IList<AdminBank> banks = ViewBag.Bank as IList<AdminBank>; 
+    IList<Promo> prefInfos = ViewBag.PrefInfos as List<Promo>;
+    IList<Province> provinces = ViewBag.Provinces as List<Province>; // 省份
+
+    // 支付宝/微信支付
+    var alipayBanks = ViewBag.AliPay as List<AdminBank>;
+    var wechatBank = ViewBag.WebChat as List<AdminBank>;
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        @if (paies != null && paies.Count > 0)
+        {
+            foreach (var item in paies)
+            {
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.DINWXPAY.ToString())
+                {
+                    <li id="td_menuc6"><a href="/user/dinwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                if (item.ThirdPayCode == ThirdPayPlatFormEnum.XBEIWXPAY.ToString())
+                {
+                    <li id="td_menuc7"><a href="/user/xbeiwxpay.html">@item.MerName</a></li>
+                    continue;
+                }
+                <li><a href="/user/depositonline.html?id=@(item.Id)">@(item.MerName)</a></li>
+            }
+        }
+        <li class="on"><a href="/user/deposit.html">银行转账</a></li>
+        @if (alipayBanks != null && alipayBanks.Count > 0)
+        {
+            <li><a href="/user/depositalipay.html">支付宝</a></li>
+        }
+        @if (wechatBank != null && wechatBank.Count > 0)
+        {
+            <li><a href="/user/depositwechat.html">微信支付</a></li>
+        }
+    </ul>
+    </div>
+    <div class="eveb_content">
+        <h2><i class="icon_medium icon_bank"></i>银行转账</h2>
+        @if (banks == null || banks.Count == 0)
+        {
+            <span class="light">温馨提示：您所在的会员组不允许存款，如有疑问，请咨询客服人员。</span>
+        }
+        else
+        {
+            <form name="eveb_bank">
+                <ul class="eveb_form">
+                    <li>
+                        <span>充值金额：</span>
+                        <input id="manual_amount" name="manual_amount" type="text" size="8" onkeyup="this.value=this.value.replace(/\D/gi,'')" onpaste="return !clipboardData.getData('text').match(/\D/)" ondragenter="return false" />
+                        <label for="money" class="eveb_form_error">*单笔金额最低@(user.MinDeposit)元，最高@(user.MaxDeposit)元</label>
+                    </li>
+                    <li>
+                        <span>收款账号</span>
+                        <select name="manual_receiveBank" id="manual_receiveBank">
+                            <option value="" data-bank-account-no="0">请选择…</option>
+                            @foreach (var item in banks)
+                            {
+                                <option value="@(item.Id)" bankaccountname="@(item.AccountName)" bankaccountno="@(item.AccountNo)">[@(item.BankName)] @(item.AccountName) @(item.AccountNoFormat)</option>
+                            }
+                        </select>
+                        <div class="eveb_copy">
+                            <a href="javascript:;" class="button_small button_1" id="eveb_copy_accountName" style="display:none">复制账户名</a>
+                            <a href="javascript:;" class="button_small button_1" id="eveb_copy_accountNo" style="display:none">复制银行帐号</a>
+                            <label for="account" class="eveb_form_error" style="display:none;"></label>
+                        </div>
+                    </li>
+                    <li>
+                        <span>存款方式：</span>
+                        <div class="eveb_form_box eveb_radio_list">
+                            <label author="eveb"><input name="TransType" type="radio" value="@((int)TransferType.OnlineBank)" />网银转账</label>
+                            <label author="eveb"><input name="TransType" type="radio" value="@((int)TransferType.ATMTrans)" />ATM转账</label>
+                            <label author="eveb"><input name="TransType" type="radio" value="@((int)TransferType.ATMDeposit)" />ATM现金转账</label>
+                            <label author="eveb"><input name="TransType" type="radio" value="@((int)TransferType.BankCounter)" />银行柜台</label>
+                            <label author="eveb"><input name="TransType" type="radio" value="@((int)TransferType.MobileBank)" />手机银行</label>
+                            <div class="eveb_radio_list_sub" id="branch">
+                                <span>ATM所属支行：</span>
+                                <select name="province" id="province">
+                                    <option value="0">请选择</option>
+                                    @foreach (var item in provinces)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                                <select name="city" id="city">
+                                    <option value="0">请选择</option>
+                                </select>
+                                <input id="address" type="text" size="50" />
+                            </div>
+                            <label for="TransType" class="eveb_form_error" style="display:none;"></label>
+                        </div>
+                    </li>
+                    @if (prefInfos != null && prefInfos.Count > 0)
+                    {
+                        <li>
+                            <span>可选优惠：</span>
+                            <div class="eveb_form_box">
+                                <p><label><input id="pref_selNobonus_none" name="prefKey" type="radio" class="checkbox" value="" checked="checked" /> 不参加优惠</label></p>
+                                @foreach (var item in prefInfos)
+                                {
+                                    <p><label for="pref_@(item.Id)"><input id="pref_@(item.Id)" name="prefKey" type="radio" class="checkbox" value="@(item.PreferentialKey)" /> @(item.PreferentialTitle)</label></p>
+                                }
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <div class="eveb_form_submit">
+                    <input id="btn_save" type="button" value="生成订单" class="button_medium button_1" />
+                    <input type="hidden" id="hidMinDeposit" value="@(user.MinDeposit)" />
+                    <input type="hidden" id="hidMaxDeposit" value="@(user.MaxDeposit)" />
+                </div>
+            </form>
+        }
+    </div>
+
+    <!--弹窗 黑底-->
+    <div class="eveb_popup_wrap"></div>
+    <!--弹窗 银行存款成功-->
+    <div class="eveb_popup" id="eveb_popup_bank_ok">
+        <div class="eveb_popup_hd">
+            <h4 class="fl">银行转款</h4>
+            <a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+        </div>
+        <div class="eveb_popup_bd">
+            <div class="eveb_popup_content">
+                <span><i class="icon_big icon_ok_3"></i></span>
+                <p>恭喜您，成功提交存款单！单号：<strong class="green" id="orderId">loading...</strong></p>
+                <p>转账成功后，请即时联系在线客服为您添加额度。</p>
+            </div>
+            <div class="eveb_popup_btn">
+                <a name="pop_close" href="javascripts:;" class="button_medium button_1">知道了</a>
+                <a href="/user/depositlist.html" class="button_medium button_3">查看记录</a>
+                <a href="/user/transfer.html" class="button_medium button_3">前往转账</a>
+            </div>
+        </div>
+    </div>
+
+    @section EndScripts{
+        <script type="text/javascript">
+            // 转账类型
+            var _TRANS_TYPE = {
+                online: '@((int)TransferType.OnlineBank)',
+                mobile: '@((int)TransferType.MobileBank)',
+                atmtrans: '@((int)TransferType.ATMTrans)',
+                atmdeposit: '@((int)TransferType.ATMDeposit)',
+                bank: '@((int)TransferType.BankCounter)'
+            };
+        </script>
+
+        @Url.RenderScriptFile("/scripts/user/deposit.js")
+        @Url.RenderScriptFile("/scripts/lib/zclip/jquery.zclip.js")
+    }

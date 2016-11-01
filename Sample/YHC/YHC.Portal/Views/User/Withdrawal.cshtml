@@ -1,0 +1,216 @@
+﻿@using YHC.Portal.Extensions;
+@using YHC.Portal.Core;
+@using YHC.Portal.Models;
+@{
+    ViewBag.Title = "提款";
+    ViewBag.TopMenu = "icon_nav_withdraw";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+    Config config = ViewBag.Config as Config;
+
+    IList<UserBank> banks = ViewBag.Bank as List<UserBank>;
+
+    Boolean hasBankCard = (banks != null && banks.Count > 0);
+
+    // 如果只有一张银行卡，默认显示，不用选择了
+    Int32 bankCount = 0;
+    String oneBankAccountName = String.Empty, oneBankAccountNo = String.Empty;
+    String oneBankCardId = string.Empty;
+
+    // 判断是否允许绑定不同开户人的银行卡
+    String bankAccountHolderDisabled = string.Empty;
+    if (config.UserDiffBank == false)
+    {
+        bankAccountHolderDisabled = "disabled=\"disabled\"";
+    }
+}
+
+@section HeadStyle{
+    @Url.RenderCssFile("/content/user/css/inspect.css")
+}
+
+@section HeadScripts{
+    @Url.RenderScriptFile("/scripts/lib/layer/layer.min.js")
+}
+
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_withdraw"></i>提款</h2>
+	<ul class="eveb_withdraw_list">
+        @if(banks != null && banks.Count > 0)
+        {
+            bankCount = banks.Count;
+            
+            foreach (var item in banks)
+            {
+                String onStyle = string.Empty;
+                if (bankCount == 1)
+                {
+                    oneBankAccountName = item.AccountName;
+                    oneBankAccountNo = item.AccountNoFormat;
+                    oneBankCardId = item.Id.ToString();
+                    onStyle = "on";
+                }
+		        <li>
+			        <div class="eveb_withdraow_box @onStyle">
+				        <img src="@(YHC.Portal.Helper.ConfigHelper.ImageServerUrl + item.Bank.LogoImg)" alt="@item.Bank.BankName" />
+				        <p class="withdraw_bank">@item.AccountNoFormat</p>
+                        <input id="bank@(item.Id)" style="display:none;" type="radio" value="@item.Id" />
+				        <em>
+					        <div class="fl">开户人：<strong class="withdraw_name">@item.AccountName</strong></div>
+					        <div class="fr">开户行：<strong>@item.Province @item.City @item.BranchName</strong></div>
+				        </em>
+			        </div>
+		        </li>
+            }
+        }
+		<li>
+			<div class="eveb_withdraow_box eveb_withdraow_add">
+				<a href="javascript:;">添加银行卡</a>
+			</div>
+		</li>
+	</ul>
+	<div class="eveb_tip eveb_withdraw_tip">
+		您目前中心钱包帐户余额为：<strong>@(user.Cash.ToStringN2())元</strong>
+	</div>
+	<form name="eveb_withdraw">
+	<ul class="eveb_form eveb_withdraw">
+		<li>
+			<span>开户名：</span>
+			<input id="bankAccountName" type="text" size="5" value="@(oneBankAccountName)" disabled="disabled" />
+		</li>
+		<li>
+			<span>银行卡号：</span>
+			<input id="bankAccountNoFormat" type="text" size="22" value="@(oneBankAccountNo)" disabled="disabled" />
+		</li>
+		<li>
+			<span>提款金额：</span>
+			<input id="amount" type="text" size="5" onkeyup="this.value=this.value.replace(/\D/gi,'')" ondragenter="return false" onpaste="return !clipboardData.getData('text').match(/\D/)"/>
+			<label class="eveb_form_error">* 最小提款金额为：@(user.SingleMinWithdraw.ToStringN0())元 / 最大提款金额：@(user.SingleMaxWithdraw>=100000000 ? "无上限" :user.SingleMaxWithdraw.ToStringN0())</label>
+		</li>
+		<li>
+			<span>提款密码：</span>
+			<input id="withdrawalPwd" type="password" size="20" />
+			<em><a href="/user/withdrawalpassword.html">修改提款密码</a></em>
+		</li>
+	</ul>
+	<div class="eveb_form_submit">
+		@*<p>
+			<label class="mr_10"><input type="checkbox" /> 提款成功后发送短信</label>
+			<i class="icon_mini icon_ok"></i> <strong>已绑定手机：</strong><em>188****8888</em>
+		</p>
+		<p>
+			<label class="mr_10"><input type="checkbox" disabled="disabled" /> 提款成功后发送短信</label>
+			您尚未绑定手机，<a href="validation.html">立即绑定手机</a>
+		</p>*@
+        @*@if(user.PhoneValidateStatus == false)
+        {
+		<p>
+			您尚未绑定手机，<a href="/user/bindmobile.html">立即绑定手机</a>
+		</p>
+        }*@
+		<input type="button" value="生成订单" id="btn_save" class="button_medium button_1" />
+		<input type="reset" value="重置" class="ml_10 button_medium button_3" />
+        <input type="hidden" id="minWithdraw" value="@(user.SingleMinWithdraw)" />
+        <input type="hidden" id="maxWithdraw" value="@(user.SingleMaxWithdraw)" />
+        <input type="hidden" id="bankCardId" value="@(oneBankCardId)" />
+        <input type="hidden" id="imgServerUrl" value="@(YHC.Portal.Helper.ConfigHelper.ImageServerUrl)" />
+	</div>
+	</form>
+</div>
+
+<!--弹窗 黑底-->
+<div class="eveb_popup_wrap"></div>
+<!--弹窗 银行提款成功-->
+<div class="eveb_popup" id="eveb_popup_bank_ok">
+	<div class="eveb_popup_hd">
+		<h4 class="fl">提款</h4>
+		<a href="javascript;" class="icon_mini icon_close fr" title="关闭"></a>
+	</div>
+	<div class="eveb_popup_bd">
+		<div class="eveb_popup_content">
+			<span><i class="icon_big icon_ok_3"></i></span>
+			<p>恭喜您，申请提款成功！@*单号：<strong class="green">SN20150201076771</strong>*@</p>
+			<p>提款成功后，系统会自动扣除您的余额。</p>
+		</div>
+		<div class="eveb_popup_btn">
+			<a name="pop_close" href="javascript:;" class="button_medium button_1">知道了</a>
+			<a href="/user/withdrawallist.html" class="button_medium button_3">查看记录</a>
+			<a href="/user/transfer.html" class="button_medium button_3">前往转账</a>
+		</div>
+	</div>
+</div>
+
+<!--弹窗 绑定银行卡-->
+<div class="eveb_popup" id="eveb_popup_bank_bind">
+	<div class="eveb_popup_hd">
+		<h4 class="fl">绑定银行卡</h4>
+		<a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+	</div>
+	<div class="eveb_popup_bd">
+		<form name="eveb_bank_bind">
+		<ul class="eveb_form">
+			<li>
+				<span>所属银行：</span>
+				<select id="bindcard_bankId">
+					<option value="0">请选择</option>
+				</select>
+			</li>
+			<li>
+				<span>开户人：</span>
+                <input id="bindcard_accountHolder" class="name" type="text" size="8" value="@(user.TrueName)" @(bankAccountHolderDisabled) />
+                @if(string.IsNullOrWhiteSpace(user.TrueName))
+                {
+                <a href="/user/setting.html">完善资料</a>
+                }
+			</li>
+			<li>
+				<span>开户地：</span>
+				<select id="bindcard_province">
+					<option value="0">请选择</option>
+				</select>
+				<select id="bindcard_city">
+					<option value="0">请选择</option>
+				</select>
+			</li>
+			<li>
+				<span>开户支行：</span>
+				<input id="bindcard_openingBank" type="text" size="26" />
+			</li>
+			<li>
+				<span>银行卡号：</span>
+				<input id="bindcard_account" type="text" size="26" />
+			</li>
+		</ul>
+		<div class="eveb_popup_btn">
+			<input id="btn_save_bank_card" type="button" class="button_medium button_1" value="添加" />
+			<a name="pop_close" href="javascript:;" class="button_medium button_3">取消</a>
+		</div>
+        </form>
+	</div>
+</div>
+
+<!--弹窗 银行绑定成功-->
+<div class="eveb_popup" id="eveb_popup_bank_bind_ok">
+	<div class="eveb_popup_hd">
+		<h4 class="fl">绑定成功</h4>
+		<a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+	</div>
+	<div class="eveb_popup_bd">
+		<div class="eveb_popup_content">
+			<span><i class="icon_big icon_ok_3"></i></span>
+			<p>恭喜您，绑定银行卡成功！</p>
+		</div>		
+		<div class="eveb_popup_btn">
+			<a name="pop_close" href="javascript:;" class="button_medium button_1">知道了</a>
+		</div>
+	</div>
+</div>
+
+@section EndScripts{
+    <script type="text/javascript">
+        var REPAIRTYPE = "@((int)InspectType.REPAIR)";
+        var BONUSTYPE = "@((int)InspectType.BOUNS)";
+    </script>
+    @Url.RenderScriptFile("/scripts/user/withdrawal.js")
+}

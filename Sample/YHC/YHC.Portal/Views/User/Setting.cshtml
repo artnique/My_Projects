@@ -1,0 +1,221 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "个人资料";
+    ViewBag.TopMenu = "icon_nav_setting";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+    
+    User user = ViewBag.User as User;
+
+    Config config = ViewBag.Config as Config;
+    
+    Boolean completed = true; // 用于完善资料提示
+    Int32 comptetedCount = 0;
+    
+    // 用于弹出窗
+    String trueNameDisable = string.Empty, birthDayDisable = string.Empty, mobileDisable = string.Empty, emailDisable = string.Empty;
+    if (string.IsNullOrWhiteSpace(user.TrueName) == false)
+    {
+        trueNameDisable = "disabled=\"disabled\"";
+        comptetedCount++;
+    }
+    if (user.Birthday.HasValue)
+    {
+        birthDayDisable = "disabled=\"disabled\"";
+        comptetedCount++;
+    }
+    else
+    {
+        birthDayDisable = " class=\"Wdate\" onfocus=\"WdatePicker()\"";
+    }
+    if (string.IsNullOrWhiteSpace(user.Phone) == false)
+    {
+        mobileDisable = "disabled=\"disabled\"";
+        comptetedCount++;
+    }
+    if (string.IsNullOrWhiteSpace(user.Email) == false)
+    {
+        emailDisable = "disabled=\"disabled\"";
+        comptetedCount++;
+    }
+
+    completed = (comptetedCount == 4);
+}
+
+@section HeadScripts{
+    @Url.RenderScriptFile("/scripts/lib/datepicker/WdatePicker.js")
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li class="on"><a href="/user/setting.html">个人资料</a></li>
+        <li><a href="/user/loginpassword.html">登录密码</a></li>
+        <li><a href="/user/withdrawalpassword.html">提款密码</a></li>
+    </ul>
+</div>
+    <div class="eveb_content">
+        <h2><i class="icon_medium icon_setting"></i>个人资料</h2>
+        <table class="eveb_setting_table">
+            <tr>
+                <td class="tit">会员名</td>
+                <td class="wid">@(user.UserName)</td>
+                <td class="tit">手机号码</td>
+                <td class="wid">
+                    <span class="ff">@(user.MaskPhone)</span>
+                    @if (string.IsNullOrWhiteSpace(user.Phone))
+                    {
+                        <a name="edit" href="javascript:;">编辑</a>
+                    }
+                    else
+                    {
+                        if (user.PhoneValidateStatus)
+                        {
+                            <span class="green"><i class="icon_mini icon_ok"></i>已绑定</span>
+                        }
+                        else
+                        {
+                            if (config.IsBindingPhone)
+                            {
+                                <a href="/user/bindmobile.html">立即绑定</a>
+                            }
+                            @*else
+                                {
+                                    <a href="javascript:void(0);">手机验证未启用</a>
+                                }*@
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="tit">真实姓名</td>
+                <td class="wid">
+                    @(user.TrueName)
+                @if (string.IsNullOrWhiteSpace(user.TrueName))
+                {
+                    <a name="edit" href="javascript:;">编辑</a>
+                }
+            </td>
+            <td class="tit">电子邮箱</td>
+            <td colspan="2" class="wid">
+                <span class="ff">@(user.MaskEmail)</span>
+                @if (string.IsNullOrWhiteSpace(user.Email))
+                {
+                    <a name="edit" href="javascript:;">编辑</a>
+                }
+                else
+                {
+                    if (user.EmailValidateStatus)
+                    {
+                        <span class="green"><i class="icon_mini icon_ok"></i>已绑定</span>
+                    }
+                    else
+                    {
+                        if (config.IsBindingEmail)
+                        {
+                            <a href="/user/bindemail.html">立即绑定</a>
+                        }
+                        @*else
+                            {
+                                <a href="javascript:void(0);">邮箱验证未启用</a>
+                            }*@
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="tit">生日</td>
+            <td class="ff wid">
+                @(user.BirthdayText)
+            @if (user.Birthday.HasValue == false)
+            {
+                <a name="edit" href="javascript:;">编辑</a>
+            }
+        </td>
+        <td class="tit">注册时间</td>
+        <td class="ff wid">@(user.CreateTime.ToString("yyyy-MM-dd"))</td>
+    </tr>
+    <tr>
+        <td class="tit">MG客户端密码</td>
+        <td class="ff wid">
+            <a href="javascript:void(0);" id="btn_mgPwd">查询</a>
+        </td>
+        <td class="tit"></td>
+        <td class="ff wid"></td>
+    </tr>
+</table>
+<div class="eveb_tip light">
+    @if (completed)
+    {
+        @:您的个人资料已经完善，如需修改请联系在线客服<br />
+        }
+    完善个人资料可以立即获得完善优惠奖励
+</div>
+</div>
+
+<!--弹窗 黑底-->
+<div class="eveb_popup_wrap"></div>
+<!--弹窗 eveb留言板-->
+<div class="eveb_popup" id="eveb_setting_edit">
+    <div class="eveb_popup_hd">
+        <h4 class="fl">编辑个人资料</h4>
+        <a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+    </div>
+    <div class="eveb_popup_bd">
+        <form>
+            <ul class="eveb_form">
+                <li>
+                    <span>会员名：</span>@(user.UserName)
+                </li>
+                <li>
+                    <span>真实姓名：</span>
+                    <input id="TrueName" type="text" size="5" value="@(user.TrueName)" @(Html.Raw(trueNameDisable)) />
+                </li>
+                <li>
+                    <span>生日：</span>
+                    <input id="BirthDay" type="text" size="16" value="@(user.Birthday.HasValue ? user.Birthday.Value.ToString("yyyy-MM-dd") : "")" @(Html.Raw(birthDayDisable)) />
+                    <label class="eveb_form_error">*格式为 1900-01-01</label>
+                </li>
+                <li>
+                    <span>手机号码：</span>
+                    <input id="Phone" type="text" size="32" value="@(user.Phone)" @(Html.Raw(mobileDisable)) />
+                </li>
+                <li>
+                    <span>电子邮箱：</span>
+                    <input id="Email" type="text" size="32" value="@(user.Email)" @(Html.Raw(emailDisable)) />
+                </li>
+            </ul>
+            <div class="eveb_popup_btn">
+                <input id="btn_save" type="button" class="button_medium button_1" value="保存" />
+                <a name="pop_close" href="javascript:;" class="button_medium button_3">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="eveb_popup" id="mg_pwd_get">
+    <div class="eveb_popup_hd">
+        <h4 class="fl">MG客户端密码查询</h4>
+        <a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+    </div>
+    <div class="eveb_popup_bd">
+        <form>
+            <ul class="eveb_form">
+                <li id="li1">
+                    <span>确认登录密码：</span>
+                    <input id="login_Pwd" type="password" />
+                </li>
+                <li id="li2" style="display:none;">
+                    <span>MG登录密码：</span>
+                    <em id="show_pwd"></em>
+                </li>
+            </ul>
+            <div class="eveb_popup_btn">
+                <input id="btn_getPwd" type="button" class="button_medium button_1" value="查询" />
+                <a name="pop_close" href="javascript:;" class="button_medium button_3">取消</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/user/setting.js")
+}

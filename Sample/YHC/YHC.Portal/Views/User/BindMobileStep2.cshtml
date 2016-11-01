@@ -1,0 +1,42 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "手机验证";
+    ViewBag.TopMenu = "icon_nav_setting";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    User user = ViewBag.User as User;
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li class="on"><a href="/user/setting.html">个人资料</a></li>
+        <li><a href="/user/loginpassword.html">登录密码</a></li>
+        <li><a href="/user/withdrawalpassword.html">提款密码</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_setting"></i>个人通信验证</h2>
+	<ul class="eveb_step">
+		<li><em>1</em><p>选择认证方式</p></li>
+		<li class="on"><em>2</em><p>完成验证</p></li>
+		<li><em>3</em><p>验证成功</p></li>
+	</ul>
+	<form>
+	<div class="eveb_tip light">验证码已发送到您的手机，请查收。</div>
+	<ul class="eveb_form eveb_validation_form">
+		<li>
+			<span>验证码：</span>
+			<input id="validateCode" type="text" value="" />
+			<em><a id="sendCode" href="javascript:;" class="button_small button_2">重新发送验证码</a></em>
+		</li>
+	</ul>
+	<div class="eveb_form_submit">
+		<a href="/user/bindmobile.html" class="button_medium button_3">上一步</a>
+		<a id="next" href="javascript:;" class="button_medium button_1">进行验证</a>
+        <input id="mobile" type="hidden" value="@(user.Phone)"/>
+	</div>
+	</form>
+</div>
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/user/bindmobilestep2.js")
+}

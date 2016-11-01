@@ -1,0 +1,680 @@
+﻿@charset "utf-8";
+/*公共*/
+*{margin:0;padding:0;}
+body{font-family:"Microsoft Yahei","Tahoma";font-size:12px;color:#666;}
+li{list-style:none;}
+em{font-style:normal;}
+img{border:0;vertical-align:top;}
+table{border-collapse:collapse;border-spacing:0;}
+input,textarea{padding:5px;outline:none;}
+select{padding:4px;}
+.fl{float:left;}
+.fl input[type="checkbox"]{margin-right:5px;}
+.fr{float:right;}
+.mt_20{margin-top:20px;}
+.ml_10{margin-left:10px;}
+.mr_10{margin-right:10px;}
+.light,.light:link,.light:visited{color:#FF7F00;}
+.dark,.dark:link,.dark:visited{color:#333;}
+.green,.green:link,.green:visited{color:#2CB200;}
+
+/*图标*/
+.icon,
+.icon_mini,
+.icon_small,
+.icon_medium,
+.icon_big{display:inline-block;vertical-align:middle;overflow:hidden;}
+.icon_mini{width:15px;height:15px;}
+.icon_small{width:30px;height:30px;}
+.icon_medium{width:50px;height:50px;}
+.icon_big{width:80px;height:80px;}
+.icon_ok{background-position:-30px -10px;}
+.icon_ok_2{background-position:-30px -35px;}
+.icon_ok_3{background-position:-240px -185px;}
+.icon_false_2{background-position:-60px -35px;}
+.icon_false_3{background-position:-240px -265px;}
+.icon_close{background-position:-45px -10px;}
+.icon_level{background-position:-60px -10px;}
+.icon_level_no{background-position:-75px -10px;}
+
+.icon_header_notice{background-position:0px -35px;}
+.icon_header_notice_l{background-position:0px -10px;}
+.icon_header_notice_r{background-position:-15px -10px;}
+.icon_nav_bank{background-position:0px -75px}
+.icon_nav_withdraw{background-position:-50px -75px}
+.icon_nav_transfer{background-position:-100px -75px}
+.icon_nav_letter{background-position:-150px -75px}
+.icon_nav_market{background-position:-200px -75px}
+.icon_nav_record{background-position:-250px -75px}
+.icon_nav_setting{background-position:-300px -75px}
+.icon_nav_home{background-position:-350px -75px}
+
+.icon_bank{background-position:0px -125px}
+.icon_withdraw{background-position:-50px -125px}
+.icon_transfer{background-position:-100px -125px}
+.icon_letter{background-position:-150px -125px}
+.icon_market{background-position:-200px -125px}
+.icon_record{background-position:-250px -125px}
+.icon_setting{background-position:-300px -125px}
+
+.icon_validation_email_no{background-position:0px -185px}
+.icon_validation_phone_no{background-position:-80px -185px}
+.icon_validation_card_no{background-position:-160px -185px}
+.icon_validation_email{background-position:0px -265px}
+.icon_validation_phone{background-position:-80px -265px}
+.icon_validation_card{background-position:-160px -265px}
+
+.icon_promo_l{background-position:0px -355px}
+.icon_promo_r{background-position:-50px -355px}
+.icon_promo_l:hover{background-position:0px -375px}
+.icon_promo_r:hover{background-position:-50px -375px}
+
+.icon_transfer_control{background-position:0px -395px;position:absolute;top:-135px;left:520px;text-indent:-9999px;outline:none;}
+.icon_tab_tip{background-position:0px -445px}
+
+/*头部*/
+.eveb_header{height:110px;position:relative;}
+.eveb_header_top{height:65px;line-height:60px;overflow:hidden;border-bottom: 2px solid #c2c2c2;background-color: #DBA538}
+.eveb_header h1{float:left;}
+.eveb_header_nav{float:left; margin-left:30px;}
+.eveb_header_nav li{float:left;margin-left:30px;display:inline;}
+.eveb_header_nav a:link,
+.eveb_header_nav a:visited{display:inline-block;overflow:hidden;color:#fff;}
+.eveb_header_nav .on a:link,
+.eveb_header_nav .on a:visited,
+.eveb_header_nav a:hover{height:56px;}
+/*头部 用户信息*/
+.eveb_header_info{float:right;color:#999;margin-right:20px;display:inline;text-align:right;}
+.eveb_header_info a:link,.eveb_header_info a:visited{margin:0 5px; color:#fff;}
+.eveb_header_info a:hover{color:#333;}
+.eveb_header_info_uname:link,
+.eveb_header_info_uname:visited{width:120px;overflow:hidden;display:inline-block;float:left;}
+.eveb_header_shadow{height:60px;position:absolute;top:0;left:0;width:100%;z-index:-1;}
+.eveb_logo img{height:55px;margin:5px 10px;}
+.eveb_header_info a.button_small.button_1 { color:#fff;}
+.eveb_header_info a.button_small.button_1:hover { text-decoration:none;}
+/*头部 公告*/
+.eveb_header_notice{float:right;color:#000;height:30px;line-height:30px;font-size:12px;margin-top:10px;overflow:hidden;}
+.eveb_header_notice h4{float:left;font-size:12px;}
+.eveb_header_notice ul{float:left;}
+.eveb_header_notice a:link,
+.eveb_header_notice a:visited{color:#000;margin:0 8px;}
+.eveb_header_notice a:hover{text-decoration:underline;}
+.eveb_header_notice span{color:#999;}
+.eveb_header_notice li a{display:inline-block;width:350px;overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;}
+.eveb_header_notice span{float:right;}
+.eveb_header_notice_control{float:right;}
+.eveb_header_notice_control i{float:left;margin:6px 0 0 6px;cursor:pointer;}
+
+/*导航*/
+.eveb_nav{height:50px;line-height:50px;font-size:16px;}
+.eveb_nav li{float:left;}
+.eveb_nav a:link,
+.eveb_nav a:visited{color:#FFF;display:block;padding:0 20px 0 4px;}
+.eveb_nav li i{float:left;cursor:pointer;}
+.eveb_nav_sub{height:40px;line-height:40px;margin-top:10px;}
+.eveb_nav_sub li{float:left;padding:0 10px;}
+.eveb_nav_sub a:link,
+.eveb_nav_sub a:visited{color:#1a2e7a;}
+.eveb_nav_sub a:hover{color:#1a2e7a;}
+.eveb_nav_sub .on{background:url("../image/tip.png") no-repeat center bottom;background-color: #ff9200;line-height: 35px;}
+.eveb_nav_sub .on a{color:#fff}
+/*内容*/
+.eveb_content{background:#FFF;box-shadow:0 3px 5px rgba(0,0,0,0.1);padding:0px;overflow:auto;zoom:1;}
+.eveb_content h2{color:#000;font-size:25px;border-bottom:1px solid #EEE;height:60px;margin-bottom:20px;}
+.eveb_content h3{color:#000;font-size:20px;margin-top:20px;font-weight:normal;}
+.eveb_table{width:100%;text-align:center;margin-bottom:20px;font-size:12px;}
+.eveb_table th{height:45px;color:#666;font-weight:normal;}
+.eveb_table td{height:46px;}
+.eveb_table td.light{color:#FF7F00;}
+.eveb_table td.dark{color:#333;}
+.eveb_table a:hover{text-decoration:underline;}
+.eveb_box{border:1px solid #DDD;}
+.eveb_box h4{height:45px;color:#666;font-weight:normal;line-height:40px;padding:0 10px;font-size:16px;}
+.eveb_box h4 span{float:right;font-size:12px;}
+.eveb_box h4 span i{margin-top:11px;}
+.eveb_box_2{float:left;width:66.66%;}
+.eveb_box_3{float:left;width:33.33%;}
+.eveb_tip{background:#FFFFEE;border:1px solid #E9DDD1;margin-bottom:20px;padding:20px;text-align:center;}
+.eveb_tip #info1 a{text-decoration:underline}
+.eveb_search{float:right;font-size:12px;font-weight:normal;}
+.eveb_search_h2{margin-top:10px;}
+.eveb_amount{color:#999;font-size:12px;margin-top:5px;}
+.eveb_amount span{color:#FF7F00;font-weight:bold;}
+.eveb_copy{display:inline;}
+
+/*首页 认证状态*/
+.eveb_index_validation{height:120px;padding-top:10px;}
+.eveb_index_validation li{float:left;width:33.3%;text-align:center;}
+.eveb_index_validation p{color:#666;}
+/*首页 我的资金*/
+.eveb_index_money{height:175px;overflow:hidden;}
+.eveb_index_money li{height:43px;line-height:40px;border-bottom:1px dashed #DDD;padding-left:10px;}
+.eveb_index_money a:link,
+.eveb_index_money a:visited{padding:2px 5px;border-radius:3px;border:1px solid #DDD;color:#666;font-size:12px;margin-right:10px;}
+.eveb_index_money a:hover{background:#F5F5F5;}
+.eveb_index_money span{color:#999;}
+.eveb_index_money em{font-size:20px;font-family:"Arial";}
+.eveb_index_money .bank_btn{float:right;}
+/*首页 站内信*/
+.eveb_index_letter{padding:10px 10px 0 10px;height:120px;overflow:hidden;}
+.eveb_index_letter li{font-size:12px;height:30px;_height:28px;}
+.eveb_index_letter .new em{float:left;padding:1px 3px;background:#6DD900;color:#FFF;margin-right:10px;}
+.eveb_index_letter .new a:link,
+.eveb_index_letter .new a:visited{color:#333;font-weight:bold;}
+.eveb_index_letter li a:link,
+.eveb_index_letter li a:visited{float:left;display:inline-block;width:75%;height:18px;color:#666;overflow:hidden;word-wrap:normal;white-space:nowrap;text-overflow:ellipsis;}
+.eveb_index_letter li a:hover{text-decoration:underline;}
+.eveb_index_letter li span{float:right;color:#bbb;}
+/*首页 可优惠*/
+.eveb_index_promo{background:#F5F5F5;height:88px;text-align:center;position:relative;}
+.eveb_index_promo p{font-size:16px;margin-top:18px;}
+.eveb_index_promo_btn a{display:inline-block;width:50px;height:20px;margin-top:10px;}
+.eveb_index_promo_num{font-size:20px;position:absolute;right:15px;top:20px;font-size:40px;}
+.eveb_index_promo_num span{font-size:20px;color:#999;}
+.eveb_index_promo_banner{height:90px;overflow:hidden;}
+.eveb_index_promo_banner li{overflow:hidden;}
+.eveb_index_promo_banner img{width:100%;height:90px;}
+
+/*底部*/
+.eveb_footer{padding-top:20px;height:40px;font-size:12px;color:#999;}
+.eveb_footer span{float:left;color:#CCC;}
+.eveb_footer span a{padding:0 10px;color:#ccc;}
+.eveb_footer span a:hover{color:#ff9200;text-decoration: none;}
+.eveb_footer em{float:right;}
+
+/*表单*/
+.eveb_form{line-height:30px;}
+.eveb_form span{float:left;display:block;width:120px;text-align:right;color:#333;margin-right:10px;}
+.eveb_form em{font-size:12px;color:#999;}
+.eveb_form label.error{display:inline-block;font-size:12px;color:#FF7F00;}
+.eveb_form li{margin-bottom:20px;}
+.eveb_form_box{margin-left:130px;}
+.eveb_form_box strong{color:#FF7F00}
+.eveb_form_submit{border-top:1px solid #EEE;padding-top:20px;text-align:center;padding-bottom:10px}
+.eveb_form_submit p{margin-bottom:20px;font-size:12px;}
+.eveb_form_submit p strong{color:#2CB200;} 
+
+/*分类标签*/
+.eveb_sub_nav{border-bottom:1px solid #CCC;height:41px;}
+.eveb_sub_nav_type li{float:left;margin-right:5px;}
+.eveb_sub_nav_type a:link,
+.eveb_sub_nav_type a:visited{float:left;display:block;height:40px;line-height:40px;text-align:center;border:1px solid #CCC;background:#EEE;color:#666;padding:0 15px;}
+.eveb_sub_nav_type a:hover,
+.eveb_sub_nav_type li.on a:link,
+.eveb_sub_nav_type li.on a:visited{color:#333;font-weight:bold;border-bottom-color:#fff;background:#FFF;}
+.eveb_sub_nav_type em{font-size:12px;}
+.eveb_sub_nav input{padding:3px;}
+.eveb_list_footer{margin-top:20px;}
+.eveb_list_select{padding:0 10px;}
+
+/*分页*/
+.eveb_page span{float:left;display:block;width:23px;text-align:center;}
+.eveb_page a:link,
+.eveb_page a:visited{float:left;display:block;width:23px;height:23px;line-height:23px;text-align:center;border:1px solid #FFF;color:#666;margin-right:5px;}
+.eveb_page a:hover,
+.eveb_page .on:link,
+.eveb_page .on:visited{color:#fff;border-radius:3px;}
+
+/*存款*/
+.eveb_radio_list label{display:inline-block;height:30px;line-height:30px;text-align:center;margin-right:10px;}
+.eveb_radio_list label.on{border:1px solid #DDD;border-bottom-color:transparent;background:#F5F5F5;padding:0 15px;}
+.eveb_radio_list label input{margin-right:5px;}
+.eveb_radio_list_sub{border:1px solid #DDD;padding:10px;background:#F5F5F5;margin-top:-1px;display:none;}
+.eveb_bank_list{height:90px;overflow:hidden;}
+.eveb_bank_list label{float:left;display:inline-block;margin:0 10px 10px 0;}
+.eveb_bank_list label input{margin: 12px 5px;}
+.eveb_bank_list .banklogo{border:1px solid #DDD;}
+/*提款*/
+.eveb_withdraw_list{overflow:auto;zoom:1;margin-bottom:20px;}
+.eveb_withdraw_list li{float:left;width:33.3%;padding-bottom:5px;margin-bottom:20px;}
+.eveb_withdraow_box{border:2px solid #EEE;margin-right:20px;height:140px;overflow:hidden;}
+.eveb_withdraow_box:hover{border:2px solid #CCC;}
+.eveb_withdraw_list .on{box-shadow:0px 2px 4px rgba(0,0,0,0.2)}
+.eveb_withdraw_list p{text-align:center;color:#333;font-size:20px;font-family:"Arial";display:block;height:60px;line-height:60px;}
+.eveb_withdraw_list span{margin-top:5px;}
+.eveb_withdraw_list em{display:block;background:#F5F5F5;color:#999;font-size:12px;height:40px;line-height:40px;padding:0 10px;}
+.eveb_withdraw_list em strong{color:#666;font-weight:normal;}
+.eveb_withdraw li{position:relative;}
+.eveb_withdraw span{width:310px;}
+.eveb_withdraw .eveb_form_box{margin-left:320px;}
+.eveb_withdraw_tip{font-size:16px;clear:both;}
+.eveb_withdraw_tip strong{color:#FF7F00;}
+.eveb_withdraow_add{background:#F9F9F9;text-align:center;}
+.eveb_withdraow_add a:link,
+.eveb_withdraow_add a:visited{display:block;height:140px;line-height:195px;color:#333;background:url("../image/add.png") no-repeat center 35px;}
+.eveb_withdraow_add:hover{background:#FFF;}
+/*转账*/
+.eveb_transfer_box{height:97px;border:1px solid #DDD;box-sizing:border-box;overflow:hidden;margin-bottom:40px;}
+.eveb_transfer_box .center_wallet{width:180px;height:100%;border-right:1px solid #DDD;text-align:center;color:#666;overflow:hidden;background:#F5F5F5;}
+.eveb_transfer_box .center_wallet span{display:block;margin:22px 0 5px 0;}
+.eveb_transfer_box .center_wallet .money{color:#FF7F00;font-size:16px;}
+.eveb_transfer_box .center_wallet .money strong{font-family:"Arial";font-size:20px;}
+.eveb_transfer_box .wallet_list{width:75.9%;padding-top:25px;}
+.eveb_transfer_box .wallet_list li{float:left;width:14%;text-align:center;color:#666;}
+.eveb_transfer_box .wallet_list li p{color:#FF7F00;line-height:30px;}
+.eveb_transfer_2_list{margin-bottom:10px;overflow:auto;zoom:1;}
+.eveb_transfer_2_list li{float:left;width:33.3%;}
+.eveb_transfer_2_list div{border:1px solid #DDD;height:40px;line-height:40px;margin:0 20px 20px 0}
+.eveb_transfer_2_list p{float:left;width:60%;background:#F5F5F5;padding-left:10px;}
+.eveb_transfer_2_list input{float:right;border:none;width:20%;height:40px;line-height:40px\9;padding:0 10px;text-align:right;}
+.eveb_transfer_2_list .on div{box-shadow:0 2px 4px rgba(0,0,0,0.2)}
+.eveb_transfer_2_list .on p{color:#FFF;}
+.eveb_transfer_2_tab{border:1px solid #DDD;height:100px;}
+.eveb_transfer_2_tab li{float:left;position:relative;width:25%;*width:24.95%;height:80px;text-align:center;margin-bottom:0!important;padding-top:20px;overflow:hidden;_zoom:1;}
+.eveb_transfer_2_tab li p{display:block;font-size:14px;color:#999;margin-bottom:5px;}
+.eveb_transfer_2_tab li em{font-size:40px;color:#EEE;}
+.eveb_transfer_2_tab li .num{font-family:"Arial";font-size:30px;color:#FF7F00;}
+.eveb_transfer_2_tab li.on{background:#F5F5F5;}
+.eveb_transfer_2_tab li.on p{color:#333;font-size:20px;margin-top:15px;}
+.eveb_transfer_2_tab li.on i{display:block;}
+
+/*转账*/
+.macau_transfer_box{height:102px;border:1px solid #DDD;box-sizing:border-box;overflow:hidden;margin-bottom:40px;}
+.macau_transfer_box .center_wallet{width:230px;height:100%;border-right:1px solid #DDD;text-align:center;color:#666;overflow:hidden;background:#F5F5F5;}
+.macau_transfer_box .center_wallet span{display:block;margin:22px 0 5px 0;}
+.macau_transfer_box .center_wallet .money{color:#FF7F00 ;font-size:16px;}
+.macau_transfer_box .center_wallet .money strong{font-family:"Arial";font-size:20px;}
+
+
+/* single column */
+.macau_transfer_box .wallet_list{width:auto; margin:0 auto; text-align:center;}
+.macau_transfer_box .wallet_list li {float:left;width:115.8px;text-align:center;color:#666; font-size:14px;padding:25px 0;border:1px dotted #eee  }
+.macau_transfer_box .wallet_list li:hover { background-color:#eee; border:1px solid #ddd; }
+.macau_transfer_box .wallet_list li p{color:#d3a677 ;line-height:30px;}
+
+/* 2 columns */
+.eveb_transfer_box .wallet_list_2{width:auto; margin:0 auto; text-align:center;}
+.eveb_transfer_box .wallet_list_2 li{float:left;width:99px;text-align:center;color:#666; font-size:12px;padding:7px 0 5px 0;border:1px dotted #eee ;height: 36px; }
+.eveb_transfer_box .wallet_list_2 li:hover { background-color:#eee; border:1px solid #ddd; }
+.eveb_transfer_box .wallet_list_2 li p{color:#FF7F00 ;line-height:20px;}
+
+.macau_transfer_2_list {margin-bottom:10px;overflow:auto;zoom:1;}
+.macau_transfer_2_list li{float:left;width:33.3%;}
+.macau_transfer_2_list div{border:1px solid #DDD;height:40px;line-height:40px;margin:0 20px 20px 0}
+.macau_transfer_2_list p{float:left;width:60%;background:#F5F5F5;padding-left:10px;}
+.macau_transfer_2_list input{float:right;border:none;width:20%;height:40px;line-height:40px\9;padding:0 10px;text-align:right;}
+.macau_transfer_2_list .on div{box-shadow:0 2px 4px rgba(0,0,0,0.2)}
+.macau_transfer_2_list .on p{color:#FFF;}
+.macau_transfer_2_tab{border:1px solid #DDD;height:100px;}
+.macau_transfer_2_tab li{float:left;position:relative;width:25%;*width:24.95%;height:80px;text-align:center;margin-bottom:0!important;padding-top:20px;overflow:hidden;_zoom:1;}
+.macau_transfer_2_tab li p{display:block;font-size:14px;color:#999;margin-bottom:5px;}
+.macau_transfer_2_tab li em{font-size:40px;color:#EEE;}
+.macau_transfer_2_tab li .num{font-family:"Arial";font-size:30px;color:#83ac0c;}
+.macau_transfer_2_tab li.on{background:#F5F5F5;}
+.macau_transfer_2_tab li.on p{color:#333;font-size:20px;margin-top:15px;}
+.macau_transfer_2_tab li.on i{display:block;}
+
+
+/*站内信*/
+.eveb_letter_list{font-size:12px;border-bottom:1px solid #CCC;}
+.eveb_letter_list li{border-bottom:1px dashed #DDD;padding:0 10px;position:relative;}
+.eveb_letter_title{height:50px;line-height:50px;color:#666;overflow:hidden;}
+.eveb_letter_title a:link,
+.eveb_letter_title a:visited{font-size:14px;color:#333;}
+.eveb_letter_title a.new{color:#000;font-weight:bold;}
+.eveb_letter_title em{padding:2px 4px;background:#6DD900;color:#FFF;}
+.eveb_letter_list li .detail{display:none;}
+.eveb_letter_list li .detail p{color:#999;width:70%;line-height:24px;padding:0 0 20px 20px;}
+.eveb_letter_control{position:absolute;right:20px;bottom:20px;}
+/* 市场活动*/
+.eveb_tab{border:1px solid #DDD;height:100px;}
+.eveb_tab li{float:left;position:relative;width:20%;*width:19.98%;height:90px;text-align:center;margin-bottom:0!important;padding-top:10px;}
+.eveb_tab_2{overflow:hidden;_zoom:1;}
+.eveb_tab_2 li{width:25%;*width:24.95%;height:90px;padding-top:10px;}
+.eveb_tab li i.icon_tab_tip{position:absolute;display:none;bottom:-15px;left:50%;margin-left:-14px;width:29px;height:15px;}
+.eveb_tab li.on i{display:block;}
+.eveb_tab li p{display:block;font-size:14px;color:#999;margin-bottom:5px;}
+.eveb_tab li .num{font-family:"Arial";font-size:40px;color:#BBB;}
+.eveb_tab li.on{background:#FCFCFC;}
+.eveb_tab li.on p{color:#FF7F00;}
+.eveb_market_list{margin-top:20px;}
+.eveb_market_list .eveb_table{display:none;}
+.eveb_market_tip{color:#FF7F00;font-size:16px;}
+/*账户设置*/
+.eveb_setting_table{width:100%;border:1px solid #DDD;margin-bottom:20px;}
+.eveb_setting_table td{border:1px solid  #ddd;height:40px;padding-left:2%;color:#666;}
+.eveb_setting_table .tit{color:#333;background:#F5F5F5;}
+.eveb_setting_table .wid{width:30%;}
+.eveb_setting_table a,
+.eveb_setting_table .color{color:#06855f;}
+.eveb_setting_table a:hover{text-decoration:underline;}
+.eveb_setting_table .iconsimg{width:16px;height:16px;background-position:0 -168px;margin-right:5px;top:4px;}
+.eveb_setting_form span{width:310px;}
+.eveb_setting_form .eveb_form_box{margin-left:320px;}
+/*验证*/
+.eveb_step{margin-top:60px;border-top:5px solid #EEE;color:#999;height:100px;text-align:center;}
+.eveb_step li{float:left;width:33.3%;font-size:16px;margin-top:-40px;}
+.eveb_step em{width:60px;height:60px;line-height:60px;border-radius:60px;background:#DDD;color:#FFF;font-size:44px;display:inline-block;border:3px solid #FFF;font-family:"Arial";box-shadow:0px 2px 10px rgba(0,0,0,0.1);}
+.eveb_step p{margin-top:10px;}
+.eveb_validation_form span{width:410px;}
+/*弹窗*/
+.eveb_popup_wrap{position:absolute;display:none;width:100%;height:100%;top:0;left:0;z-index:9;background:#000;background:none\9;opacity:0.5;filter:alpha(opacity=50);}
+.eveb_popup{position:absolute;width:500px;display:none;top:50%;left:50%;z-index:10;background:#fff;box-shadow:0 5px 10px rgba(0,0,0,0.5);border:1px solid #CCC\9;}
+.eveb_popup .eveb_popup_hd{height:45px;line-height:40px;color:#000;padding:0 15px;font-size:16px;}
+.eveb_popup .eveb_popup_hd a{margin-top:14px;}
+.eveb_popup .eveb_popup_bd{padding:20px;}
+.eveb_popup .eveb_popup_content{text-align:center;}
+.eveb_popup .eveb_popup_bd span{margin-bottom:10px;display:block;}
+.eveb_popup .eveb_popup_content{line-height:24px;}
+.eveb_popup .eveb_popup_btn{text-align:center;margin:20px 0;border-top:1px solid #EEE;padding-top:30px;}
+.eveb_popup_content .eveb_tip{margin-top:20px;overflow:auto;zoom:1;}
+.eveb_popup_content .eveb_tip li{float:left;width:50%;}
+.eveb_popup_content .eveb_tip span{font-size:16px;font-weight:bold;}
+
+/*LAYDATE*/
+.laydate_body .laydate_box,.laydate_body .laydate_box *{margin:0;padding:0;}
+.laydate-icon,.laydate-icon-default,.laydate-icon-yahui,.laydate-icon-danlan,.laydate-icon-qianhuang,.laydate-icon-yalan,.laydate-icon-dahong{height:22px;line-height:22px;padding-right:20px;background-repeat:no-repeat;background-position:right center;background-color:#fff;outline:0;}
+.laydate-icon-default{border:1px solid #C6C6C6;background-image:url(../skins/default/icon.png)}
+.laydate-icon-yahui{border:1px solid #C6C6C6;background-image:url(../skins/yahui/icon.png)}
+.laydate-icon-danlan{border:1px solid #B1D2EC;background-image:url(../skins/danlan/icon.png)}
+.laydate-icon-qianhuang{border:1px solid #E7D7CB;background-image:url(../skins/qianhuang/icon.png)}
+.laydate-icon-yalan{border:1px solid #34AADC;background-image:url(../skins/yalan/icon.png)}
+.laydate-icon-dahong{border:1px solid #D91600;background-image:url(../skins/dahong/icon.png)}
+.laydate_body .laydate_box{width:240px;font:12px '\5B8B\4F53';z-index:99999999;*margin:-2px 0 0 -2px;*overflow:hidden;_margin:0;_position:absolute!important;background-color:#fff;}
+.laydate_body .laydate_box li{list-style:none;}
+.laydate_body .laydate_box .laydate_void{cursor:text!important;}
+.laydate_body .laydate_box a,.laydate_body .laydate_box a:hover{text-decoration:none;blr:expression(this.onFocus=this.blur());cursor:pointer;}
+.laydate_body .laydate_box a:hover{text-decoration:none;}
+.laydate_body .laydate_box cite,.laydate_body .laydate_box label{position:absolute;width:0;height:0;border-width:5px;border-style:dashed;border-color:transparent;overflow:hidden;cursor:pointer;}
+.laydate_body .laydate_box .laydate_yms,.laydate_body .laydate_box .laydate_time{display:none;}
+.laydate_body .laydate_box .laydate_show{display:block;}
+.laydate_body .laydate_box input{outline:0;font-size:14px;background-color:#fff;}
+.laydate_body .laydate_top{position:relative;height:26px;padding:5px;*width:100%;z-index:99;}
+.laydate_body .laydate_ym{position:relative;float:left;height:24px;cursor:pointer;}
+.laydate_body .laydate_ym input{float:left;height:24px;line-height:24px;text-align:center;border:none;cursor:pointer;}
+.laydate_body .laydate_ym .laydate_yms{position:absolute;left:-1px;top:24px;height:181px;}
+.laydate_body .laydate_y{width:121px;margin-right:6px;}
+.laydate_body .laydate_y input{width:64px;margin-right:15px;}
+.laydate_body .laydate_y .laydate_yms{width:121px;text-align:center;}
+.laydate_body .laydate_y .laydate_yms a{position:relative;display:block;height:20px;}
+.laydate_body .laydate_y .laydate_yms ul{height:139px;padding:0;*overflow:hidden;}
+.laydate_body .laydate_y .laydate_yms ul li{float:left;width:60px;height:20px;line-height:20px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.laydate_body .laydate_m{width:99px;}
+.laydate_body .laydate_m .laydate_yms{width:99px;padding:0;}
+.laydate_body .laydate_m input{width:42px;margin-right:15px;}
+.laydate_body .laydate_m .laydate_yms span{display:block;float:left;width:42px;margin:5px 0 0 5px;line-height:24px;text-align:center;_display:inline;}
+.laydate_body .laydate_choose{display:block;float:left;position:relative;width:20px;height:24px;}
+.laydate_body .laydate_choose cite,.laydate_body .laydate_tab cite{left:50%;top:50%;}
+.laydate_body .laydate_chtop cite{margin:-7px 0 0 -5px;border-bottom-style:solid;}
+.laydate_body .laydate_chdown cite,.laydate_body .laydate_ym label{top:50%;margin:-2px 0 0 -5px;border-top-style:solid;}
+.laydate_body .laydate_chprev cite{margin:-5px 0 0 -7px;}
+.laydate_body .laydate_chnext cite{margin:-5px 0 0 -2px;}
+.laydate_body .laydate_ym label{right:28px;}
+.laydate_body .laydate_table{width:230px;margin:0 5px;border-collapse:collapse;border-spacing:0px;}
+.laydate_body .laydate_table td{width:31px;height:19px;line-height:19px;text-align:center;cursor:pointer;font-size:12px;}
+.laydate_body .laydate_table thead{height:22px;line-height:22px;}
+.laydate_body .laydate_table thead th{font-weight:400;font-size:12px;}
+.laydate_body .laydate_bottom{position:relative;height:22px;line-height:20px;padding:5px;font-size:12px;}
+.laydate_body .laydate_bottom #laydate_hms{position:relative;z-index:1;float:left;}
+.laydate_body .laydate_time{position:absolute;left:5px;bottom:26px;width:129px;height:125px;*overflow:hidden;}
+.laydate_body .laydate_time .laydate_hmsno{padding:5px 0 0 5px;}
+.laydate_body .laydate_time .laydate_hmsno span{display:block;float:left;width:24px;height:19px;line-height:19px;text-align:center;cursor:pointer;*margin-bottom:-5px;}
+.laydate_body .laydate_time1{width:228px;height:154px;}
+.laydate_body .laydate_time1 .laydate_hmsno{padding:0;*padding:4px 0 0 5px;}
+.laydate_body .laydate_msg{left:49px;bottom:67px;width:141px;height:auto;overflow:hidden;}
+.laydate_body .laydate_msg p{padding:5px 10px;}
+.laydate_body .laydate_bottom li{float:left;height:20px;line-height:20px;border-right:none;font-weight:900;}
+.laydate_body .laydate_bottom .laydate_sj{width:33px;text-align:center;font-weight:400;}
+.laydate_body .laydate_bottom input{float:left;width:21px;height:20px;line-height:20px;border:none;text-align:center;cursor:pointer;font-size:12px;font-weight:400;}
+.laydate_body .laydate_bottom .laydte_hsmtex{height:20px;line-height:20px;text-align:center;}
+.laydate_body .laydate_bottom .laydte_hsmtex span{position:absolute;width:20px;top:0;right:0px;cursor:pointer;}
+.laydate_body .laydate_bottom .laydte_hsmtex span:hover{font-size:14px;}
+.laydate_body .laydate_bottom .laydate_btn{position:absolute;right:5px;top:5px;}
+.laydate_body .laydate_bottom .laydate_btn a{float:left;height:20px;padding:0 6px;_padding:0 5px;}
+.laydate_body .laydate_bottom .laydate_v{position:absolute;left:10px;top:6px;font-family:Courier;z-index:0;}
+.laydate-icon{border:1px solid #C6C6C6;background-image:url(icon.png)}
+.laydate_body .laydate_box,.laydate_body .laydate_ym,.laydate_body .laydate_ym .laydate_yms,.laydate_body .laydate_table,.laydate_body .laydate_table td,.laydate_body .laydate_bottom #laydate_hms,.laydate_body .laydate_time,.laydate_body .laydate_bottom .laydate_btn a{border:1px solid #C6C6C6;}
+.laydate_body .laydate_y .laydate_yms a,.laydate_body .laydate_choose,.laydate_body .laydate_table thead,.laydate_body .laydate_bottom .laydte_hsmtex{background-color:#F0F0F0;}
+.laydate_body .laydate_box,.laydate_body .laydate_ym .laydate_yms,.laydate_body .laydate_time{box-shadow:2px 2px 5px rgba(0,0,0,.1);}
+.laydate_body .laydate_box{border-top:none;border-bottom:none;background-color:#fff;color:#333;}
+.laydate_body .laydate_box input{color:#333;}
+.laydate_body .laydate_box .laydate_void{color:#ccc!important; /*text-decoration:line-through;*/}
+.laydate_body .laydate_box .laydate_void:hover{background-color:#fff!important}
+.laydate_body .laydate_box a,.laydate_body .laydate_box a:hover{color:#333;}
+.laydate_body .laydate_box a:hover{color:#666;}
+.laydate_body .laydate_click{background-color:#E9E9E9!important;}
+.laydate_body .laydate_top{border-top:1px solid #C6C6C6;}
+.laydate_body .laydate_ym .laydate_yms{border:1px solid #C6C6C6;background-color:#fff;}
+.laydate_body .laydate_y .laydate_yms a{border-bottom:1px solid #C6C6C6;}
+.laydate_body .laydate_y .laydate_yms .laydate_chdown{border-top:1px solid #C6C6C6;border-bottom:none;}
+.laydate_body .laydate_y .laydate_yms ul li:hover{background-color:#F1F1F1;color:#000;}
+.laydate_body .laydate_m .laydate_yms span:hover{background-color:#F1F1F1;color:#000;}
+.laydate_body .laydate_choose{border-left:1px solid #C6C6C6;}
+.laydate_body .laydate_chprev{border-left:none;border-right:1px solid #C6C6C6;}
+.laydate_body .laydate_choose:hover,.laydate_body .laydate_y .laydate_yms a:hover{background-color:#F6F6F6;}
+.laydate_body .laydate_chtop cite{border-bottom-color:#666;}
+.laydate_body .laydate_chdown cite,.laydate_body .laydate_ym label{border-top-color:#666;}
+.laydate_body .laydate_chprev cite{border-right-style:solid;border-right-color:#666;}
+.laydate_body .laydate_chnext cite{border-left-style:solid;border-left-color:#666;}
+.laydate_body .laydate_table td{border:1px solid #C6C6C6;color:#333;}
+.laydate_body .laydate_table .laydate_nothis{color:#999;}
+.laydate_body .laydate_table thead{background-color:#E3E3E3;color:#000;}
+.laydate_body .laydate_table thead th{}
+.laydate_body .laydate_bottom{border-bottom:1px solid #C6C6C6;}
+.laydate_body .laydate_bottom #laydate_hms{background-color:#fff;}
+.laydate_body .laydate_time{background-color:#fff;}
+.laydate_body .laydate_bottom .laydate_sj{border-right:1px solid #C6C6C6;background-color:#F3F3F3;}
+.laydate_body .laydate_bottom input{background-color:#fff;}
+.laydate_body .laydate_bottom .laydte_hsmtex{border-bottom:1px solid #C6C6C6;}
+.laydate_body .laydate_bottom .laydate_btn{border-right:1px solid #C6C6C6;}
+.laydate_body .laydate_bottom .laydate_v{color:#999}
+.laydate_body .laydate_bottom .laydate_btn a{border-right:none;background-color:#F0F0F0;}
+.laydate_body .laydate_bottom .laydate_btn a:hover{color:#000;background-color:#fff;}
+.laydate_body .laydate_table td:hover,.laydate_body .laydate_bottom .laydate_time span:hover{background-color:#F2F2F2}
+
+/*ALERT*/
+#popup_container{min-width:300px;max-width:600px;background:#FFF;box-shadow:0 5px 10px rgba(0,0,0,0.5);}
+#popup_title{height:45px;line-height:40px;color:#000;padding:0 15px;font-size:16px;border-bottom:1px solid #EEE;}
+#popup_title i{margin-top:15px;cursor:pointer;}
+#popup_content{padding:20px;}
+#popup_message{text-align:center;}
+#popup_panel{text-align:center;margin-top:20px;}
+
+/*银行列表*/
+.banklogo{background:url(../image/bank_logo.gif) left top no-repeat;display:inline-block;width:122px;height:35px;cursor:pointer;vertical-align:top;}
+.banklogo img{width:100%;height:100%;}
+.bank01020000,.bank50,.bank52,.bank53,.bank-icbc{background-position:0 -33px;}
+.bank01030000,.bank-abchina{background-position:0 -66px;}
+.bank01040000,.bank56,.bank-chinabank{background-position:0 -99px;}
+.bank01050000,.bank59,.bank-ccb{background-position:0 -132px;}
+.bank03010000,.bank61,.bank62,.bank63,.bank64,.bank-comm{background-position:0 -165px;}
+.bank01000000,.bank01009998,.bank01009999,.bank-psbc{background-position:0 -198px;}
+.bank03020000,.bank63020000,.bank70,.bank-ecitic{background-position:0 -231px;}
+.bank03030000,.bank63030000,.bank79,.bank-cebbank{background-position:0 -264px;}
+.bank03040000,.bank03040001,.bank63040000,.bank14{background-position:0 -297px;}
+.bank-hxb{background-position:0 -297px;}
+.bank03050000,.bank03059998,.bank71,.bank-cmbc{background-position:0 -330px;}
+.bank03060000,.bank77,.bank-cgbchina{background-position:0 -363px;}
+.bank03070000{background-position:0 -396px;}
+.bank03080000,.bank63080000,.bank03080010,.bank65,.bank67,.bank68,.bank-cmb{background-position:0 -429px;}
+.bank03090000,.bank-cib{background-position:0 -462px;}
+.bank03100000,.bank73,.bank74,.bank75,.bank-spdb{background-position:0 -495px;}
+.bank04105840,.bank04100000,.bank05105840,.bank06105840,.bank84,.bank-pingan{background-position:0 -528px;}
+.bank-cbhb{background-position:0 -594px;}
+.bank-czbank{background-position:0 -627px;}
+.bank04031000,.bank03131000,.bank64031000,.bank-bankofbeijing{background-position:0 -660px;}
+.bank04012900,.bank04012902,.bank04010000,.bank83,.bank-bankofshanghai{background-position:0 -693px;}
+.bank-hzbank{background-position:0 -4991px;}
+.bank-srcb{background-position:0 -3042px;}
+.bank99{background-position:0 -761px;}
+.bank57{background-position:0 -5486px;}
+.bank69{background-position:0 -5552px;}
+.bank51{background-position:0 -5618px;}
+.bank60{background-position:0 -5519px;}
+.bank66{background-position:0 -5585px;}
+.bank54{background-position:0 -5652px;}
+.bank55{background-position:0 -5684px;}
+.bank78{background-position:0 -5717px;}
+.bank72{background-position:0 -5750px;}
+.bank82{background-position:0 -5783px;}
+.bank80{background-position:0 -5816px;}
+.bank14{background-position:0 -5849px;}
+.bank81{background-position:0 -5882px;}
+.bank76{background-position:0 -5915px;}
+.bank58{background-position:0 -5948px;}
+.bank01040000_big{background-position:0 -761px;}
+.bank14394200{background-position:0 -794px;}
+.bank14055810,.bank-961111{background-position:0 -827px;}
+.bank05658880{background-position:0 -860px;}
+.bank04314730,.bank64314730{background-position:0 -893px;}
+.bank04634280,.bank64634280{background-position:0 -926px;}
+.bank04023930{background-position:0 -959px;}
+.bank04053910{background-position:0 -992px;}
+.bank04956140{background-position:0 -1025px;}
+.bank14156020{background-position:0 -1058px;}
+.bank14105200{background-position:0 -1091px;}
+.bank14303050{background-position:0 -1124px;}
+.bank14373020{background-position:0 -1157px;}
+.bank05684960{background-position:0 -1190px;}
+.bank04885050{background-position:0 -1227px;}
+.bank05675060{background-position:0 -1256px;}
+.bank05354970{background-position:0 -1289px;}
+.bank05625080{background-position:0 -1325px;}
+.bank05365030{background-position:0 -1355px;}
+.bank14561100{background-position:0 -1388px;}
+.bank04263380{background-position:0 -1421px;}
+.bank05646710{background-position:0 -1454px;}
+.bank04368710{background-position:0 -1490px;}
+.bank14486400{background-position:0 -1520px;}
+.bank04083320,.bank-nbcb{background-position:0 -1553px;}
+.bank04392270{background-position:0 -1586px;}
+.bank04916170{background-position:0 -1619px;}
+.bank04588510,.bank64588510{background-position:0 -1652px;}
+.bank05755200{background-position:0 -1687px;}
+.bank-njcb{background-position:0 -1718px;}
+.bank05083000,.bank05213000{background-position:0 -1751px;}
+.bank14023052{background-position:0 -1784px;}
+.bank14033055{background-position:0 -1817px;}
+.bank14123022{background-position:0 -1850px;}
+.bank14163056{background-position:0 -1883px;}
+.bank14243000,.bank65243000{background-position:0 -1916px;}
+.bank14283054{background-position:0 -1949px;}
+.bank14333051{background-position:0 -1982px;}
+.bank14394200{background-position:0 -2015px;}
+.bank04544240,.bank64544240{background-position:0 -2048px;}
+.bank04484210,.bank64484210{background-position:0 -2081px;}
+.bank05264330,.bank65264330{background-position:0 -2114px;}
+.bank04791920{background-position:0 -2147px;}
+.bank05342050{background-position:0 -2180px;}
+.bank04741910{background-position:0 -2213px;}
+.bank14511900{background-position:0 -2246px;}
+.bank05311930{background-position:0 -2279px;}
+.bank05031680{background-position:0 -2312px;}
+.bank05591750{background-position:0 -2345px;}
+.bank14551600{background-position:0 -2378px;}
+.bank05631650{background-position:0 -2411px;}
+.bank15205840{background-position:0 -2444px;}
+.bank-961200{background-position:0 -2477px;}
+.bank05197117{background-position:0 -2510px;}
+.bank64437010{background-position:0 -2543px;}
+.bank04422610,.bank64422610{background-position:0 -2576px;}
+.bank05167030{background-position:0 -2609px;}
+.bank04302240{background-position:0 -2642px;}
+.bank14385500,.bank65385500{background-position:0 -2675px;}
+.bank04615510{background-position:0 -2708px;}
+.bank05027360{background-position:0 -2741px;}
+.bank05247410{background-position:0 -2774px;}
+.bank14436100{background-position:0 -2811px;}
+.bank04922600,.bank64922690{background-position:0 -2840px;}
+.bank05253450,.bank05253454{background-position:0 -2873px;}
+.bank04593451,.bank04593450{background-position:0 -2906px;}
+.bank04966730{background-position:0 -2939px;}
+.bank14075882{background-position:0 -2972px;}
+.bank14452400{background-position:0 -3005px;}
+.bank14012900,.bank65012900{background-position:0 -3038px;}
+.bank04202220{background-position:0 -3071px;}
+.bank04278810{background-position:0 -3104px;}
+.bank05478820{background-position:0 -3137px;}
+.bank14498500{background-position:0 -3170px;}
+.bank04478210,.bank64478210{background-position:0 -3203px;}
+.bank04761430{background-position:0 -3236px;}
+.bank05131410,.bank65131410{background-position:0 -3269px;}
+.bank05171270{background-position:0 -3302px;}
+.bank04221210,.bank64221210{background-position:0 -3335px;}
+.bank05611480{background-position:0 -3368px;}
+.bank04991240{background-position:0 -3401px;}
+.bank05541310{background-position:0 -3434px;}
+.bank04901380{background-position:0 -3467px;}
+.bank04986580{background-position:0 -3500px;}
+.bank05516620{background-position:0 -3533px;}
+.bank05326550{background-position:0 -3566px;}
+.bank14226510,.bank65226510{background-position:0 -3599px;}
+.bank05406650{background-position:0 -3632px;}
+.bank05556840{background-position:0 -3665px;}
+.bank05666770{background-position:0 -3698px;}
+.bank03190001{background-position:0 -3731px;}
+.bank-hkbea{background-position:0 -3764px;}
+.bank03220000{background-position:0 -3797px;}
+.bank05484950{background-position:0 -3830px;}
+.bank05503320{background-position:0 -3863px;}
+.bank04135810,.bank-gzcb{background-position:0 -3896px;}
+.bank48080000{background-position:0 -3967px;}
+.bank48100000{background-position:0 -5191px;}
+.bank04062410{background-position:0 -4036px;}
+.bank03330001{background-position:0 -4069px;}
+.bank04504520{background-position:0 -3930px;}
+.bank65085883,.bank-sdebank{background-position:0 -4102px;}
+.bank04667310,.bank64667310{background-position:0 -4135px;}
+.bank04332350{background-position:0 -4167px;}
+.bank14097310{background-position:0 -4200px;}
+.bank14603040{background-position:0 -4233px;}
+.bank14473600{background-position:0 -4266px;}
+.bank64504520{background-position:0 -3932px;}
+.bank14468700{background-position:0 -4299px;}
+.bank04296510{background-position:0 -4332px;}
+.bank14181000,.bank14181001,.bank-bjrcb{background-position:0 -4366px;}
+.bank03340000{background-position:0 -4398px;}
+.bank04836560{background-position:0 -4431px;}
+.bank14505800{background-position:0 -4464px;}
+.bank14411200{background-position:0 -4497px;}
+.bank04403600,.bank64403600{background-position:0 -4530px;}
+.bank04703350{background-position:0 -4563px;}
+.bank14024500,.bank14144510,.bank14144520{background-position:0 -4596px;}
+.bank05284630{background-position:0 -4629px;}
+.bank04094510,.bank64094510{background-position:0 -4662px;}
+.bank04643970{background-position:0 -4695px;}
+.bank04814650,.bank64814650{background-position:0 -4728px;}
+.bank04624580,.bank64624580{background-position:0 -4761px;}
+.bank04123330,.bank05063330{background-position:0 -4794px;}
+.bank05303387,.bank05303380{background-position:0 -4827px;}
+.bank14136900,.bank15136900{background-position:0 -4860px;}
+.bank64416910{background-position:0 -4893px;}
+.bank05274550,.bank65274550{background-position:0 -4926px;}
+.bank14173900,.bank65173900{background-position:0 -4959px;}
+.bank64233311{background-position:0 -4992px;}
+.bank04325260{background-position:0 -5025px;}
+.bank14203320{background-position:0 -5058px;}
+.bank64733450{background-position:0 -5091px;}
+.bank04571260{background-position:0 -5124px;}
+.bank05521340{background-position:0 -5157px;}
+.bank05121660{background-position:0 -5223px;}
+.bank04786110{background-position:0 -5252px;}
+.bank05565040{background-position:0 -5283px;}
+.bank03280000{background-position:0 -5311px;}
+.bank04652280{background-position:0 -5340px;}
+.bank04354910{background-position:0 -5369px;}
+.bank05492340{background-position:0 -5399px;}
+.bank03360000{background-position:0 -5430px;}
+.bank14538200{background-position:0 -5461px;}
+.banknew20001{background-position:0 -5985px;}
+.banknew20002{background-position:0 -6019px;}
+.banknew20003{background-position:0 -6057px;}
+.banknew20004{background-position:0 -6095px;}
+.banknew20005{background-position:0 -6134px;}
+.banknew20006{background-position:0 -6172px;}
+.banknew20007{background-position:0 -6208px;}
+.banknew20008{background-position:0 -6255px;}
+.banknew20009{background-position:0 -6294px;}
+.bank-bank-of-tianjin{background-position:0 -6329px;}
+.bank-unionpay{background-position:0 2px;}
+
+ /* 摩宝微信支付 */
+.bank-weixin {
+    background-position: 0 -6932px;
+}
+
+ /* 摩宝支付宝支付 */
+.bank-alipay {
+    background-position: 0 -6973px;
+}

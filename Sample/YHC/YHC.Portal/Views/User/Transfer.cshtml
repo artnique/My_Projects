@@ -1,0 +1,95 @@
+﻿@using YHC.Portal.Extensions;
+@using YHC.Portal.Models;
+@{
+    ViewBag.Title = "转账";
+    ViewBag.TopMenu = "icon_nav_transfer";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+    
+    User user = ViewBag.User as User;
+    IList<GameApi> apies = ViewBag.Apies as List<GameApi>;
+
+    Boolean hasApi = (apies != null && apies.Count > 0);
+}
+
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_transfer"></i>平台转账</h2>
+	<div class="eveb_transfer_box">
+		<div class="center_wallet fl">
+			<span>中心钱包</span>
+			<p class="money"><strong id="wallet">@(user == null ? string.Empty : user.Cash.ToStringN2())</strong>元</p>
+		</div>
+		<ul class="wallet_list_2">
+            @if(hasApi)
+            {
+                foreach(var item in apies)
+                {
+			        <li><span>@(item.GameName)</span><p id="amount_@(item.GamePlatform)" author="game" game="@(item.GamePlatform)">0</p></li>
+                }
+            }
+		</ul>
+	</div>
+	<form name="eveb_transfer">
+	<ul class="eveb_form eveb_withdraw">
+		<li>
+			<span>转出：</span>
+			<select name="outAccount" id="outAccount" style="width:200px;">
+				<option value="0">中心娱乐城</option>
+                @if (hasApi)
+                {
+                    foreach(var item in apies)
+                    {
+				    <option value="@(item.GamePlatform)">@(item.GameName)</option>
+                    }
+                }
+			</select>
+		</li>
+		<li>
+			<span>转入：</span>
+			<select name="inAccount" id="inAccount" style="width:200px;">
+				<option value="0">中心娱乐城</option>
+                @if (hasApi)
+                {
+                    foreach(var item in apies)
+                    {
+				    <option value="@(item.GamePlatform)">@(item.GameName)</option>
+                    }
+                    // "eveb_transfer_money_check(this);"
+                }
+			</select>
+		</li>
+		<li>
+			<span>金额：</span>
+			<input name="amount" id="amount" type="text" size="5"  onkeyup='this.value=this.value.replace(/[^\d\.]/g,"")' ondragenter="return false" onpaste="return !clipboardData.getData('text').match(/\D/)" />
+		</li>
+		<li><a id="switchAccount" href="javascript:;" class="icon_medium icon_transfer_control" title="交换">交换</a></li>
+	</ul>
+	<div class="eveb_form_submit">
+		@*<p class="light">温馨提示：在您需转入的游戏账户下填入金额，确认点击转账后即可完成平台转帐</p>*@
+		<input id="btn_save" type="button" value="转账" class="button_medium button_1" />
+	</div>
+	</form>
+</div>
+
+<!--弹窗 黑底-->
+<div class="eveb_popup_wrap"></div>
+<!--弹窗 转账成功-->
+<div class="eveb_popup" id="eveb_popup_transefer_ok">
+	<div class="eveb_popup_hd">
+		<h4 class="fl">转账成功</h4>
+		<a href="javascript:;" class="icon_mini icon_close fr" title="关闭"></a>
+	</div>
+	<div class="eveb_popup_bd">
+		<div class="eveb_popup_content">
+			<span><i class="icon_big icon_ok_3"></i></span>
+			<p>恭喜您，转账成功！流水号：<strong class="green">SN20150201076771</strong></p>
+			<p>如有任何疑问，请及时联系在线客服。</p>
+		</div>		
+		<div class="eveb_popup_btn">
+			<a name="pop_close" href="javascript:;" class="button_medium button_1">知道了</a>
+		</div>
+	</div>
+</div>
+
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/user/transfer.js")
+}

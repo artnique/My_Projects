@@ -1,0 +1,30 @@
+﻿@{
+   
+    IList<Game> TopGame = ViewBag.TopRecommendedGame as IList<Game>;
+    
+}
+<!-- Top Recommended Game Start-->
+<div class="slot-hot-img" style="width:980px; overflow:hidden;">
+    <ul>
+        @if (TopGame != null)
+        {
+            foreach (var game in TopGame)
+            {
+                string imgURL = ConfigHelper.ImageServerUrl + game.ImageUrl;
+                <li>
+                    <a href="#">
+                        <img src="@imgURL" />
+                    </a>
+                    <span></span>
+                    <div class="tc btnw">
+                        <a href="javascript:void(0);" onclick="load_game_link('@game.Api.GamePlatform', '@game.GameTypeText_EN', '@game.GameIdentify')">进入</a>
+                        |
+                        <a href="javascript:void(0);" onclick="load_game_link('@game.Api.GamePlatform', '@game.GameTypeText_EN', '@game.GameIdentify')" class="enter radius iblock">试玩</a>
+                    </div>
+                    <p class="tc">@game.Title</p>
+                </li>
+            }
+        }
+</ul>
+</div>
+<!-- Top Recommended Game End-->

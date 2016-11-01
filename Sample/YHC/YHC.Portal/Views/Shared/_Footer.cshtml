@@ -1,0 +1,109 @@
+﻿@using YHC.Portal.Services;
+@using YHC.Portal.Core;
+@{
+    
+    CommonService common = new CommonService();
+    Footer footer = common.GetFooter("yc_footer_main");
+    PagerFrontViewModel<Ad> footerImages = common.GetFooterImages();
+
+    string imageServerUrl = ConfigHelper.ImageServerUrl;
+    
+    common = null;
+
+    string url_hz_image = "";
+    if (footerImages!= null)
+    {
+        if(footerImages.list.Count > 0)
+        {
+            foreach(var item in footerImages.list)
+            {
+                if(item.Title == "yc_footer_image_hz")
+                {
+                    url_hz_image = imageServerUrl + item.ImgUrl;
+                }
+            }
+        }
+    }
+}
+<!-- footer 开始-->
+<div class="hz">
+    <div class="c" style="background:url(@url_hz_image); background-repeat:no-repeat; background-position:center"></div>
+</div>
+    @if (footer != null)
+    {
+        @(Html.Raw(footer.Content.ToString()))
+    }
+<!-- footer 结束-->
+<!-- 在线客服start -->
+<div class="service-bg">
+    <div class="service">
+        <ul>
+            <li><a href="javascript:void(0);" name="top_livechat" class="customer btn_kefu"></a></li>
+            <li><a href="http://www.kj088.com/" class="line"></a></li>
+            <li><a href="#" class="qq"></a></li>
+            <span><img src="/Content/img/wechat_code.png" width="114" height="117" /></span>
+        </ul>
+    </div>
+</div>
+<!-- 在线客服end -->
+<!-- 弹出服务协议 开始 -->
+<div class="tanchu ffw" id="fwxy" style="width: 700px;">
+    <div class="t wraperl-mda">
+        <a href="javascript:void(0)" class="fr js-guanbi op f16">关闭窗口</a>
+        <h3>英皇国际反馈中心</h3>
+    </div>
+    <div class="c p30 wraperl-lg">
+        <div class="shuang f14">
+            为了解您遇到的问题，请填写以下信息。
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="t30">
+            <tbody>
+                <tr>
+                    <td valign="top" style="font-size:14px;" class="text-right">问题描述：</td>
+                    <td>
+                        <textarea name="" id="" cols="30" rows="5" class="bgtextarea" placeholder="请添写你的问题描述"></textarea>
+                    </td>
+                    <td></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font-size:14px; width:80px; padding-top:15px;" class="text-right">常见问题：</td>
+                    <td class="wraperh-sm">
+                        如何注册会员账号？<br />
+                        视讯直播视频无法显示？<br />
+                        网站访问缓慢？<br />
+                        会员账号无法登入提示冻结/停权等。<br />
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top" style="font-size:14px; width:80px;" class="text-right">联系方式：</td>
+                    <td>
+                        <select class="fl mr15" style="height:37px;color:#333;">
+                            <option value="QQ">QQ</option>
+                            <option value="微信">微信</option>
+                            <option value="手机号码">手机号码</option>
+                            <option value="邮箱">邮箱</option>
+                        </select>
+                        <input name="realname" type="text" class="bginput fl" style="width:388px;" placeholder="请正确添写您的联系方式" />
+                    </td>
+                    <td class="shuang pl10">*必填</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="wraperh-sm">请认真填写联系方式，您的每个反馈，我们都会进行一对一联系。<br />亦可联系7x24H<a href="" class="shuang">在线客服</a>即时反馈。</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="3"><input type="submit" value="确认反馈" class="btn-fk mr20" /><input type="submit" value="没有问题了" class="btn-fk" style="background:#3d3d3d;" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="cl10"></div>
+    </div>
+</div>
+<!-- 弹出服务协议 结束 -->

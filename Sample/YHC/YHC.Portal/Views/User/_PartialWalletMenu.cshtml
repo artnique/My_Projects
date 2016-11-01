@@ -1,0 +1,22 @@
+﻿<ul>
+	<li class="@(Model =="init" ? "on" : "")">
+		<a href="/user/walletinitlist.html"><p class="num" id="initcount">0</p><p>待领取</p></a>
+		<i class="icon icon_tab_tip"></i>
+	</li>
+	<li class="@(Model == "apply" ? "on" : "")">
+		<a href="/user/walletapplylist.html"><p class="num" id="applycount">0</p><p>已领取 锁定中</p></a>
+		<i class="icon icon_tab_tip"></i>
+	</li>
+	<li class="@(Model == "send" ? "on" : "")">
+		<a href="/user/walletsendlist.html"><p class="num" id="sendcount">0</p><p>已领取</p></a>
+		<i class="icon icon_tab_tip"></i>
+	</li>
+	<li class="@(Model == "cancel" ? "on" : "")">
+		<a href="/user/walletcancellist.html"><p class="num" id="cancelcount">0</p><p>已取消</p></a>
+		<i class="icon icon_tab_tip"></i>
+	</li>
+	<li class="@(Model == "invalid" ? "on" : "")">
+		<a href="/user/walletinvalidlist.html"><p class="num" id="invalidcount">0</p><p>已过期</p></a>
+		<i class="icon icon_tab_tip"></i>
+	</li>
+</ul>	

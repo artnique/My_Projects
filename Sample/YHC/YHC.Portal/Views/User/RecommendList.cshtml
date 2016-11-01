@@ -1,0 +1,101 @@
+﻿@using YHC.Portal.Extensions;
+@{
+    ViewBag.Title = "推荐返利";
+    ViewBag.TopMenu = "icon_nav_market";
+    Layout = "~/Views/User/_LayoutUserPage.cshtml";
+
+    RecommendRebateInfo recommendInfo = ViewBag.RecommendInfo as RecommendRebateInfo;
+    String recommandUrl = YHC.Portal.Helper.UtilHelper.GetRecommendUrl(recommendInfo.RecommendCode);
+    String beginTime = DateTime.Today.AddMonths(-1).ToString("yyyy-MM-dd");
+}
+
+<div class="eveb_content">
+    <ul class="eveb_nav_sub">
+        <li><a href="/user/walletinitlist.html">优惠钱包</a></li>
+        <li class="on"><a href="/user/recommendlist.html">推荐返利</a></li>
+    </ul>
+</div>
+<div class="eveb_content">
+	<h2><i class="icon_medium icon_market"></i>推荐返利</h2>
+	<div class="eveb_tip eveb_market_tip">
+		<span>您的推荐链接&nbsp;<a id="link" href="@recommandUrl">@recommandUrl</a></span>
+		<a  href="javascript:void(0);" id="copy" class="button_small button_1">复制到剪切板</a>
+	</div>
+	<div class="eveb_tab eveb_tab_2">
+		<ul>
+			<li>
+				<p class="num">@recommendInfo.RecommendUrlQuantity</p><p>访问人数</p>
+			</li>
+			<li>
+				<p class="num">@recommendInfo.RegisterQuantity</p><p>注册人数</p>
+			</li>
+			<li>
+				<p class="num">@recommendInfo.RecommendSuccessQuantity</p><p>成功推荐人数</p>
+			</li>
+            <li>
+				<p class="num">@recommendInfo.RecommendTotalBouns</p><p>总推荐优惠</p>
+			</li>
+		</ul>	
+	</div>
+	<h3>
+		<div class="eveb_search">
+			起止时间：
+			<input id="beginTime" type="text" size="10" class="Wdate" onfocus="WdatePicker({ minDate:'@(beginTime)}',maxDate:'#F{$dp.$D(\'endTime\')||\'%y-%M-%d\'}' })" value="@(beginTime)" /> 
+            - 
+            <input id="endTime" type="text" size="10" class="Wdate" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'beginTime\')|| \'%y-%M-{%d-@(30)}\'}',maxDate:'%y-%M-%d' })" value="@(DateTime.Today.ToString("yyyy-MM-dd"))" />
+			<a id="refreshDataList" href="javascript:;" class="button_small button_1">筛选</a>
+			<a id="theDay" href="javascript:;" class="button_small button_4">今日</a>
+			<a id="threeDay" href="javascript:;" class="button_small button_4">3天</a>
+			<a id="theWeek" href="javascript:;" class="button_small button_4">本周</a>
+		</div>
+	推荐记录
+	</h3>
+	<div class="eveb_market_list">
+		<table class="eveb_box eveb_table" style="display:table">
+			<tr>
+				<th>会员名</th>
+				<th>真实姓名</th>
+				<th>注册日期</th>
+				<th>累计存款金额</th>
+				<th>推荐优惠</th>
+				<th>状态</th>
+				<th>备注</th>
+			</tr>
+			<tbody id="mainBody">
+                <tr>
+                    <td class="norecord" colspan="7">正在加载数据...
+                    </td>
+                </tr>
+                <textarea name="template_jst_list" id="template_jst_list" style="display: none" cols="0" rows="0">
+                {var index = 0}
+                {for t in list}
+                    <tr index="${index++}">
+                        <td>${t.UserName}</td>
+                        <td>${t.TrueName}</td>
+                        <td>${Date.fromJson(t.CreateTime).format("yyyy-MM-dd HH:mm:ss")}</td> 
+                        <td>${t.TotalDeposit}</td>
+                        <td class="light">${t.ReferralFee}</td>
+                        <td>${t.StatusText}</td>
+                        <td>${t.Remark}</td>			                   
+                    </tr>
+                {forelse}
+                <tr>
+                    <td class="norecord"  colspan="7" align="center">没有符合条件的记录</td>
+                </tr>  
+                {/for}
+                 </textarea>
+            </tbody>
+		</table>
+	</div>
+    <!--分页start-->
+    <div id="pagination" class="fr"></div>
+    <!--分页end-->
+</div>
+
+@section EndScripts{
+    @Url.RenderScriptFile("/scripts/lib/template/trimpath-template.js")
+    @Url.RenderScriptFile("/scripts/lib/datepicker/WdatePicker.js")
+    @Url.RenderScriptFile("/scripts/lib/zclip/jquery.zclip.js")
+    @Url.RenderScriptFile("/scripts/user/common.reportdate.js")
+    @Url.RenderScriptFile("/scripts/user/recommendlist.js")
+}

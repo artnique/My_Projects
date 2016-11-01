@@ -1,0 +1,90 @@
+﻿
+@{
+    SEO seo = ViewBag.SEO as SEO;
+    ViewBag.Title = seo != null ? seo.Title : "澳门银河";
+    ViewBag.Keywords = seo != null ? seo.Keywords : "";
+    ViewBag.Description = seo != null ? seo.Description : "";
+
+    ViewBag.PageTag = "signal";
+    
+    IList<SpareDomain> list = ViewBag.SpareDomain as IList<SpareDomain>;
+}
+@section styles{
+<style>
+body,input { margin:0; padding:0;border:none; text-decoration:none;}
+.box{ background-image:url(/Content/images/detect/beijing_1.png); background-repeat:no-repeat; width:1074px; height:714px; margin: auto; position:relative; margin-top:100px}
+.box_1{ position:absolute; left:48px; top:186px}
+.box_2{ position:absolute; left:48px; top:234px}
+.box_3{ position:absolute; left:48px; top:282px}
+.box_4{ position:absolute; left:48px; top:330px}
+.box_5{ position:absolute; left:48px; top:378px}
+.box_6{ position:absolute; left:545px; top:186px}
+.box_7{ position:absolute; left:545px; top:234px}
+.box_8{ position:absolute; left:545px; top:282px}
+.box_9{ position:absolute; left:545px; top:330px}
+.box_10{ position:absolute; left:545px; top:378px}
+
+.wenben_1{ width:78px; height:30px; border-radius:4px; border:1px solid #b2b2b2; float:left; font-size:16px; font-family:'微软雅黑'; color:#666666; text-align:center;}
+.wenben_2{ width:258px; height:30px; border-radius:4px; border:1px solid #b2b2b2; margin-left:9px;float:left;font-size:16px; font-family:'微软雅黑'; color:#666666; text-align:center;}
+.jiantou_1{ margin-left:10px;float:left; margin-top:11px;}
+.anniu_1{ float:left; margin-left:11px;}
+.daanniu_1{ position:absolute; left:418px; top:438px;}
+
+/* WebKit browsers */
+::-webkit-input-placeholder {
+	color: #666666;
+}
+/* Mozilla Firefox 4 to 18 */
+:-moz-placeholder {
+	color: #666666;
+	opacity: 1;
+}
+/* Mozilla Firefox 19+ */
+::-moz-placeholder {
+	color: #666666;
+	opacity: 1;
+}
+/* Internet Explorer 10+ */
+:-ms-input-placeholder {
+	color: #666666;
+}
+
+</style>
+}
+
+
+<div class="box">
+    @if (list != null)
+    {
+        int index = 1;
+        foreach (var item in list)
+        {
+            <div class="box_@(index)">
+                <input type="text" placeholder="测试中…" id="sudu@(index)" class="wenben_1" />
+                <img class="jiantou_1" src="/Content/images/detect/jiantou_1.png" />
+                <div class="wenben_2">@item.DomainUrl</div>
+                @*<input type="text" placeholder="@item.DomainUrl" value="@item.DomainUrl" readonly="readonly" class="wenben_2" />*@
+                <a href="@item.DomainUrl" target="_blank"><img class="anniu_1" src="/Content/images/detect/anniu_1.png" /></a>
+            </div>
+            index++;
+        }
+    }
+    <a href="/signal.html"><img class="daanniu_1" src="/Content/images/detect/anniu_2.png"></a>
+      
+</div>
+
+@section scripts_body{
+    <script>
+        var autourl = new Array();
+        @if (list != null)
+        {
+            int index = 1;
+            foreach (var item in list)
+            {
+                @Html.Raw("autourl[" + index + "] = '" + item.DomainUrl + "';")
+                index++;
+            }
+        }
+    </script>
+    @Scripts.Render("~/bundles/Scriptssignal")
+}

@@ -1,0 +1,550 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ padding:0; margin:0;}
+body { font-family:"微软雅黑";font-size:14px; color:#77571a; background:#efe9e1 url(../image/bg.png) no-repeat; center top; }
+a,input{ list-style:none; margin:0; padding:0;}
+h1,h2,h3,h4,h5,h6,ul,li,ol,form,img,p,div{margin:0; padding:0; border:none; list-style-type:none;}
+a{ text-decoration:none;}
+td{margin:0;padding:0;}
+
+/*头部开始*/
+.top-m{
+	width:100%;
+	height:42px;
+	background:#000;
+	}
+.top{
+	width:1000px;
+	height:42px;
+	color:#FFF;
+	line-height:42px;
+	margin:0px auto;
+	}
+.top a{
+	color:#FFF;
+	}
+.top a:hover{
+	color:#ffcc00;
+	}
+.top-l{
+	float:left;
+	padding-left:25px;
+	background:url(../image/icon.png) no-repeat -379px 12px;
+	}
+.top-r{
+	float:right;
+	}
+.top-r a{
+	height:42px;
+	padding-left:20px;
+	margin-right:10px;
+	background:url(../image/icon.png) no-repeat;
+	}
+.top-r a.s{
+	background-position:-379px -34px;
+	}
+.top-r a.j{
+	background-position:-379px -67px;
+	}
+/*头部开始*/
+/*logo开始*/
+.logo{
+	width:1000px;
+	height:123px;
+	background:url(../image/logo.png) no-repeat;
+	padding-top:17px;
+	margin:0px auto;	
+	}
+.logo h1 a{
+	display:block;
+	width:135px;
+	height:106px;
+	margin:0px auto;
+	}
+/*logo结束*/
+/*main开始*/
+.main{
+	width:1037px;
+	margin:0px auto;
+	overflow:hidden;
+	}
+.main-t{
+	width:1037px;
+	height:19px;
+	background:url(../image/main-bg-t.png) no-repeat;
+	}
+.main-c{
+	width:1037px;
+	background:#FFF;
+	overflow:hidden;
+	}
+.main-b{
+	width:1037px;
+	height:19px;
+	background:url(../image/main-bg-b.png) no-repeat;
+	}
+.galaxy{
+	width:1008px;
+	height:163px;
+	padding:0px 12px 5px 17px;
+	}
+.galaxy li{
+	float:left;
+	margin-right:5px;
+	}
+.galaxy li a{
+	display:block;
+	width:163px;
+	height:143px;
+	padding-top:20px;
+	}
+.galaxy li a span{
+	display:block;
+	width:123px;
+	height:75px;
+	background:url(../image/icon.png) no-repeat 0px 0px;
+	margin:0px auto;
+	}
+.galaxy li a small{
+	display:block;
+	width:163px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	font-size:16px;
+	color:#FFF;
+	font-style:normal;
+	}
+.galaxy li a i{
+	display:block;
+	width:80px;
+	height:20px;
+	font-size:12px;
+	text-align:center;
+	line-height:20px;
+	margin:0px auto;
+	background:#FFF;
+	color:#585858;
+	font-style:normal;
+	}
+.galaxy li a.yellow{
+	background:#ff9200;
+	}
+.galaxy li a:hover.yellow{
+	background:#ff7e00;
+	}
+.galaxy li a.green{
+	background:#00b187;
+	}
+.galaxy li a:hover.green{
+	background:#00b160;
+	}
+.galaxy li a.blue{
+	background:#1485e1;
+	}
+.galaxy li a:hover.blue{
+	background:#1466e1;
+	}
+.galaxy-m{
+	width:1003px;
+	height:173px;
+	padding:0px 17px;
+	}
+.galaxy-m .m5{
+	margin-right:5px;
+	}
+.galaxy-m-l{
+	width:331px;
+	height:336px;
+	overflow:hidden;
+	margin-bottom:20px;
+	float:left;
+	}
+.galaxy-m-l li{
+	float:left;
+	margin-top:5px;
+	}
+.galaxy-m-l li a{
+	display:block;
+	width:163px;
+	height:138px;
+	padding-top:25px;
+	}
+.galaxy-m-l li a span{
+	display:block;
+	width:75px;
+	height:70px;
+	margin:0px auto;
+	background:url(../image/icon.png) no-repeat;
+	}
+.galaxy-m-l li a span.yh{
+	background-position:-130px -5px;
+	}
+.galaxy-m-l li a span.dl{
+	background-position:-208px -5px;
+	}
+.galaxy-m-l li a span.kh{
+	background-position:-293px -5px;
+	}
+.galaxy-m-l li a span.hy{
+	background-position:-97px -270px;
+	}
+.galaxy-m-l li a small{
+	display:block;
+	width:163px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	font-size:16px;
+	color:#FFF;
+	font-style:normal;
+	}
+.galaxy-m-l li a.green{
+	background:#00b187;
+	}
+.galaxy-m-l li a:hover.green{
+	background:#00b160;
+	}
+.galaxy-m-l li a.blue{
+	background:#1485e1;
+	}
+.galaxy-m-l li a:hover.blue{
+	background:#1466e1;
+	}
+.galaxy-registered a{
+	display:block;
+	width:331px;
+	height:301px;
+	padding-top:30px;
+	color:#FFF;
+	background:#ff7e00;
+	}
+.galaxy-registered a:hover{
+	background:#ff9200;
+	}
+.galaxy-registered a span{
+	display:block;
+	width:331px;
+	height:178px;
+	background:url(../image/icon.png) no-repeat 0px -84px;
+	margin-bottom:10px;
+	}
+.galaxy-registered a small,.galaxy-registered a i{
+	display:block;
+	width:331px;
+	text-align:center;
+	font-style:normal;
+	}
+.galaxy-registered a small{
+	height:40px;
+	font-size:24px;
+	line-height:40px;
+	}
+.galaxy-registered a i{
+	height:30px;
+	line-height:30px;
+	}
+.galaxy-zx a{
+	display:block;
+	width:311px;
+	height:123px;
+	padding:40px 0px 0px 20px;
+	background:#d7375c;
+	}
+.galaxy-zx a:hover{
+	background:#ca254b;
+	}
+.galaxy-zx a span{
+	display:block;
+	width:85px;
+	height:92px;
+	background:url(../image/icon.png) no-repeat 0px -261px;
+	margin-right:20px;
+	float:left;
+	}
+.galaxy-zx a p{
+	display:block;
+	width:186px;
+	height:66px;
+	margin-top:10px;
+	float:left;
+	}
+.galaxy-zx a p i{
+	display:block;
+	width:186px;
+	height:51px;
+	font-size:50px;
+	line-height:51px;
+	color:#FFF;
+	font-weight:bold;
+	font-style:normal;
+	text-align:center;
+	}
+.galaxy-zx a p i em{
+	font-style:normal;
+	font-size:30px;
+	}
+.galaxy-zx a p small{
+	display:block;
+	width:186px;
+	height:15px;
+	line-height:15px;
+	color:#FFF;
+	text-align:center;
+	}
+.galaxy-sx{
+	width:311px;
+	height:143px;
+	background:#d7375c;
+	color:#FFF;
+	padding:10px;
+	}
+.galaxy-sx h3{
+	display:block;
+	width:311px;
+	height:40px;
+	line-height:40px;
+	}
+.galaxy-sx p{
+	display:block;
+	width:311px;
+	height:60px;
+	font-size:12px;
+	line-height:20px;
+	}
+.galaxy-sx small{
+	display:block;
+	width:311px;
+	height:30px;
+	line-height:30px;
+	margin-top:10px;
+	font-size:12px;
+	}
+.galaxy-sx small button{
+	display:block;
+	float:right;
+	width:40px;
+	height:30px;
+	color:#FFF;
+	text-align:center;
+	line-height:30px;
+	background:#ca254b;
+	border:0px;
+	cursor:pointer;
+	}
+.menu{
+	width:1037px;
+	overflow:hidden;
+	}
+.menu h3{
+	display:block;
+	width:980px;
+	height:43px;
+	color:#FFF;
+	background:url(../image/btbg.png) no-repeat;
+	text-align:center;
+	line-height:43px;
+	font-weight:normal;
+	margin:0px auto;
+	}
+.menu ul{
+	display:block;
+	width:1008px;
+	padding:10px 12px 5px 17px;
+	overflow:hidden;
+	}
+.menu li{
+	float:left;
+	margin:0px 5px 5px 0px;
+	}
+.menu li a{
+	display:block;
+	width:120px;
+	height:33px;
+	color:#585858;
+	line-height:33px;
+	padding-left:40px;
+	border:1px solid #cccccc;
+	}
+.menu li a:hover{
+	border-color:#585858;
+	}
+.menu li a span{
+	display:block;
+	float:left;
+	width:18px;
+	height:18px;
+	margin:7px 5px 0px 0px;
+	background:url(../image/icon.gif) no-repeat;
+	}
+.menu li a span.icon-01{
+	background-position:0px 0px;
+	}
+.menu li a span.icon-02{
+	background-position:0px -18px;
+	}
+.menu li a span.icon-03{
+	background-position:0px -36px;
+	}
+.menu li a span.icon-04{
+	background-position:0px -54px;
+	}
+.menu li a span.icon-05{
+	background-position:0px -72px;
+	}
+.menu li a span.icon-06{
+	background-position:0px -90px;
+	}
+.menu li a span.icon-07{
+	background-position:0px -108px;
+	}
+.menu li a span.icon-08{
+	background-position:0px -126px;
+	}
+.menu li a span.icon-09{
+	background-position:0px -144px;
+	}
+.menu li a span.icon-10{
+	background-position:0px -162px;
+	}
+.menu li a span.icon-11{
+	background-position:0px -180px;
+	}
+.menu li a span.icon-12{
+	background-position:0px -198px;
+	}
+.menu li a span.icon-13{
+	background-position:0px -216px;
+	}
+.menu li a span.icon-14{
+	background-position:0px -234px;
+	}
+.menu li a span.icon-15{
+	background-position:0px -252px;
+	}
+.menu li a span.icon-16{
+	background-position:0px -270px;
+	}
+.menu li a span.icon-17{
+	background-position:0px -288px;
+	}
+.menu li a span.icon-18{
+	background-position:0px -306px;
+	}
+.menu li a span.icon-19{
+	background-position:0px -324px;
+	}
+.menu li a span.icon-20{
+	background-position:0px -342px;
+	}
+.menu li a span.icon-21{
+	background-position:0px -360px;
+	}
+.menu li a span.icon-22{
+	background-position:0px -378px;
+	}
+.menu li a span.icon-23{
+	background-position:0px -396px;
+	}
+.menu li a span.icon-24{
+	background-position:0px -414px;
+	}
+.menu li a span.icon-25{
+	background-position:0px -630px;
+	}
+.menu li a span.icon-26{
+	background-position:0px -486px;
+	}
+.menu li a span.icon-27{
+	background-position:0px -522px;
+	}
+.menu li a span.icon-28{
+	background-position:0px -540px;
+	}
+.menu li a span.icon-29{
+	background-position:0px -558px;
+	}
+.menu li a span.icon-30{
+	background-position:0px -468px;
+	}
+.menu li a span.icon-31{
+	background-position:0px -450px;
+	}
+.menu li a span.icon-32{
+	background-position:0px -504px;
+	}
+.menu li a span.icon-33{
+	background-position:0px -576px;
+	}
+.menu li a span.icon-34{
+	background-position:0px -594px;
+	}
+.menu li a span.icon-35{
+	background-position:0px -612px;
+	}
+.menu li a span.icon-36{
+	background-position:0px -630px;
+	}
+.menu li a span.icon-37{
+	background-position:0px -648px;
+	}
+.menu li a span.icon-38{
+	background-position:0px -666px;
+	}
+.menu li a span.icon-39{
+	background-position:0px -684px;
+	}
+.menu li a span.icon-40{
+	background-position:0px -702px;
+	}
+.menu li a span.icon-41{
+	background-position:0px -720px;
+	}
+.menu li a span.icon-42{
+	background-position:0px -738px;
+	}
+.menu li a span.icon-43{
+	background-position:0px -756px;
+	}
+.menu li a span.icon-44{
+	background-position:0px -774px;
+	}
+.menu li a span.icon-45{
+	background-position:0px -792px;
+	}
+.menu li a span.icon-46{
+	background-position:0px -810px;
+	}
+.menu li a span.icon-47{
+	background-position:0px -828px;
+	}
+.menu li a span.icon-48{
+	background-position:0px -846px;
+	}
+/*main结束*/
+/*bottom开始*/
+.bottom{
+	width:1037px;
+	padding:30px 0px;
+	margin:0px auto;
+	overflow:hidden;
+	}
+.bottom span{
+	display:block;
+	width:245px;
+	height:49px;
+	background:url(../image/bottom-logo.gif) no-repeat;
+	margin:0px auto;
+	}
+.bottom p{
+	display:block;
+	width:1037px;
+	height:40px;
+	line-height:20px;
+	color:#c2b799;
+	text-align:center;
+	margin-top:20px;
+	}
+/*bottom结束*/
+

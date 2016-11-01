@@ -1,0 +1,11 @@
+﻿@using YHC.Portal.Helper
+<script type="text/javascript">
+    //配置时区的当前时间字符串
+    var CONFIGTIMENOWSTRING = "@ConfigTime.Now().ToString("yyyy/MM/dd HH:mm:ss")";
+    //Web服务器的时区
+    var WEBSERVERTIMEZONE = @TimeZoneInfo.Local.BaseUtcOffset.TotalMinutes;
+    //系统配置的时区
+    var CONFIGTIMEZONE = @ConfigHelper.TimeZone;
+    //Web服务器的时区当前是为夏令时
+    var ISDAYLIGHTSAVINGTIME ='@TimeZoneInfo.Local.IsDaylightSavingTime(DateTime.Now)'.toLowerCase()=='true'.toLowerCase();
+</script>

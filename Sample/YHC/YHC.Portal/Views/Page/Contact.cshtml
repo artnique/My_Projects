@@ -1,0 +1,7 @@
+﻿@{
+    Layout = "~/Views/Page/_PageLayout.cshtml";
+
+    News page = ViewBag.Contact as News;
+}
+    @(page != null ? Html.Raw(page.Content) : Html.Raw(""))
+<!-- 页面主体 结束-->
